@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mahi/Desktop/Group  4 VisualProgramming_Project/Project.csproj": {}
+    "/Users/mahi/Desktop/Group4 VisualProgramming_Project/Project.csproj": {}
   },
   "projects": {
-    "/Users/mahi/Desktop/Group  4 VisualProgramming_Project/Project.csproj": {
+    "/Users/mahi/Desktop/Group4 VisualProgramming_Project/Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mahi/Desktop/Group  4 VisualProgramming_Project/Project.csproj",
+        "projectUniqueName": "/Users/mahi/Desktop/Group4 VisualProgramming_Project/Project.csproj",
         "projectName": "Project",
-        "projectPath": "/Users/mahi/Desktop/Group  4 VisualProgramming_Project/Project.csproj",
+        "projectPath": "/Users/mahi/Desktop/Group4 VisualProgramming_Project/Project.csproj",
         "packagesPath": "/Users/mahi/.nuget/packages/",
-        "outputPath": "/Users/mahi/Desktop/Group  4 VisualProgramming_Project/obj/",
+        "outputPath": "/Users/mahi/Desktop/Group4 VisualProgramming_Project/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/mahi/.nuget/NuGet/NuGet.Config"
@@ -49,6 +49,28 @@
               "target": "Package",
               "version": "[10.0.7, )",
               "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
