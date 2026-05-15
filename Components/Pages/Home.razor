@@ -1,89 +1,147 @@
 ﻿@page "/"
 <PageTitle>Home - Punjab Jobs Online</PageTitle>
 
-<!-- Hero Section -->
-<div style="
-    background: 
-        linear-gradient(135deg, 
-            rgba(144,200,144,0.6) 0%, 
-            rgba(200,230,200,0.4) 40%, 
-            rgba(240,245,240,0.5) 70%, 
-            rgba(220,235,220,0.4) 100%);
-    background-color: #dceadc;
-    min-height: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    position: relative;
-    overflow: hidden;">
+<style>
+    .hero-section {
+        position: relative;
+        min-height: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        overflow: hidden;
+    }
 
-    <!-- Geometric shapes background -->
-    <div style="
-        position:absolute; top:0; left:0; 
-        width:100%; height:100%; 
-        opacity:0.15;
-        background-image: 
-            polygon(0 0, 50% 100%, 100% 0);
-        background: 
+    .hero-bg {
+        position: absolute;
+        top: 0; left: 0;
+        width: 300%;
+        height: 100%;
+        display: flex;
+        animation: slideBg 9s infinite;
+    }
+
+    .hero-bg-slide {
+        width: 33.33%;
+        height: 100%;
+        flex-shrink: 0;
+    }
+
+    .slide1 {
+        background: linear-gradient(135deg,
+            rgba(144,200,144,0.8),
+            rgba(200,230,200,0.6)),
+            repeating-linear-gradient(
+                60deg,
+                transparent 0px,
+                transparent 60px,
+                rgba(255,255,255,0.15) 60px,
+                rgba(255,255,255,0.15) 120px
+            );
+        background-color: #c8e6c8;
+    }
+
+    .slide2 {
+        background: linear-gradient(135deg,
+            rgba(100,180,100,0.7),
+            rgba(180,220,180,0.5)),
             repeating-linear-gradient(
                 45deg,
-                transparent,
-                transparent 40px,
-                rgba(100,150,100,0.3) 40px,
-                rgba(100,150,100,0.3) 80px
+                transparent 0px,
+                transparent 50px,
+                rgba(255,255,255,0.1) 50px,
+                rgba(255,255,255,0.1) 100px
             );
-        z-index:0;">
-    </div>
-<!-- Heading -->
-    <h1 style="
-        color: #1a5c1a;
-        font-weight: bold;
-        font-size: 32px;
-        text-align: center;
-        margin-bottom: 30px;
-        position: relative;
-        z-index: 1;">
-        Search &amp; Apply Online on All Jobs
-    </h1>
+        background-color: #b8ddb8;
+    }
 
-    
-    <!-- Search Bar -->
-    <div style="
-        background-color: rgba(100,160,100,0.75);
-        padding: 20px;
-        border-radius: 4px;
-        width: 100%;
-        max-width: 900px;
+    .slide3 {
+        background: linear-gradient(135deg,
+            rgba(160,210,160,0.7),
+            rgba(220,240,220,0.5)),
+            repeating-linear-gradient(
+                30deg,
+                transparent 0px,
+                transparent 70px,
+                rgba(255,255,255,0.12) 70px,
+                rgba(255,255,255,0.12) 140px
+            );
+        background-color: #d0e8d0;
+    }
+
+    @@keyframes slideBg {
+        0%   { transform: translateX(0); }
+        30%  { transform: translateX(0); }
+        40%  { transform: translateX(-33.33%); }
+        65%  { transform: translateX(-33.33%); }
+        75%  { transform: translateX(-66.66%); }
+        95%  { transform: translateX(-66.66%); }
+        100% { transform: translateX(0); }
+    }
+
+    .hero-content {
         position: relative;
-        z-index: 1;">
-        <div class="row g-2">
-            <div class="col-md-5">
-                <input type="text" class="form-control"
-                       placeholder="Looking for..."
-                       style="border-radius:3px; height:42px;" />
-            </div>
-            <div class="col-md-3">
-                <select class="form-select" style="height:42px; border-radius:3px;">
-                    <option>Departments</option>
-                    <option>Education</option>
-                    <option>Health</option>
-                    <option>Finance</option>
-                    <option>IT</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select class="form-select" style="height:42px; border-radius:3px;">
-                    <option>Location</option>
-                    <option>Lahore</option>
-                    <option>Karachi</option>
-                    <option>Islamabad</option>
-                    <option>Peshawar</option>
-                </select>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-dark w-100" style="height:42px;">🔍</button>
+        z-index: 2;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<div class="hero-section">
+    <!-- Sliding Background -->
+    <div class="hero-bg">
+        <div class="hero-bg-slide slide1"></div>
+        <div class="hero-bg-slide slide2"></div>
+        <div class="hero-bg-slide slide3"></div>
+    </div>
+
+    <!-- Content on top -->
+    <div class="hero-content">
+        <h1 style="
+            color: #1a5c1a;
+            font-weight: bold;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;">
+            Search &amp; Apply Online on All Jobs
+        </h1>
+
+        <div style="
+            background-color: rgba(100,160,100,0.75);
+            padding: 20px;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 900px;">
+            <div class="row g-2">
+                <div class="col-md-5">
+                    <input type="text" class="form-control"
+                           placeholder="Looking for..."
+                           style="border-radius:3px; height:42px;" />
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" style="height:42px; border-radius:3px;">
+                        <option>Departments</option>
+                        <option>Education</option>
+                        <option>Health</option>
+                        <option>Finance</option>
+                        <option>IT</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" style="height:42px; border-radius:3px;">
+                        <option>Location</option>
+                        <option>Lahore</option>
+                        <option>Karachi</option>
+                        <option>Islamabad</option>
+                        <option>Peshawar</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-dark w-100" style="height:42px;">🔍</button>
+                </div>
             </div>
         </div>
     </div>
