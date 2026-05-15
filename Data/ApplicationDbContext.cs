@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Project.Models;
 
 namespace Project.Data
 {
@@ -16,6 +17,10 @@ namespace Project.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
+
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<JobApplication> JobApplications { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
