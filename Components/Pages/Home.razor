@@ -46,11 +46,13 @@
         position: relative;
     }
 
-    /* Laptop CSS */
-    .illustration {
+   .illustration {
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
         display: flex;
         align-items: flex-end;
-        gap: 20px;
+        gap: 15px;
     }
 
     .laptop-wrap {
@@ -85,7 +87,7 @@
     .bars {
         display: flex;
         align-items: flex-end;
-        gap: 6px;
+        gap: 5px;
         margin-bottom: 10px;
     }
 
@@ -98,72 +100,83 @@
     .bar2 { height: 55px; background: #f39c12; }
     .bar3 { height: 95px; background: #3498db; }
     .bar4 { height: 65px; background: #e74c3c; }
+    .bar5 { height: 110px; background: #9b59b6; }
+    .bar6 { height: 45px; background: #27ae60; }
+
+    .books {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        margin-bottom: 10px;
+    }
+
+    .book {
+        width: 20px;
+        border-radius: 2px 0 0 2px;
+    }
+
+    .book1 { height: 90px; background: #8e44ad; }
+    .book2 { height: 70px; background: #e67e22; }
+    .book3 { height: 105px; background: #27ae60; }
+    .book4 { height: 80px; background: #c0392b; }
+    .book5 { height: 60px; background: #f1c40f; }
 
     .cup {
-        width: 30px;
-        height: 28px;
+        width: 32px;
+        height: 30px;
         background: #7B4F2E;
         border-radius: 0 0 8px 8px;
         border: 3px solid #5c3920;
         margin-bottom: 10px;
+        position: relative;
     }
 
-    @@keyframes slideMove {
-        0%   { transform: translateX(0); }
-        28%  { transform: translateX(0); }
-        33%  { transform: translateX(-33.33%); }
-        61%  { transform: translateX(-33.33%); }
-        66%  { transform: translateX(-66.66%); }
-        94%  { transform: translateX(-66.66%); }
-        99%  { transform: translateX(0); }
-        100% { transform: translateX(0); }
-    }
-
-    .hero-content {
+    .cup::after {
+        content: '';
         position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        padding: 20px;
+        right: -12px;
+        top: 3px;
+        width: 10px;
+        height: 16px;
+        border: 3px solid #5c3920;
+        border-radius: 0 50% 50% 0;
+        border-left: none;
     }
-</style>
 
-<div class="hero-wrapper">
-
-    <!-- Sliding Backgrounds -->
-    <div class="slides-container">
-
-        <!-- Slide 1: Triangle Pattern -->
-        <div class="slide slide-1"></div>
-
-        <!-- Slide 2: Plain Light Green -->
-        <div class="slide slide-2"></div>
-
-        <!-- Slide 3: Illustration -->
-        <div class="slide slide-3">
-            <div class="illustration">
-                <div class="bars">
-                    <div class="bar bar1"></div>
-                    <div class="bar bar2"></div>
-                    <div class="bar bar3"></div>
-                    <div class="bar bar4"></div>
-                </div>
-                <div class="laptop-wrap">
-                    <div class="laptop-screen">
-                        <div class="laptop-screen-inner"></div>
-                    </div>
-                    <div class="laptop-base"></div>
-                </div>
-                <div class="cup"></div>
-            </div>
+    <!-- Slide 3: Illustration -->
+<div class="slide slide-3">
+    <div class="illustration">
+        <!-- Books on far left -->
+        <div class="books">
+            <div class="book book1"></div>
+            <div class="book book2"></div>
+            <div class="book book3"></div>
+            <div class="book book4"></div>
+            <div class="book book5"></div>
         </div>
 
+        <!-- Bar Charts -->
+        <div class="bars">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+            <div class="bar bar4"></div>
+            <div class="bar bar5"></div>
+            <div class="bar bar6"></div>
+        </div>
+
+        <!-- Laptop -->
+        <div class="laptop-wrap">
+            <div class="laptop-screen">
+                <div class="laptop-screen-inner"></div>
+            </div>
+            <div class="laptop-base"></div>
+        </div>
+
+        <!-- Coffee Cup -->
+        <div class="cup"></div>
     </div>
+</div>
 
     <!-- Content Always On Top -->
     <div class="hero-content">
