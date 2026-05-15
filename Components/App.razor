@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@* Loading Spinner *@
+<div class="loading-spinner" id="loadingSpinner">
+    <div class="spinner"></div>
+</div>
+
+<script>
+    window.addEventListener('load', function () {
+        document.getElementById('loadingSpinner').style.display = 'none';
+    });
+</script>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
