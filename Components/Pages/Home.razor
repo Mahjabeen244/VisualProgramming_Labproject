@@ -3,48 +3,67 @@
 
 <!-- Hero Section -->
 <div style="
-    background: linear-gradient(135deg, 
-        rgba(200,220,200,0.5) 0%, 
-        rgba(180,210,180,0.3) 25%, 
-        rgba(220,230,220,0.4) 50%, 
-        rgba(150,200,150,0.3) 75%, 
-        rgba(200,220,200,0.5) 100%),
-    url('') center/cover;
-    min-height: 400px;
+    background: 
+        linear-gradient(135deg, 
+            rgba(144,200,144,0.6) 0%, 
+            rgba(200,230,200,0.4) 40%, 
+            rgba(240,245,240,0.5) 70%, 
+            rgba(220,235,220,0.4) 100%);
+    background-color: #dceadc;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    background-color: #e8f0e8;">
+    position: relative;
+    overflow: hidden;">
 
-    <!-- Heading -->
+    <!-- Geometric shapes background -->
+    <div style="
+        position:absolute; top:0; left:0; 
+        width:100%; height:100%; 
+        opacity:0.15;
+        background-image: 
+            polygon(0 0, 50% 100%, 100% 0);
+        background: 
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 40px,
+                rgba(100,150,100,0.3) 40px,
+                rgba(100,150,100,0.3) 80px
+            );
+        z-index:0;">
+    </div>
+<!-- Heading -->
     <h1 style="
         color: #1a5c1a;
         font-weight: bold;
         font-size: 32px;
         text-align: center;
-        margin-bottom: 30px;">
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 1;">
         Search &amp; Apply Online on All Jobs
     </h1>
 
+    
     <!-- Search Bar -->
     <div style="
-        background-color: rgba(100,160,100,0.7);
+        background-color: rgba(100,160,100,0.75);
         padding: 20px;
         border-radius: 4px;
         width: 100%;
-        max-width: 900px;">
+        max-width: 900px;
+        position: relative;
+        z-index: 1;">
         <div class="row g-2">
-            <!-- Looking For -->
             <div class="col-md-5">
-                <input type="text"
-                       class="form-control"
+                <input type="text" class="form-control"
                        placeholder="Looking for..."
                        style="border-radius:3px; height:42px;" />
             </div>
-
-            <!-- Departments -->
             <div class="col-md-3">
                 <select class="form-select" style="height:42px; border-radius:3px;">
                     <option>Departments</option>
@@ -54,8 +73,6 @@
                     <option>IT</option>
                 </select>
             </div>
-
-            <!-- Location -->
             <div class="col-md-3">
                 <select class="form-select" style="height:42px; border-radius:3px;">
                     <option>Location</option>
@@ -65,13 +82,41 @@
                     <option>Peshawar</option>
                 </select>
             </div>
-
-            <!-- Search Button -->
             <div class="col-md-1">
-                <button class="btn btn-dark w-100" style="height:42px; border-radius:3px;">
-                    🔍
-                </button>
+                <button class="btn btn-dark w-100" style="height:42px;">🔍</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Carousel Section below hero -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div style="background:#f0f7f0; height:200px; display:flex; align-items:center; justify-content:center;">
+                <h3 style="color:#2d7a2d;">Professional Identification</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="background:#e8f4e8; height:200px; display:flex; align-items:center; justify-content:center;">
+                <h3 style="color:#2d7a2d;">Discover Govt Punjab Jobs</h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="background:#f5faf5; height:200px; display:flex; align-items:center; justify-content:center;">
+                <h3 style="color:#2d7a2d;">Apply on the GO</h3>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
 </div>
