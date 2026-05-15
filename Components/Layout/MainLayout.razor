@@ -1,61 +1,44 @@
 ﻿@inherits LayoutComponentBase
 
+
 <!-- Top Green Bar -->
-<div style="background-color:#2d7a2d; padding:8px 20px; text-align:right;">
-    <a href="/register" style="color:white; margin-right:15px; text-decoration:none;">
+<div style="background-color:#2d7a2d; padding:4px 20px; text-align:right;">
+    <a href="/register" style="color:white; margin-right:12px; text-decoration:none; font-size:11px; letter-spacing:1px;">
         REGISTER
     </a>
-    <a href="/login" style="color:white; margin-right:15px; text-decoration:none;">
-        🔑 LOGIN
+    <a href="/login" style="color:white; margin-right:12px; text-decoration:none; font-size:11px; letter-spacing:1px;">
+        ➤ LOGIN
     </a>
-    <a href="/member-login" style="color:white; text-decoration:none;">
-        🔑 MEMBER LOGIN
+    <a href="/member-login" style="color:white; text-decoration:none; font-size:11px; letter-spacing:1px;">
+        ➤ MEMBER LOGIN
     </a>
 </div>
 
 <!-- White Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
     <div class="container">
-        <!-- Logo -->
         <a class="navbar-brand" href="/">
-            <span style="color:#2d7a2d; font-size:28px; font-weight:bold;">
-                Punjab <span style="color:#1a1a1a;">J</span>
-                <span style="background-color:#2d7a2d; color:white; border-radius:50%; padding:2px 8px;">O</span>
-                <span style="color:#1a1a1a;">bs</span>
-            </span>
-            <br />
-            <small style="color:#888; font-size:12px; margin-left:60px;">online</small>
+            <span style="color:#2d7a2d; font-size:22px; font-weight:bold; font-family:Arial;">Punjab</span><span style="color:#2d7a2d; font-size:22px; font-weight:bold;"> J</span><span style="background-color:#2d7a2d; color:white; border-radius:50%; padding:1px 7px; font-size:18px; font-weight:bold;">o</span><span style="color:#333; font-size:22px; font-weight:bold;">bs</span>
+            <span style="color:#888; font-size:11px; display:block; margin-top:-6px; margin-left:58px; font-style:italic;">online</span>
         </a>
-
-        <!-- Toggle for mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Nav Links -->
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav gap-4">
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/" 
-                       style="color:#1a6bbf; border-bottom:2px solid #1a6bbf;">
-                        HOME
-                    </a>
+                    <a class="nav-link fw-bold" href="/"
+                       style="color:#1a6bbf; border-bottom:2px solid #1a6bbf; font-size:13px;">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/jobs" style="color:#333;">
-                        JOBS
-                    </a>
+                    <a class="nav-link fw-bold" href="/jobs" style="color:#333; font-size:13px;">JOBS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/departments" style="color:#333;">
-                        DEPARTMENTAL CONTACTS
-                    </a>
+                    <a class="nav-link fw-bold" href="/departments" style="color:#333; font-size:13px;">DEPARTMENTAL CONTACTS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/faq" style="color:#333;">
-                        FAQ'S
-                    </a>
+                    <a class="nav-link fw-bold" href="/faq" style="color:#333; font-size:13px;">FAQ'S</a>
                 </li>
             </ul>
         </div>
@@ -64,5 +47,13 @@
 
 <!-- Page Content -->
 <main>
-    @Body
+    <article class="content px-4">
+        @Body
+    </article>
 </main>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
