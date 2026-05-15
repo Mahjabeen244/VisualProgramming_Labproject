@@ -1,7 +1,77 @@
 ﻿@page "/"
+<PageTitle>Home - Punjab Jobs Online</PageTitle>
 
-<PageTitle>Home</PageTitle>
+<!-- Hero Section -->
+<div style="
+    background: linear-gradient(135deg, 
+        rgba(200,220,200,0.5) 0%, 
+        rgba(180,210,180,0.3) 25%, 
+        rgba(220,230,220,0.4) 50%, 
+        rgba(150,200,150,0.3) 75%, 
+        rgba(200,220,200,0.5) 100%),
+    url('') center/cover;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #e8f0e8;">
 
-<h1>Hello, world!</h1>
+    <!-- Heading -->
+    <h1 style="
+        color: #1a5c1a;
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 30px;">
+        Search &amp; Apply Online on All Jobs
+    </h1>
 
-Welcome to your new app.
+    <!-- Search Bar -->
+    <div style="
+        background-color: rgba(100,160,100,0.7);
+        padding: 20px;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 900px;">
+        <div class="row g-2">
+            <!-- Looking For -->
+            <div class="col-md-5">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Looking for..."
+                       style="border-radius:3px; height:42px;" />
+            </div>
+
+            <!-- Departments -->
+            <div class="col-md-3">
+                <select class="form-select" style="height:42px; border-radius:3px;">
+                    <option>Departments</option>
+                    <option>Education</option>
+                    <option>Health</option>
+                    <option>Finance</option>
+                    <option>IT</option>
+                </select>
+            </div>
+
+            <!-- Location -->
+            <div class="col-md-3">
+                <select class="form-select" style="height:42px; border-radius:3px;">
+                    <option>Location</option>
+                    <option>Lahore</option>
+                    <option>Karachi</option>
+                    <option>Islamabad</option>
+                    <option>Peshawar</option>
+                </select>
+            </div>
+
+            <!-- Search Button -->
+            <div class="col-md-1">
+                <button class="btn btn-dark w-100" style="height:42px; border-radius:3px;">
+                    🔍
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
