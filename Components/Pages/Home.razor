@@ -2,124 +2,196 @@
 <PageTitle>Home - Punjab Jobs Online</PageTitle>
 
 <style>
-    .hero-section {
+    .hero-wrapper {
         position: relative;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
         min-height: 450px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 40px 20px;
         overflow: hidden;
     }
 
-    .hero-bg {
-        position: absolute;
-        top: 0; left: 0;
-        width: 300%;
-        height: 100%;
+    .slides-container {
         display: flex;
-        animation: slideBg 9s infinite;
+        width: 300%;
+        height: 450px;
+        animation: slideMove 12s infinite;
     }
 
-    .hero-bg-slide {
+    .slide {
         width: 33.33%;
         height: 100%;
         flex-shrink: 0;
+        position: relative;
     }
 
-    .slide1 {
-        background: linear-gradient(135deg,
-            rgba(144,200,144,0.8),
-            rgba(200,230,200,0.6)),
-            repeating-linear-gradient(
-                60deg,
-                transparent 0px,
-                transparent 60px,
-                rgba(255,255,255,0.15) 60px,
-                rgba(255,255,255,0.15) 120px
-            );
+    /* Slide 1 - Triangle Pattern */
+    .slide-1 {
         background-color: #c8e6c8;
+        background-image:
+            linear-gradient(120deg, rgba(100,160,100,0.4) 25%, transparent 25%),
+            linear-gradient(240deg, rgba(80,140,80,0.3) 25%, transparent 25%),
+            linear-gradient(0deg, rgba(120,180,120,0.2) 25%, transparent 25%),
+            linear-gradient(300deg, rgba(90,150,90,0.3) 25%, transparent 25%);
+        background-size: 60px 104px;
+        background-position: 0 0, 0 0, 30px 52px, 30px 52px;
     }
 
-    .slide2 {
-        background: linear-gradient(135deg,
-            rgba(100,180,100,0.7),
-            rgba(180,220,180,0.5)),
-            repeating-linear-gradient(
-                45deg,
-                transparent 0px,
-                transparent 50px,
-                rgba(255,255,255,0.1) 50px,
-                rgba(255,255,255,0.1) 100px
-            );
-        background-color: #b8ddb8;
+    /* Slide 2 - Light plain green */
+    .slide-2 {
+        background: linear-gradient(160deg, #d4ecd4 0%, #e8f5e8 50%, #f0faf0 100%);
     }
 
-    .slide3 {
-        background: linear-gradient(135deg,
-            rgba(160,210,160,0.7),
-            rgba(220,240,220,0.5)),
-            repeating-linear-gradient(
-                30deg,
-                transparent 0px,
-                transparent 70px,
-                rgba(255,255,255,0.12) 70px,
-                rgba(255,255,255,0.12) 140px
-            );
-        background-color: #d0e8d0;
+    /* Slide 3 - Light with illustration */
+    .slide-3 {
+        background: linear-gradient(160deg, #e0f0e0 0%, #f0f8f0 60%, #f8fdf8 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-right: 80px;
+        padding-bottom: 40px;
     }
 
-    @@keyframes slideBg {
+    /* Laptop CSS */
+    .illustration {
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+    }
+
+    .laptop-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .laptop-screen {
+        width: 180px;
+        height: 110px;
+        background: #222;
+        border-radius: 8px 8px 0 0;
+        border: 5px solid #333;
+        padding: 5px;
+    }
+
+    .laptop-screen-inner {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, #1a6bbf 35%, #fff 35%);
+        border-radius: 2px;
+    }
+
+    .laptop-base {
+        width: 200px;
+        height: 10px;
+        background: #444;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .bar {
+        width: 22px;
+        border-radius: 3px 3px 0 0;
+    }
+
+    .bar1 { height: 80px; background: #e74c3c; }
+    .bar2 { height: 55px; background: #f39c12; }
+    .bar3 { height: 95px; background: #3498db; }
+    .bar4 { height: 65px; background: #e74c3c; }
+
+    .cup {
+        width: 30px;
+        height: 28px;
+        background: #7B4F2E;
+        border-radius: 0 0 8px 8px;
+        border: 3px solid #5c3920;
+        margin-bottom: 10px;
+    }
+
+    @@keyframes slideMove {
         0%   { transform: translateX(0); }
-        30%  { transform: translateX(0); }
-        40%  { transform: translateX(-33.33%); }
-        65%  { transform: translateX(-33.33%); }
-        75%  { transform: translateX(-66.66%); }
-        95%  { transform: translateX(-66.66%); }
+        28%  { transform: translateX(0); }
+        33%  { transform: translateX(-33.33%); }
+        61%  { transform: translateX(-33.33%); }
+        66%  { transform: translateX(-66.66%); }
+        94%  { transform: translateX(-66.66%); }
+        99%  { transform: translateX(0); }
         100% { transform: translateX(0); }
     }
 
     .hero-content {
-        position: relative;
-        z-index: 2;
+        position: absolute;
+        top: 0; left: 0;
         width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
+        z-index: 10;
+        padding: 20px;
     }
 </style>
 
-<div class="hero-section">
-    <!-- Sliding Background -->
-    <div class="hero-bg">
-        <div class="hero-bg-slide slide1"></div>
-        <div class="hero-bg-slide slide2"></div>
-        <div class="hero-bg-slide slide3"></div>
+<div class="hero-wrapper">
+
+    <!-- Sliding Backgrounds -->
+    <div class="slides-container">
+
+        <!-- Slide 1: Triangle Pattern -->
+        <div class="slide slide-1"></div>
+
+        <!-- Slide 2: Plain Light Green -->
+        <div class="slide slide-2"></div>
+
+        <!-- Slide 3: Illustration -->
+        <div class="slide slide-3">
+            <div class="illustration">
+                <div class="bars">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                </div>
+                <div class="laptop-wrap">
+                    <div class="laptop-screen">
+                        <div class="laptop-screen-inner"></div>
+                    </div>
+                    <div class="laptop-base"></div>
+                </div>
+                <div class="cup"></div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Content on top -->
+    <!-- Content Always On Top -->
     <div class="hero-content">
         <h1 style="
             color: #1a5c1a;
             font-weight: bold;
-            font-size: 32px;
+            font-size: 34px;
             text-align: center;
-            margin-bottom: 30px;">
+            margin-bottom: 35px;">
             Search &amp; Apply Online on All Jobs
         </h1>
 
         <div style="
-            background-color: rgba(100,160,100,0.75);
-            padding: 20px;
+            background-color: rgba(80,140,80,0.75);
+            padding: 18px 20px;
             border-radius: 4px;
-            width: 100%;
-            max-width: 900px;">
-            <div class="row g-2">
+            width: 90%;
+            max-width: 950px;">
+            <div class="row g-2 align-items-center">
                 <div class="col-md-5">
                     <input type="text" class="form-control"
                            placeholder="Looking for..."
-                           style="border-radius:3px; height:42px;" />
+                           style="height:42px; border-radius:3px;" />
                 </div>
                 <div class="col-md-3">
                     <select class="form-select" style="height:42px; border-radius:3px;">
@@ -145,36 +217,5 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Carousel Section below hero -->
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div style="background:#f0f7f0; height:200px; display:flex; align-items:center; justify-content:center;">
-                <h3 style="color:#2d7a2d;">Professional Identification</h3>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div style="background:#e8f4e8; height:200px; display:flex; align-items:center; justify-content:center;">
-                <h3 style="color:#2d7a2d;">Discover Govt Punjab Jobs</h3>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div style="background:#f5faf5; height:200px; display:flex; align-items:center; justify-content:center;">
-                <h3 style="color:#2d7a2d;">Apply on the GO</h3>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
 </div>
