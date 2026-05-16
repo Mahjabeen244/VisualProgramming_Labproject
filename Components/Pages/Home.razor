@@ -1,150 +1,131 @@
 ﻿@page "/"
 <PageTitle>Home - Punjab Jobs Online</PageTitle>
-
 <style>
-    .hero-wrapper {
-        position: relative;
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
-        min-height: 450px;
-        overflow: hidden;
+.hero-wrapper {
+position: relative;
+width: 100vw;
+margin-left: calc(-50vw + 50%);
+min-height: 450px;
+overflow: hidden;
     }
-
-    .slides-container {
-        display: flex;
-        width: 300%;
-        height: 450px;
-        animation: slideMove 12s infinite;
+.slides-container {
+display: flex;
+width: 300%;
+height: 450px;
+animation: slideMove 12s infinite;
     }
-
-    .slide {
-        width: 33.33%;
-        height: 100%;
-        flex-shrink: 0;
-        position: relative;
+.slide {
+width: 33.33%;
+height: 100%;
+flex-shrink: 0;
+position: relative;
     }
-
-    .slide-1 {
-        background-color: #d4e8d4;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpolygon points='0,0 200,100 0,200' fill='rgba(100,160,100,0.3)'/%3E%3Cpolygon points='200,0 400,100 200,200' fill='rgba(80,140,80,0.2)'/%3E%3Cpolygon points='0,200 200,300 0,400' fill='rgba(120,180,120,0.25)'/%3E%3Cpolygon points='200,200 400,300 200,400' fill='rgba(60,120,60,0.2)'/%3E%3Cpolygon points='100,0 300,100 100,200' fill='rgba(140,200,140,0.2)'/%3E%3Cpolygon points='0,100 200,200 0,300' fill='rgba(90,150,90,0.15)'/%3E%3Cpolygon points='300,100 400,200 300,300' fill='rgba(70,130,70,0.2)'/%3E%3C/svg%3E");
-        background-size: cover;
+.slide-1 {
+background-color: #d4e8d4;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpolygon points='0,0 200,100 0,200' fill='rgba(100,160,100,0.3)'/%3E%3Cpolygon points='200,0 400,100 200,200' fill='rgba(80,140,80,0.2)'/%3E%3Cpolygon points='0,200 200,300 0,400' fill='rgba(120,180,120,0.25)'/%3E%3Cpolygon points='200,200 400,300 200,400' fill='rgba(60,120,60,0.2)'/%3E%3Cpolygon points='100,0 300,100 100,200' fill='rgba(140,200,140,0.2)'/%3E%3Cpolygon points='0,100 200,200 0,300' fill='rgba(90,150,90,0.15)'/%3E%3Cpolygon points='300,100 400,200 300,300' fill='rgba(70,130,70,0.2)'/%3E%3C/svg%3E");
+background-size: cover;
     }
-
-    .slide-2 {
-        background-color: #e8ede8;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpolygon points='0,0 200,100 0,200' fill='rgba(180,190,180,0.3)'/%3E%3Cpolygon points='200,0 400,100 200,200' fill='rgba(160,170,160,0.2)'/%3E%3Cpolygon points='0,200 200,300 0,400' fill='rgba(200,210,200,0.25)'/%3E%3Cpolygon points='200,200 400,300 200,400' fill='rgba(150,160,150,0.2)'/%3E%3Cpolygon points='100,0 300,100 100,200' fill='rgba(190,200,190,0.2)'/%3E%3Cpolygon points='0,100 200,200 0,300' fill='rgba(170,180,170,0.15)'/%3E%3Cpolygon points='300,0 400,150 200,0' fill='rgba(140,150,140,0.2)'/%3E%3C/svg%3E");
-        background-size: cover;
+.slide-2 {
+background-color: #e8ede8;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpolygon points='0,0 200,100 0,200' fill='rgba(180,190,180,0.3)'/%3E%3Cpolygon points='200,0 400,100 200,200' fill='rgba(160,170,160,0.2)'/%3E%3Cpolygon points='0,200 200,300 0,400' fill='rgba(200,210,200,0.25)'/%3E%3Cpolygon points='200,200 400,300 200,400' fill='rgba(150,160,150,0.2)'/%3E%3Cpolygon points='100,0 300,100 100,200' fill='rgba(190,200,190,0.2)'/%3E%3Cpolygon points='0,100 200,200 0,300' fill='rgba(170,180,170,0.15)'/%3E%3Cpolygon points='300,0 400,150 200,0' fill='rgba(140,150,140,0.2)'/%3E%3C/svg%3E");
+background-size: cover;
     }
-
-    .slide-3 {
-        background-color: #dce8dc;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpolygon points='0,0 150,80 0,180' fill='rgba(100,160,100,0.25)'/%3E%3Cpolygon points='150,0 350,80 150,180' fill='rgba(180,190,180,0.2)'/%3E%3Cpolygon points='0,180 150,260 0,380' fill='rgba(120,180,120,0.2)'/%3E%3Cpolygon points='150,180 350,260 150,380' fill='rgba(160,170,160,0.25)'/%3E%3Cpolygon points='350,0 400,100 250,0' fill='rgba(80,140,80,0.2)'/%3E%3Cpolygon points='300,200 400,300 200,300' fill='rgba(170,180,170,0.2)'/%3E%3C/svg%3E");
-        background-size: cover;
-        position: relative;
+.slide-3 {
+background-color: #dce8dc;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpolygon points='0,0 150,80 0,180' fill='rgba(100,160,100,0.25)'/%3E%3Cpolygon points='150,0 350,80 150,180' fill='rgba(180,190,180,0.2)'/%3E%3Cpolygon points='0,180 150,260 0,380' fill='rgba(120,180,120,0.2)'/%3E%3Cpolygon points='150,180 350,260 150,380' fill='rgba(160,170,160,0.25)'/%3E%3Cpolygon points='350,0 400,100 250,0' fill='rgba(80,140,80,0.2)'/%3E%3Cpolygon points='300,200 400,300 200,300' fill='rgba(170,180,170,0.2)'/%3E%3C/svg%3E");
+background-size: cover;
+position: relative;
     }
-
-    .illustration {
-        position: absolute;
-        bottom: 20px;
-        right: 40px;
-        display: flex;
-        align-items: flex-end;
-        gap: 15px;
+.illustration {
+position: absolute;
+bottom: 20px;
+right: 40px;
+display: flex;
+align-items: flex-end;
+gap: 15px;
     }
-
-    .laptop-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+.laptop-wrap {
+display: flex;
+flex-direction: column;
+align-items: center;
     }
-
-    .laptop-screen {
-        width: 180px;
-        height: 110px;
-        background: #222;
-        border-radius: 8px 8px 0 0;
-        border: 5px solid #333;
-        padding: 5px;
+.laptop-screen {
+width: 180px;
+height: 110px;
+background: #222;
+border-radius: 8px 8px 0 0;
+border: 5px solid #333;
+padding: 5px;
     }
-
-    .laptop-screen-inner {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(180deg, #1a6bbf 35%, #fff 35%);
-        border-radius: 2px;
+.laptop-screen-inner {
+width: 100%;
+height: 100%;
+background: linear-gradient(180deg, #1a6bbf 35%, #fff 35%);
+border-radius: 2px;
     }
-
-    .laptop-base {
-        width: 200px;
-        height: 10px;
-        background: #444;
-        border-radius: 0 0 5px 5px;
+.laptop-base {
+width: 200px;
+height: 10px;
+background: #444;
+border-radius: 0 0 5px 5px;
     }
-
-    .bars {
-        display: flex;
-        align-items: flex-end;
-        gap: 5px;
-        margin-bottom: 10px;
+.bars {
+display: flex;
+align-items: flex-end;
+gap: 5px;
+margin-bottom: 10px;
     }
-
-    .bar { width: 22px; border-radius: 3px 3px 0 0; }
-    .bar1 { height: 80px; background: #e74c3c; }
-    .bar2 { height: 55px; background: #f39c12; }
-    .bar3 { height: 95px; background: #3498db; }
-    .bar4 { height: 65px; background: #e74c3c; }
-    .bar5 { height: 110px; background: #9b59b6; }
-    .bar6 { height: 45px; background: #27ae60; }
-
-    .books {
-        display: flex;
-        align-items: flex-end;
-        gap: 4px;
-        margin-bottom: 10px;
+.bar { width: 22px; border-radius: 3px 3px 0 0; }
+.bar1 { height: 80px; background: #e74c3c; }
+.bar2 { height: 55px; background: #f39c12; }
+.bar3 { height: 95px; background: #3498db; }
+.bar4 { height: 65px; background: #e74c3c; }
+.bar5 { height: 110px; background: #9b59b6; }
+.bar6 { height: 45px; background: #27ae60; }
+.books {
+display: flex;
+align-items: flex-end;
+gap: 4px;
+margin-bottom: 10px;
     }
-
-    .book { width: 20px; border-radius: 2px 0 0 2px; }
-    .book1 { height: 90px; background: #8e44ad; }
-    .book2 { height: 70px; background: #e67e22; }
-    .book3 { height: 105px; background: #27ae60; }
-    .book4 { height: 80px; background: #c0392b; }
-    .book5 { height: 60px; background: #f1c40f; }
-
-    .cup {
-        width: 32px;
-        height: 30px;
-        background: #7B4F2E;
-        border-radius: 0 0 8px 8px;
-        border: 3px solid #5c3920;
-        margin-bottom: 10px;
-        position: relative;
+.book { width: 20px; border-radius: 2px 0 0 2px; }
+.book1 { height: 90px; background: #8e44ad; }
+.book2 { height: 70px; background: #e67e22; }
+.book3 { height: 105px; background: #27ae60; }
+.book4 { height: 80px; background: #c0392b; }
+.book5 { height: 60px; background: #f1c40f; }
+.cup {
+width: 32px;
+height: 30px;
+background: #7B4F2E;
+border-radius: 0 0 8px 8px;
+border: 3px solid #5c3920;
+margin-bottom: 10px;
+position: relative;
     }
-
-    .cup::after {
-        content: '';
-        position: absolute;
-        right: -12px;
-        top: 3px;
-        width: 10px;
-        height: 16px;
-        border: 3px solid #5c3920;
-        border-radius: 0 50% 50% 0;
-        border-left: none;
+.cup::after {
+content: '';
+position: absolute;
+right: -12px;
+top: 3px;
+width: 10px;
+height: 16px;
+border: 3px solid #5c3920;
+border-radius: 0 50% 50% 0;
+border-left: none;
     }
-
-    .hero-content {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        padding: 20px;
+.hero-content {
+position: absolute;
+top: 0; left: 0;
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+z-index: 10;
+padding: 20px;
     }
-
     @@keyframes slideMove {
         0%   { transform: translateX(0); }
         28%  { transform: translateX(0); }
@@ -156,302 +137,283 @@
         100% { transform: translateX(0); }
     }
 </style>
-
 <div class="hero-wrapper">
-
-    <!-- Sliding Backgrounds -->
-    <div class="slides-container">
-
-        <!-- Slide 1: Triangle Pattern -->
-        <div class="slide slide-1"></div>
-
-        <!-- Slide 2: Grey Polygon -->
-        <div class="slide slide-2"></div>
-
-        <!-- Slide 3: Illustration -->
-        <div class="slide slide-3">
-            <div class="illustration">
-                <div class="books">
-                    <div class="book book1"></div>
-                    <div class="book book2"></div>
-                    <div class="book book3"></div>
-                    <div class="book book4"></div>
-                    <div class="book book5"></div>
-                </div>
-                <div class="bars">
-                    <div class="bar bar1"></div>
-                    <div class="bar bar2"></div>
-                    <div class="bar bar3"></div>
-                    <div class="bar bar4"></div>
-                    <div class="bar bar5"></div>
-                    <div class="bar bar6"></div>
-                </div>
-                <div class="laptop-wrap">
-                    <div class="laptop-screen">
-                        <div class="laptop-screen-inner"></div>
-                    </div>
-                    <div class="laptop-base"></div>
-                </div>
-                <div class="cup"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Content Always On Top -->
-    <div class="hero-content">
-        <h1 style="color:#1a5c1a; font-weight:bold; font-size:34px; text-align:center; margin-bottom:35px;">
+<!-- Sliding Backgrounds -->
+<div class="slides-container">
+<!-- Slide 1: Triangle Pattern -->
+<div class="slide slide-1"></div>
+<!-- Slide 2: Grey Polygon -->
+<div class="slide slide-2"></div>
+<!-- Slide 3: Illustration -->
+<div class="slide slide-3">
+<div class="illustration">
+<div class="books">
+<div class="book book1"></div>
+<div class="book book2"></div>
+<div class="book book3"></div>
+<div class="book book4"></div>
+<div class="book book5"></div>
+</div>
+<div class="bars">
+<div class="bar bar1"></div>
+<div class="bar bar2"></div>
+<div class="bar bar3"></div>
+<div class="bar bar4"></div>
+<div class="bar bar5"></div>
+<div class="bar bar6"></div>
+</div>
+<div class="laptop-wrap">
+<div class="laptop-screen">
+<div class="laptop-screen-inner"></div>
+</div>
+<div class="laptop-base"></div>
+</div>
+<div class="cup"></div>
+</div>
+</div>
+</div>
+<!-- Content Always On Top -->
+<div class="hero-content">
+<h1 style="color:#1a5c1a; font-weight:bold; font-size:34px; text-align:center; margin-bottom:35px;">
             Search &amp; Apply Online on All Jobs
-        </h1>
-        <div style="background-color:rgba(80,140,80,0.75); padding:18px 20px; border-radius:4px; width:90%; max-width:950px;">
-            <div class="row g-2 align-items-center">
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="Looking for..." style="height:42px; border-radius:3px;" />
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" style="height:42px; border-radius:3px;">
-                        <option>Departments</option>
-                        <option>Account General, punjab</option>
-                        <option>Agency for Barani area development</option>
-                        <option>Administrator general and official trustee punjab</option>
-                        <option>Agricultural Department</option>
-                        <option>Allama Iqbal Medical college,lahore</option>
-                        <option>Allied hospital Faislabad</option>
-                        <option>Anti Corruption establishment Punjab</option>
-                        <option>Aviation flight (RW)</option>
-                        <option>Aziz Bhatti shaheed Teaching hospital, Gujrat</option>
-                        <option>Babe Pakistan_Trust</option>
-                        <option>Baha-ul-din zakriya University Multan</option>
-                        <option>Bahawalpur Development Authority </option>
-                        <option>Bahawalpur Museum</option>
-                        <option>Bahawalpur Waste Management company</option>
-                        <option>Baloch levy D.G Khan</option>
-                        <option>Bhakkar job Bureau</option>
-                        <option>Board of intermediate and secondary education, Dera Ghazi khan</option>
-                        <option>Board of intermediate and secondary education, Gujranwala</option>
-                        <option>Board of intermediate and secondary education, Sargodha</option>
-                        <option>Board of intermediate and secondary education, Multan</option>
-                        <option>Board of intermediate and secondary education,  Rawalpindi</option>
-                        <option>Board of intermediate and secondary education, Faislabad</option>
-                        <option>Board of Management sunder industrial state</option>
-                        <option>Board of Revenue Endownment Fund</option>
-                        <option>Bureaue of statistics</option>
-                        <option>Board of Revenue Punjab</option>
-                        <option>Cadet college Hassan Abdal</option>
-                        <option>Cane Comissionar Punjab</option>
-                        <option>Center of Excellence, Government Boys</option>
-                        <option>Child Protection and welfare Bureau</option>
-                        <option>Civil Hospital Bahawalpur</option>
-                        <option>CPD,PPD</option>
-                        <option>DCO office Bhakkar</option>
-                        <option>DCO office Multan</option>
-                        <option>DCO office Lodhran</option>
-                        <option>DCO office Hafizabad</option>
-                        <option>Dera Ghazi khan waste management company</option>
-                        <option>DHQ Teaching hospital, gujranwala</option>
-                        <option>District Counsil Sahiwal</option>
-                        <option>District Counsil Gujrat</option>
-                        <option>District Counsil Multan</option>
-                        <option>EPA</option>
-                        <option>EPD</option>
-                        <option>Lahore museum park company</option>
-                        <option>Lahor knowledge park company</option>
-                        <option>Lahore ring road authority</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" style="height:42px; border-radius:3px;">
-                        <option>Location</option>
-                        <option>All Punjan</option>
-                        <option>Attock</option>
-                        <option>Bhawalpur</option>
-                        <option>Bhakkar</option>
-                        <option>Chakwal</option>
-                        <option>Chiniot</option>
-                        <option>DG Khan</option>
-                        <option>Faislabad</option>
-                        <option>Gujranwala</option>
-                        <option>Gujrat</option>
-                        <option>Hafizabad</option>
-                        <option>Jhang</option>
-                        <option>Jehlum</option>
-                        <option>Kasur</option>
-                        <option>Khanewal</option>
-                        <option>Lahore</option>
-                        <option>Layyah</option>
-                        <option>Lodhran</option>
-                        <option>Mianwal</option>
-                        <option>Multan</option>
-                        <option>Murree</option>
-                        <option>Narowal</option>
-                        <option>Pakptan</option>
-                        <option>Rawalpindi</option>
-                        <option>Sahiwal</option>
-                        <option>Sargodha</option>
-                        <option>Sialkot</option>
-                        <option>Toba Tek Singh</option>
-                        <option>Wazirabad</option>
-                        <option>Vehari</option>
-                    </select>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-dark w-100" style="height:42px;">🔍</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+</h1>
+<div style="background-color:rgba(80,140,80,0.75); padding:18px 20px; border-radius:4px; width:90%; max-width:950px;">
+<div class="row g-2 align-items-center">
+<div class="col-md-5">
+<input type="text" class="form-control" placeholder="Looking for..." style="height:42px; border-radius:3px;" />
+</div>
+<div class="col-md-3">
+<select class="form-select" style="height:42px; border-radius:3px;">
+<option>Departments</option>
+<option>Account General, punjab</option>
+<option>Agency for Barani area development</option>
+<option>Administrator general and official trustee punjab</option>
+<option>Agricultural Department</option>
+<option>Allama Iqbal Medical college,lahore</option>
+<option>Allied hospital Faislabad</option>
+<option>Anti Corruption establishment Punjab</option>
+<option>Aviation flight (RW)</option>
+<option>Aziz Bhatti shaheed Teaching hospital, Gujrat</option>
+<option>Babe Pakistan_Trust</option>
+<option>Baha-ul-din zakriya University Multan</option>
+<option>Bahawalpur Development Authority </option>
+<option>Bahawalpur Museum</option>
+<option>Bahawalpur Waste Management company</option>
+<option>Baloch levy D.G Khan</option>
+<option>Bhakkar job Bureau</option>
+<option>Board of intermediate and secondary education, Dera Ghazi khan</option>
+<option>Board of intermediate and secondary education, Gujranwala</option>
+<option>Board of intermediate and secondary education, Sargodha</option>
+<option>Board of intermediate and secondary education, Multan</option>
+<option>Board of intermediate and secondary education,  Rawalpindi</option>
+<option>Board of intermediate and secondary education, Faislabad</option>
+<option>Board of Management sunder industrial state</option>
+<option>Board of Revenue Endownment Fund</option>
+<option>Bureaue of statistics</option>
+<option>Board of Revenue Punjab</option>
+<option>Cadet college Hassan Abdal</option>
+<option>Cane Comissionar Punjab</option>
+<option>Center of Excellence, Government Boys</option>
+<option>Child Protection and welfare Bureau</option>
+<option>Civil Hospital Bahawalpur</option>
+<option>CPD,PPD</option>
+<option>DCO office Bhakkar</option>
+<option>DCO office Multan</option>
+<option>DCO office Lodhran</option>
+<option>DCO office Hafizabad</option>
+<option>Dera Ghazi khan waste management company</option>
+<option>DHQ Teaching hospital, gujranwala</option>
+<option>District Counsil Sahiwal</option>
+<option>District Counsil Gujrat</option>
+<option>District Counsil Multan</option>
+<option>EPA</option>
+<option>EPD</option>
+<option>Lahore museum park company</option>
+<option>Lahor knowledge park company</option>
+<option>Lahore ring road authority</option>
+</select>
+</div>
+<div class="col-md-3">
+<select class="form-select" style="height:42px; border-radius:3px;">
+<option>Location</option>
+<option>All Punjan</option>
+<option>Attock</option>
+<option>Bhawalpur</option>
+<option>Bhakkar</option>
+<option>Chakwal</option>
+<option>Chiniot</option>
+<option>DG Khan</option>
+<option>Faislabad</option>
+<option>Gujranwala</option>
+<option>Gujrat</option>
+<option>Hafizabad</option>
+<option>Jhang</option>
+<option>Jehlum</option>
+<option>Kasur</option>
+<option>Khanewal</option>
+<option>Lahore</option>
+<option>Layyah</option>
+<option>Lodhran</option>
+<option>Mianwal</option>
+<option>Multan</option>
+<option>Murree</option>
+<option>Narowal</option>
+<option>Pakptan</option>
+<option>Rawalpindi</option>
+<option>Sahiwal</option>
+<option>Sargodha</option>
+<option>Sialkot</option>
+<option>Toba Tek Singh</option>
+<option>Wazirabad</option>
+<option>Vehari</option>
+</select>
+</div>
+<div class="col-md-1">
+<button class="btn btn-dark w-100" style="height:42px;">🔍</button>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div style="background:#2d7a2d; padding:30px 20px; width:100vw; margin-left:calc(-50vw + 50%);">
-    <div class="container">
-        <div class="row text-center text-white">
-            <div class="col-md-4">
-                <h2 style="font-size:42px; font-weight:bold; margin:0;">500+</h2>
-                <p style="font-size:14px; margin:0; opacity:0.9;">Jobs Posted</p>
-            </div>
-            <div class="col-md-4" style="border-left:1px solid rgba(255,255,255,0.3); border-right:1px solid rgba(255,255,255,0.3);">
-                <h2 style="font-size:42px; font-weight:bold; margin:0;">200+</h2>
-                <p style="font-size:14px; margin:0; opacity:0.9;">Departments</p>
-            </div>
-            <div class="col-md-4">
-                <h2 style="font-size:42px; font-weight:bold; margin:0;">10,000+</h2>
-                <p style="font-size:14px; margin:0; opacity:0.9;">Applicants Registered</p>
-            </div>
-        </div>
-    </div>
+<div class="container">
+<div class="row text-center text-white">
+<div class="col-md-4">
+<h2 style="font-size:42px; font-weight:bold; margin:0;">500+</h2>
+<p style="font-size:14px; margin:0; opacity:0.9;">Jobs Posted</p>
 </div>
-
+<div class="col-md-4" style="border-left:1px solid rgba(255,255,255,0.3); border-right:1px solid rgba(255,255,255,0.3);">
+<h2 style="font-size:42px; font-weight:bold; margin:0;">200+</h2>
+<p style="font-size:14px; margin:0; opacity:0.9;">Departments</p>
+</div>
+<div class="col-md-4">
+<h2 style="font-size:42px; font-weight:bold; margin:0;">10,000+</h2>
+<p style="font-size:14px; margin:0; opacity:0.9;">Applicants Registered</p>
+</div>
+</div>
+</div>
+</div>
 <!-- Latest Jobs Section -->
 <div style="background:white; padding:50px 40px;">
-    <h2 style="text-align:center; font-weight:bold; margin-bottom:30px; font-size:28px;">JOBS</h2>
-
-    <table style="width:100%; border-collapse:collapse; border:1px solid #ddd;">
-        <!-- Header -->
-        <thead>
-            <tr style="background:#e0e0e0;">
-                <th style="padding:14px 16px; text-align:left; font-size:14px; width:20%;">Department</th>
-                <th style="padding:14px 16px; text-align:left; font-size:14px; width:18%;">Job Title</th>
-                <th style="padding:14px 16px; text-align:left; font-size:14px; width:28%;">Project</th>
-                <th style="padding:14px 16px; text-align:left; font-size:14px; width:10%;">Province</th>
-                <th style="padding:14px 16px; text-align:left; font-size:14px; width:12%;">Last Apply Date</th>
-                <th style="padding:14px 16px; width:12%;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="border-bottom:1px solid #eee;">
-                <td style="padding:14px 16px; font-weight:bold; font-size:14px;">Social Welfare & Baitul Mall</td>
-                <td style="padding:14px 16px; font-size:14px;">Assistant Director (Research, Data & Evaluation)</td>
-                <td style="padding:14px 16px; font-size:14px;">The Council on the Rights of Persons with Disabilities</td>
-                <td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
-                <td style="padding:14px 16px; font-size:14px;">01-Jun-2026</td>
-                <td style="padding:14px 16px;">
-                    <a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
-                </td>
-            </tr>
-            <tr style="border-bottom:1px solid #eee;">
-                <td style="padding:14px 16px; font-weight:bold; font-size:14px;">Social Welfare & Baitul Mall</td>
-                <td style="padding:14px 16px; font-size:14px;">Deputy Director (Admin & Finance)</td>
-                <td style="padding:14px 16px; font-size:14px;">The Council on the Rights of Persons with Disabilities</td>
-                <td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
-                <td style="padding:14px 16px; font-size:14px;">01-Jun-2026</td>
-                <td style="padding:14px 16px;">
-                    <a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
-                </td>
-            </tr>
-            <tr style="border-bottom:1px solid #eee;">
-                <td style="padding:14px 16px; font-weight:bold; font-size:14px;">Social Welfare & Baitul Mall</td>
-                <td style="padding:14px 16px; font-size:14px;">Assistant Director (Administration)</td>
-                <td style="padding:14px 16px; font-size:14px;">The Council on the Rights of Persons with Disabilities</td>
-                <td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
-                <td style="padding:14px 16px; font-size:14px;">01-Jun-2026</td>
-                <td style="padding:14px 16px;">
-                    <a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
-                </td>
-            </tr>
-            <tr style="border-bottom:1px solid #eee;">
-                <td style="padding:14px 16px; font-weight:bold; font-size:14px;">Directorate General Monitoring and Evaluation, Planning and Development Board</td>
-                <td style="padding:14px 16px; font-size:14px;">Quality Assurance Programmer</td>
-                <td style="padding:14px 16px; font-size:14px;">Restructuring of Directorate General (M & E) for improved Monitoring & Evaluation of development projects in Punjab</td>
-                <td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
-                <td style="padding:14px 16px; font-size:14px;">10-Jun-2026</td>
-                <td style="padding:14px 16px;">
-                    <a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
-                </td>
-            </tr>
-            <tr style="border-bottom:1px solid #eee;">
-                <td style="padding:14px 16px; font-weight:bold; font-size:14px;">Directorate General Monitoring and Evaluation, Planning and Development Board</td>
-                <td style="padding:14px 16px; font-size:14px;">Database Administrator</td>
-                <td style="padding:14px 16px; font-size:14px;">Restructuring of Directorate General (M & E) for improved Monitoring & Evaluation of development projects in Punjab</td>
-                <td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
-                <td style="padding:14px 16px; font-size:14px;">10-Jun-2026</td>
-                <td style="padding:14px 16px;">
-                    <a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
-                </td>
-            </tr>
-            <!-- See All Jobs Row -->
-            <tr>
-                <td colspan="6" style="padding:12px 16px; text-align:right;">
-                    <a href="/jobs" style="color:#2d7a2d; font-weight:bold; text-decoration:none; font-size:14px;">» See All Jobs</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-        <!-- See All Jobs -->
-        <div style="text-align:right; margin-top:10px;">
-            <a href="/jobs" style="color:#2d7a2d; font-weight:bold; text-decoration:none; font-size:14px;">
-                » See All Jobs
-            </a>
-        </div>
-
-    </div>
+<h2 style="text-align:center; font-weight:bold; margin-bottom:30px; font-size:28px;">JOBS</h2>
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd;">
+<!-- Header -->
+<thead>
+<tr style="background:#7a6d6d;">
+<th style="padding:14px 16px; text-align:left; font-size:14px; width:20%;">Department</th>
+<th style="padding:14px 16px; text-align:left; font-size:14px; width:18%;">Job Title</th>
+<th style="padding:14px 16px; text-align:left; font-size:14px; width:28%;">Project</th>
+<th style="padding:14px 16px; text-align:left; font-size:14px; width:10%;">Province</th>
+<th style="padding:14px 16px; text-align:left; font-size:14px; width:12%;">Last Apply Date</th>
+<th style="padding:14px 16px; width:12%;"></th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:14px 16px; font-weight:bold; font-size:14px;">Social Welfare & Baitul Mall</td>
+<td style="padding:14px 16px; font-size:14px;">Assistant Director (Research, Data & Evaluation)</td>
+<td style="padding:14px 16px; font-size:14px;">The Council on the Rights of Persons with Disabilities</td>
+<td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
+<td style="padding:14px 16px; font-size:14px;">01-Jun-2026</td>
+<td style="padding:14px 16px;">
+<a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
+</td>
+</tr>
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:14px 16px; font-weight:bold; font-size:14px;">Social Welfare & Baitul Mall</td>
+<td style="padding:14px 16px; font-size:14px;">Deputy Director (Admin & Finance)</td>
+<td style="padding:14px 16px; font-size:14px;">The Council on the Rights of Persons with Disabilities</td>
+<td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
+<td style="padding:14px 16px; font-size:14px;">01-Jun-2026</td>
+<td style="padding:14px 16px;">
+<a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
+</td>
+</tr>
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:14px 16px; font-weight:bold; font-size:14px;">Social Welfare & Baitul Mall</td>
+<td style="padding:14px 16px; font-size:14px;">Assistant Director (Administration)</td>
+<td style="padding:14px 16px; font-size:14px;">The Council on the Rights of Persons with Disabilities</td>
+<td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
+<td style="padding:14px 16px; font-size:14px;">01-Jun-2026</td>
+<td style="padding:14px 16px;">
+<a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
+</td>
+</tr>
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:14px 16px; font-weight:bold; font-size:14px;">Directorate General Monitoring and Evaluation, Planning and Development Board</td>
+<td style="padding:14px 16px; font-size:14px;">Quality Assurance Programmer</td>
+<td style="padding:14px 16px; font-size:14px;">Restructuring of Directorate General (M & E) for improved Monitoring & Evaluation of development projects in Punjab</td>
+<td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
+<td style="padding:14px 16px; font-size:14px;">10-Jun-2026</td>
+<td style="padding:14px 16px;">
+<a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
+</td>
+</tr>
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:14px 16px; font-weight:bold; font-size:14px;">Directorate General Monitoring and Evaluation, Planning and Development Board</td>
+<td style="padding:14px 16px; font-size:14px;">Database Administrator</td>
+<td style="padding:14px 16px; font-size:14px;">Restructuring of Directorate General (M & E) for improved Monitoring & Evaluation of development projects in Punjab</td>
+<td style="padding:14px 16px; font-size:14px;">PUNJAB</td>
+<td style="padding:14px 16px; font-size:14px;">10-Jun-2026</td>
+<td style="padding:14px 16px;">
+<a href="/jobs" style="background:#00bcd4; color:white; padding:8px 20px; border-radius:20px; text-decoration:none; font-size:13px; white-space:nowrap;">View Details</a>
+</td>
+</tr>
+<!-- See All Jobs Row -->
+<tr>
+<td colspan="6" style="padding:12px 16px; text-align:right;">
+<a href="/jobs" style="color:#2d7a2d; font-weight:bold; text-decoration:none; font-size:14px;">» See All Jobs</a>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <!-- Feature Cards Section -->
 <div style="background:#f8f9fa; padding:60px 20px;">
-    <div class="container">
-        <h2 style="text-align:center; color:#1a5c1a; font-weight:bold; margin-bottom:40px;">
+<div class="container">
+<h2 style="text-align:center; color:#1a5c1a; font-weight:bold; margin-bottom:40px;">
             Why Choose Punjab Jobs?
-        </h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div style="background:white; border-radius:8px; padding:35px 25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.08); height:100%;"
-                    onmouseover="this.style.transform='translateY(-8px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="width:70px; height:70px; background:#e8f5e8; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:30px;">
+</h2>
+<div class="row g-4">
+<div class="col-md-4">
+<div style="background:white; border-radius:8px; padding:35px 25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.08); height:100%;"
+onmouseover="this.style.transform='translateY(-8px)'"
+onmouseout="this.style.transform='translateY(0)'">
+<div style="width:70px; height:70px; background:#e8f5e8; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:30px;">
                         🔍
-                    </div>
-                    <h5 style="color:#1a5c1a; font-weight:bold; margin-bottom:12px;">Smart Job Search</h5>
-                    <p style="color:#666; font-size:14px; line-height:1.6;">
+</div>
+<h5 style="color:#1a5c1a; font-weight:bold; margin-bottom:12px;">Smart Job Search</h5>
+<p style="color:#666; font-size:14px; line-height:1.6;">
                         Search jobs by department, location, and category. Find the perfect government job that matches your skills.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div style="background:white; border-radius:8px; padding:35px 25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.08); height:100%;"
-                    onmouseover="this.style.transform='translateY(-8px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="width:70px; height:70px; background:#e8f5e8; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:30px;">
+</p>
+</div>
+</div>
+<div class="col-md-4">
+<div style="background:white; border-radius:8px; padding:35px 25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.08); height:100%;"
+onmouseover="this.style.transform='translateY(-8px)'"
+onmouseout="this.style.transform='translateY(0)'">
+<div style="width:70px; height:70px; background:#e8f5e8; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:30px;">
                         📄
-                    </div>
-                    <h5 style="color:#1a5c1a; font-weight:bold; margin-bottom:12px;">Easy One-Click Apply</h5>
-                    <p style="color:#666; font-size:14px; line-height:1.6;">
+</div>
+<h5 style="color:#1a5c1a; font-weight:bold; margin-bottom:12px;">Easy One-Click Apply</h5>
+<p style="color:#666; font-size:14px; line-height:1.6;">
                         Apply to any government job with a single click using your saved profile. No complicated forms needed.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div style="background:white; border-radius:8px; padding:35px 25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.08); height:100%;"
-                    onmouseover="this.style.transform='translateY(-8px)'"
-                    onmouseout="this.style.transform='translateY(0)'">
-                    <div style="width:70px; height:70px; background:#e8f5e8; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:30px;">
+</p>
+</div>
+</div>
+<div class="col-md-4">
+<div style="background:white; border-radius:8px; padding:35px 25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.08); height:100%;"
+onmouseover="this.style.transform='translateY(-8px)'"
+onmouseout="this.style.transform='translateY(0)'">
+<div style="width:70px; height:70px; background:#e8f5e8; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; font-size:30px;">
                         🔔
-                    </div>
-                    <h5 style="color:#1a5c1a; font-weight:bold; margin-bottom:12px;">Instant Job Alerts</h5>
-                    <p style="color:#666; font-size:14px; line-height:1.6;">
+</div>
+<h5 style="color:#1a5c1a; font-weight:bold; margin-bottom:12px;">Instant Job Alerts</h5>
+<p style="color:#666; font-size:14px; line-height:1.6;">
                         Get notified instantly when new jobs matching your profile are posted. Never miss an opportunity.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
