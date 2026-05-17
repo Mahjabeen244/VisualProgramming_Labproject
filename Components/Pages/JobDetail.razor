@@ -1,13 +1,138 @@
-@page "/job-detail"
+@page "/job-detail/{JobId:int}"
 <PageTitle>Job Detail - Punjab Jobs Online</PageTitle>
 
-<style>
-    .job-detail-wrapper {
-        padding: 30px 40px;
-        background: #f5f5f5;
-        min-height: 100vh;
-    }
+@code {
+    [Parameter]
+    public int JobId { get; set; }
 
+    private string Title = "";
+    private string Department = "";
+    private string Division = "";
+    private string District = "";
+    private string Industry = "";
+    private string Project = "";
+    private string Positions = "";
+    private string Employment = "";
+    private string Role = "";
+    private string Posted = "";
+    private string Level = "";
+    private string LastDate = "";
+    private string Experience = "";
+    private string Gender = "";
+    private string Age = "";
+    private string Description = "";
+    private string DegreeLevel = "";
+    private string DegreeArea = "";
+
+    protected override void OnParametersSet()
+    {
+        switch (JobId)
+        {
+            case 1:
+                Title = "Assistant Director (Research, Data & Evaluation)";
+                Department = "Social Welfare and Bait ul Maal Punjab";
+                Division = "Lahore";
+                District = "LAHORE";
+                Industry = "N.G.O/ Social Services";
+                Project = "The Council on the Rights of Persons with Disabilities";
+                Positions = "1";
+                Employment = "Full Time";
+                Role = "Assistant Director (Research, Data & Evaluation)";
+                Posted = "15-05-2026";
+                Level = "BPS-17";
+                LastDate = "01-06-2026";
+                Experience = "2 year(s)";
+                Gender = "Both";
+                Age = "20 - 35";
+                Description = "A Bachelor's degree (16 years education) in Statistics, Data Science, Sociology, Public Health, or a related field. A minimum of 2 years of experience in data collection, statistical analysis, survey design, or research methodologies, particularly in social surveys or health assessments.";
+                DegreeLevel = "Masters/Bachelors (Hons) (16 years)";
+                DegreeArea = "Public Health, Statistics, Data Science, Sociology";
+                break;
+            case 2:
+                Title = "Deputy Director (Admin & Finance)";
+                Department = "Social Welfare and Bait ul Maal Punjab";
+                Division = "Lahore";
+                District = "LAHORE";
+                Industry = "N.G.O/ Social Services";
+                Project = "The Council on the Rights of Persons with Disabilities";
+                Positions = "1";
+                Employment = "Full Time";
+                Role = "Deputy Director (Admin & Finance)";
+                Posted = "15-05-2026";
+                Level = "BPS-18";
+                LastDate = "01-06-2026";
+                Experience = "3 year(s)";
+                Gender = "Both";
+                Age = "25 - 40";
+                Description = "A Bachelor's degree in Business Administration, Finance, or related field. Minimum 3 years experience in administration and finance management in a government or NGO setting.";
+                DegreeLevel = "Masters/Bachelors (Hons) (16 years)";
+                DegreeArea = "Business Administration, Finance, Accounting";
+                break;
+            case 3:
+                Title = "Assistant Director (Administration)";
+                Department = "Social Welfare and Bait ul Maal Punjab";
+                Division = "Lahore";
+                District = "LAHORE";
+                Industry = "N.G.O/ Social Services";
+                Project = "The Council on the Rights of Persons with Disabilities";
+                Positions = "1";
+                Employment = "Full Time";
+                Role = "Assistant Director (Administration)";
+                Posted = "15-05-2026";
+                Level = "BPS-17";
+                LastDate = "01-06-2026";
+                Experience = "2 year(s)";
+                Gender = "Both";
+                Age = "20 - 35";
+                Description = "A Bachelor's degree in Public Administration or related field. Experience in administrative management and coordination with government departments.";
+                DegreeLevel = "Masters/Bachelors (Hons) (16 years)";
+                DegreeArea = "Public Administration, Management";
+                break;
+            case 4:
+                Title = "Quality Assurance Programmer";
+                Department = "Directorate General Monitoring and Evaluation";
+                Division = "Lahore";
+                District = "LAHORE";
+                Industry = "Information Technology";
+                Project = "Restructuring of DG (M & E) for improved Monitoring & Evaluation";
+                Positions = "2";
+                Employment = "Full Time";
+                Role = "Quality Assurance Programmer";
+                Posted = "15-05-2026";
+                Level = "BPS-16";
+                LastDate = "10-06-2026";
+                Experience = "2 year(s)";
+                Gender = "Both";
+                Age = "20 - 35";
+                Description = "Bachelor's degree in Computer Science or Software Engineering. Experience in software testing, quality assurance methodologies, and test automation tools.";
+                DegreeLevel = "Bachelors (16 years)";
+                DegreeArea = "Computer Science, Software Engineering";
+                break;
+            case 5:
+                Title = "Database Administrator";
+                Department = "Directorate General Monitoring and Evaluation";
+                Division = "Lahore";
+                District = "LAHORE";
+                Industry = "Information Technology";
+                Project = "Restructuring of DG (M & E) for improved Monitoring & Evaluation";
+                Positions = "1";
+                Employment = "Full Time";
+                Role = "Database Administrator";
+                Posted = "15-05-2026";
+                Level = "BPS-17";
+                LastDate = "10-06-2026";
+                Experience = "3 year(s)";
+                Gender = "Both";
+                Age = "22 - 40";
+                Description = "Bachelor's degree in Computer Science or Information Technology. Minimum 3 years experience in database administration, SQL Server, Oracle, or MySQL database management.";
+                DegreeLevel = "Bachelors (16 years)";
+                DegreeArea = "Computer Science, Information Technology";
+                break;
+        }
+    }
+}
+
+<style>
     .job-title-header {
         text-align: center;
         padding: 20px 0 30px 0;
@@ -26,19 +151,20 @@
         color: #666;
         margin-left: 10px;
     }
-.detail-container {
+
+    .detail-container {
         display: flex;
         gap: 0px;
         max-width: 1000px;
         margin: 0 auto;
-        border: 1px solid #ccc;
+        border: 1px solid #e6dada;
         border-radius: 4px;
         overflow: hidden;
     }
 
     .left-panel {
         width: 35%;
-        background: #f0f0f0;
+        background: #cfcdcd;
         padding: 20px;
         border-right: 1px solid #ccc;
     }
@@ -131,12 +257,12 @@
     }
 </style>
 
-<div class="job-detail-wrapper">
+<div style="padding:30px 40px; background:#f5f5f5; min-height:100vh;">
 
     <!-- Job Title Header -->
     <div class="job-title-header">
-        <h1>Assistant Director (Research, Data & Evaluation)</h1>
-        <span>Social Welfare and Bait ul Maal Punjab, PAKISTAN</span>
+        <h1>@Title</h1>
+        <span>@Department, PAKISTAN</span>
     </div>
 
     <!-- Back Button -->
@@ -145,121 +271,106 @@
     </div>
 
     <!-- Main Content -->
-    <div class="detail-container">
+    <div style="max-width:1000px; margin:0 auto; border:1px solid #ccc; border-radius:4px; padding:15px; background:white;">
+        <div class="detail-container">
 
-        <!-- Left Panel - Job Details -->
-        <div class="left-panel">
-            <div class="panel-title">Job Details</div>
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <div class="panel-title">Job Details</div>
+                <div class="detail-row">
+                    <span class="detail-label">Division</span>
+                    <span class="detail-value">@Division</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">District</span>
+                    <span class="detail-value">@District</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Industry</span>
+                    <span class="detail-value">@Industry</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Project</span>
+                    <span class="detail-value">@Project</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Total Positions</span>
+                    <span class="detail-value">@Positions</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Employment Status</span>
+                    <span class="detail-value">@Employment</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Role</span>
+                    <span class="detail-value">@Role</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Job Posted</span>
+                    <span class="detail-value">@Posted</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Level</span>
+                    <span class="detail-value">@Level</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Last Date to Apply</span>
+                    <span class="detail-value">@LastDate</span>
+                </div>
 
-            <div class="detail-row">
-                <span class="detail-label">Division</span>
-                <span class="detail-value">Lahore</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">District</span>
-                <span class="detail-value">LAHORE</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Industry</span>
-                <span class="detail-value">N.G.O/ Social Services</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Project</span>
-                <span class="detail-value">The Council on the Rights of Persons with Disabilities</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Total Positions</span>
-                <span class="detail-value">1</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Employment Status</span>
-                <span class="detail-value">Full Time</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Role</span>
-                <span class="detail-value">Assistant Director (Research, Data & Evaluation)</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Job Posted</span>
-                <span class="detail-value">15-05-2026</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Level</span>
-                <span class="detail-value">BPS-17</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Last Date to Apply</span>
-                <span class="detail-value">01-06-2026</span>
-            </div>
-
-            <!-- Preferred Candidates -->
-            <div class="panel-title" style="margin-top:25px;">Preferred Candidates</div>
-
-            <div class="detail-row">
-                <span class="detail-label">Years of Experience:</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Masters/Bachelors (Hons) (16 years):</span>
-                <span class="detail-value">2 year(s)</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Gender</span>
-                <span class="detail-value">Both</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Age</span>
-                <span class="detail-value">20 - 35</span>
-            </div>
-        </div>
-
-        <!-- Right Panel - Job Description -->
-        <div class="right-panel">
-
-            <!-- Job Title Row -->
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid #eee;">
-                <div>
-                    <div style="background:#00bcd4; color:white; padding:4px 10px; border-radius:3px; font-size:13px; display:inline-block; margin-bottom:5px;">
-                        15 May
-                    </div>
-                    <div style="font-weight:bold; font-size:15px;">Assistant Director (Research, Data & Evaluation)</div>
+                <div class="panel-title" style="margin-top:25px;">Preferred Candidates</div>
+                <div class="detail-row">
+                    <span class="detail-label">Years of Experience:</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">@DegreeLevel :</span>
+                    <span class="detail-value">@Experience</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Gender</span>
+                    <span class="detail-value">@Gender</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Age</span>
+                    <span class="detail-value">@Age</span>
                 </div>
             </div>
 
-            <!-- Job Description -->
-            <div class="section-title">Job Description</div>
-            <p style="font-size:14px; color:#333; line-height:1.7; margin-bottom:10px;">
-                A Bachelor's degree (16 years education) in Statistics, Data Science, Sociology, Public Health, or a related field.
-            </p>
-            <p style="font-size:14px; color:#333; line-height:1.7;">
-                A minimum of 2 years of experience in data collection, statistical analysis, survey design, or research methodologies, particularly in social surveys or health assessments.
-            </p>
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid #eee;">
+                    <div>
+                        <div style="background:#00bcd4; color:white; padding:4px 10px; border-radius:3px; font-size:13px; display:inline-block; margin-bottom:5px;">
+                            15 May
+                        </div>
+                        <div style="font-weight:bold; font-size:15px;">@Title</div>
+                    </div>
+                </div>
 
-            <!-- Degree Level -->
-            <div class="section-title">Degree Level</div>
-            <span class="tag">Masters/Bachelors (Hons) (16 years)</span>
-            <span class="tag">Years of Education</span>
+                <div class="section-title">Job Description</div>
+                <p style="font-size:14px; color:#333; line-height:1.7;">@Description</p>
 
-            <!-- Degree Area -->
-            <div class="section-title">Degree Area</div>
-            <span class="tag">Public Health</span>
-            <span class="tag">Statistics</span>
-            <span class="tag">Data science</span>
-            <span class="tag">Sociology</span>
+                <div class="section-title">Degree Level</div>
+                <span class="tag">@DegreeLevel</span>
 
-            <!-- Important Note -->
-            <div class="section-title">Important Note</div>
-            <p style="font-size:14px; color:#333; line-height:1.7; font-weight:bold;">
-                Domicile is required for this position. For Getting Domicile at home through flagship initiative of Government of Punjab, Call 1202 or download the Dastak Doorstep Delivery App now!
-            </p>
+                <div class="section-title">Degree Area</div>
+                @foreach (var area in DegreeArea.Split(','))
+                {
+                    <span class="tag">@area.Trim()</span>
+                }
 
-            <p style="font-size:14px; color:#1a6bbf;">
-                Google Play Store | Apple App Store | Web Portal
-            </p>
+                <div class="section-title">Important Note</div>
+                <p style="font-size:14px; color:#333; line-height:1.7; font-weight:bold;">
+                    Domicile is required for this position. For Getting Domicile at home through flagship initiative of Government of Punjab, Call 1202 or download the Dastak Doorstep Delivery App now!
+                </p>
+                <p style="font-size:14px; color:#1a6bbf;">
+                    Google Play Store | Apple App Store | Web Portal
+                </p>
 
-            <!-- Action Buttons -->
-            <div style="margin-top:20px; display:flex; align-items:center; gap:15px;">
-                <button class="apply-btn">Apply for this Job</button>
-                <button class="view-ad-btn">View Advertisement</button>
+                <div style="margin-top:20px; display:flex; align-items:center; gap:15px;">
+                    <button class="apply-btn">Apply for this Job</button>
+                    <button class="view-ad-btn">View Advertisement</button>
+                </div>
             </div>
 
         </div>
