@@ -1,0 +1,266 @@
+@page "/job-detail"
+<PageTitle>Job Detail - Punjab Jobs Online</PageTitle>
+
+<style>
+    .job-detail-wrapper {
+        padding: 30px 40px;
+        background: #f5f5f5;
+        min-height: 100vh;
+    }
+
+    .job-title-header {
+        text-align: center;
+        padding: 20px 0 30px 0;
+        background: white;
+        margin-bottom: 20px;
+    }
+
+    .job-title-header h1 {
+        font-size: 28px;
+        font-weight: bold;
+        display: inline;
+    }
+
+    .job-title-header span {
+        font-size: 16px;
+        color: #666;
+        margin-left: 10px;
+    }
+
+    .detail-container {
+        display: flex;
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .left-panel {
+        width: 35%;
+        background: #f0f0f0;
+        border-radius: 4px;
+        padding: 20px;
+    }
+
+    .right-panel {
+        width: 65%;
+        background: white;
+        border-radius: 4px;
+        padding: 25px;
+    }
+
+    .section-title {
+        color: #e74c3c;
+        font-weight: bold;
+        font-size: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+        margin-top: 20px;
+    }
+
+    .detail-row {
+        display: flex;
+        margin-bottom: 14px;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        width: 160px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .detail-value {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .tag {
+        background: #00bcd4;
+        color: white;
+        padding: 6px 14px;
+        border-radius: 3px;
+        font-size: 13px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+
+    .back-btn {
+        background: #2d7a2d;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .apply-btn {
+        background: #2d7a2d;
+        color: white;
+        padding: 10px 24px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .view-ad-btn {
+        background: #f39c12;
+        color: white;
+        padding: 10px 24px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .panel-title {
+        color: #1a6bbf;
+        font-weight: bold;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="job-detail-wrapper">
+
+    <!-- Job Title Header -->
+    <div class="job-title-header">
+        <h1>Assistant Director (Research, Data & Evaluation)</h1>
+        <span>Social Welfare and Bait ul Maal Punjab, PAKISTAN</span>
+    </div>
+
+    <!-- Back Button -->
+    <div style="max-width:1000px; margin:0 auto 15px auto;">
+        <a href="/jobs" class="back-btn">Back to Listings</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="detail-container">
+
+        <!-- Left Panel - Job Details -->
+        <div class="left-panel">
+            <div class="panel-title">Job Details</div>
+
+            <div class="detail-row">
+                <span class="detail-label">Division</span>
+                <span class="detail-value">Lahore</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">District</span>
+                <span class="detail-value">LAHORE</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Industry</span>
+                <span class="detail-value">N.G.O/ Social Services</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Project</span>
+                <span class="detail-value">The Council on the Rights of Persons with Disabilities</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Total Positions</span>
+                <span class="detail-value">1</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Employment Status</span>
+                <span class="detail-value">Full Time</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Role</span>
+                <span class="detail-value">Assistant Director (Research, Data & Evaluation)</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Job Posted</span>
+                <span class="detail-value">15-05-2026</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Level</span>
+                <span class="detail-value">BPS-17</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Last Date to Apply</span>
+                <span class="detail-value">01-06-2026</span>
+            </div>
+
+            <!-- Preferred Candidates -->
+            <div class="panel-title" style="margin-top:25px;">Preferred Candidates</div>
+
+            <div class="detail-row">
+                <span class="detail-label">Years of Experience:</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Masters/Bachelors (Hons) (16 years):</span>
+                <span class="detail-value">2 year(s)</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Gender</span>
+                <span class="detail-value">Both</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Age</span>
+                <span class="detail-value">20 - 35</span>
+            </div>
+        </div>
+
+        <!-- Right Panel - Job Description -->
+        <div class="right-panel">
+
+            <!-- Job Title Row -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid #eee;">
+                <div>
+                    <div style="background:#00bcd4; color:white; padding:4px 10px; border-radius:3px; font-size:13px; display:inline-block; margin-bottom:5px;">
+                        15 May
+                    </div>
+                    <div style="font-weight:bold; font-size:15px;">Assistant Director (Research, Data & Evaluation)</div>
+                </div>
+            </div>
+
+            <!-- Job Description -->
+            <div class="section-title">Job Description</div>
+            <p style="font-size:14px; color:#333; line-height:1.7; margin-bottom:10px;">
+                A Bachelor's degree (16 years education) in Statistics, Data Science, Sociology, Public Health, or a related field.
+            </p>
+            <p style="font-size:14px; color:#333; line-height:1.7;">
+                A minimum of 2 years of experience in data collection, statistical analysis, survey design, or research methodologies, particularly in social surveys or health assessments.
+            </p>
+
+            <!-- Degree Level -->
+            <div class="section-title">Degree Level</div>
+            <span class="tag">Masters/Bachelors (Hons) (16 years)</span>
+            <span class="tag">Years of Education</span>
+
+            <!-- Degree Area -->
+            <div class="section-title">Degree Area</div>
+            <span class="tag">Public Health</span>
+            <span class="tag">Statistics</span>
+            <span class="tag">Data science</span>
+            <span class="tag">Sociology</span>
+
+            <!-- Important Note -->
+            <div class="section-title">Important Note</div>
+            <p style="font-size:14px; color:#333; line-height:1.7; font-weight:bold;">
+                Domicile is required for this position. For Getting Domicile at home through flagship initiative of Government of Punjab, Call 1202 or download the Dastak Doorstep Delivery App now!
+            </p>
+
+            <p style="font-size:14px; color:#1a6bbf;">
+                Google Play Store | Apple App Store | Web Portal
+            </p>
+
+            <!-- Action Buttons -->
+            <div style="margin-top:20px; display:flex; align-items:center; gap:15px;">
+                <button class="apply-btn">Apply for this Job</button>
+                <button class="view-ad-btn">View Advertisement</button>
+            </div>
+
+        </div>
+    </div>
+</div>
