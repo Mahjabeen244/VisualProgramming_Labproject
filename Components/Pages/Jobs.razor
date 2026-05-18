@@ -113,14 +113,6 @@
         margin-top: 10px;
     }
 
-    .pagination {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        margin-top: 15px;
-        font-size: 13px;
-    }
-
     .page-btn {
         padding: 5px 10px;
         border: 1px solid #ddd;
@@ -182,11 +174,30 @@
     private void ApplyFilter()
     {
         FilteredJobs = AllJobs.Where(j =>
-            (string.IsNullOrEmpty(SearchText) || j.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) &&
+            (string.IsNullOrEmpty(SearchText) || j.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+             j.Department.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) &&
             (string.IsNullOrEmpty(SelectedDepartment) || j.Department.Contains(SelectedDepartment, StringComparison.OrdinalIgnoreCase)) &&
             (string.IsNullOrEmpty(SelectedLocation) || j.Province.Contains(SelectedLocation, StringComparison.OrdinalIgnoreCase))
         ).ToList();
         CurrentPage = 1;
+    }
+
+    private void ClearSearch()
+    {
+        SearchText = "";
+        ApplyFilter();
+    }
+
+    private void ClearDepartment()
+    {
+        SelectedDepartment = "";
+        ApplyFilter();
+    }
+
+    private void ClearLocation()
+    {
+        SelectedLocation = "";
+        ApplyFilter();
     }
 
     private void ClearFilter()
@@ -202,6 +213,12 @@
     {
         if (page >= 1 && page <= TotalPages)
             CurrentPage = page;
+    }
+
+    private void OnSearchInput(ChangeEventArgs e)
+    {
+        SearchText = e.Value?.ToString() ?? "";
+        ApplyFilter();
     }
 
     public class JobItem
@@ -226,9 +243,12 @@
                 <div class="filter-title">Filter Search</div>
 
                 <!-- Looking For -->
-                <input type="text" class="form-control" placeholder="Looking for..."
-                       @bind="SearchText" style="font-size:13px;" />
-               <a class="clear-link" @onclick="ClearSearch">Clear Title</a>
+                <input type="text" class="form-control"
+                       placeholder="Looking for..."
+                       value="@SearchText"
+                       @oninput="OnSearchInput"
+                       style="font-size:13px;" />
+                <a class="clear-link" @onclick="ClearSearch">Clear Title</a>
 
                 <!-- Departments -->
                 <select class="form-select mt-3" @bind="SelectedDepartment" style="font-size:13px;">
@@ -241,7 +261,7 @@
                     <option>Finance Department</option>
                     <option>Information Technology</option>
                 </select>
-                <a class="clear-link" @onclick="() => SelectedDepartment =''">Clear Departments</a>
+                <a class="clear-link" @onclick="ClearDepartment">Clear Departments</a>
 
                 <!-- Location -->
                 <select class="form-select mt-3" @bind="SelectedLocation" style="font-size:13px;">
@@ -252,7 +272,7 @@
                     <option>Rawalpindi</option>
                     <option>Faisalabad</option>
                 </select>
-                <a class="clear-link" @onclick="() => SelectedLocation = ''">Clear Location</a>
+                <a class="clear-link" @onclick="ClearLocation">Clear Location</a>
 
                 <button class="search-btn" @onclick="ApplyFilter">Search</button>
 
@@ -294,7 +314,7 @@
         <!-- Jobs Panel -->
         <div class="jobs-panel">
 
-            <!-- Show Entries -->
+            <!-- Show Entries + Search -->
             <div class="show-entries">
                 <span>Show</span>
                 <select @bind="PageSize" style="width:60px; font-size:13px;" class="form-select form-select-sm">
@@ -304,9 +324,11 @@
                 </select>
                 <span>entries</span>
                 <span style="margin-left:auto;">
-                    Search: <input type="text" @bind="SearchText" @bind:event="oninput"
-                                   @onkeyup="ApplyFilter"
-                                   style="border:1px solid #ccc; padding:4px 8px; font-size:13px;" />
+                    Search:
+                    <input type="text"
+                           value="@SearchText"
+                           @oninput="OnSearchInput"
+                           style="border:1px solid #ccc; padding:4px 8px; font-size:13px; margin-left:5px;" />
                 </span>
             </div>
 
@@ -326,7 +348,9 @@
                     @if (PagedJobs.Count == 0)
                     {
                         <tr>
-                            <td colspan="6" style="text-align:center; padding:20px; color:#666;">No jobs found</td>
+                            <td colspan="6" style="text-align:center; padding:20px; color:#666;">
+                                No jobs found matching your search.
+                            </td>
                         </tr>
                     }
                     else
@@ -352,16 +376,24 @@
 
             <!-- Pagination -->
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px; font-size:13px;">
-                <span>Showing @((CurrentPage-1)*PageSize+1) to @(Math.Min(CurrentPage*PageSize, FilteredJobs.Count)) of @FilteredJobs.Count entries</span>
-                <div class="pagination">
-                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
+                <span>
+                    Showing @((CurrentPage - 1) * PageSize + 1)
+                    to @(Math.Min(CurrentPage * PageSize, FilteredJobs.Count))
+                    of @FilteredJobs.Count entries
+                </span>
+                <div style="display:flex; gap:5px;">
+                    <button class="page-btn"
+                            @onclick="() => GoToPage(CurrentPage - 1)"
+                            disabled="@(CurrentPage == 1)">Previous</button>
                     @for (int i = 1; i <= TotalPages; i++)
                     {
                         var pageNum = i;
                         <button class="page-btn @(CurrentPage == pageNum ? "active" : "")"
                                 @onclick="() => GoToPage(pageNum)">@pageNum</button>
                     }
-                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
+                    <button class="page-btn"
+                            @onclick="() => GoToPage(CurrentPage + 1)"
+                            disabled="@(CurrentPage == TotalPages)">Next</button>
                 </div>
             </div>
 
