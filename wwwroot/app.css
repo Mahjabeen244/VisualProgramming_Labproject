@@ -100,3 +100,8 @@ main {
 article.content {
     padding: 0 !important;
 }
+/* Force the active tab to turn your blue color and show the bottom line */
+.navbar-nav .nav-link.active {
+    color: #1a6bbf !important;
+    border-bottom: 2px solid #1a6bbf !important;
+}
