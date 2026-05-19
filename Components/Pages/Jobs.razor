@@ -282,7 +282,7 @@
                        value="@SearchText" @oninput="OnSearchInput" style="font-size:13px;" />
                 <button class="clear-link" @onclick="ClearSearch">Clear Title</button>
 
-                <select class="form-select mt-3" @bind="SelectedDepartment" style="font-size:13px;">
+                <select class="form-select mt-3" @bind="SelectedDepartment" @bind:after="ApplyFilter" style="font-size:13px;">
                     <option value="">Departments</option>
                     <option>Social Welfare & Baitul Mall</option>
                     <option>Directorate General Monitoring and Evaluation</option>
