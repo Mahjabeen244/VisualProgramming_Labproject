@@ -1,18 +1,41 @@
-﻿<ul class="navbar-nav gap-4">
+﻿@inject NavigationManager Navigation
+
+<ul class="navbar-nav gap-4">
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="" Match="NavLinkMatch.All"
-                 style="color:#1a6bbf; font-size:13px;">HOME</NavLink>
+                 style="font-size:13px; @(IsActive("") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#736e6e;")">HOME</NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="jobs" Match="NavLinkMatch.Prefix"
-                 style="color:#736e6e; font-size:13px;">JOBS</NavLink>
+                 style="font-size:13px; @(IsActive("jobs") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#736e6e;")">JOBS</NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="departments" Match="NavLinkMatch.Prefix"
-                 style="color:#7d7575; font-size:13px;">DEPARTMENTAL CONTACTS</NavLink>
+                 style="font-size:13px; @(IsActive("departments") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#7d7575;")">DEPARTMENTAL CONTACTS</NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="faq" Match="NavLinkMatch.Prefix"
-                 style="color:#736e6e; font-size:13px;">FAQ'S</NavLink>
+                 style="font-size:13px; @(IsActive("faq") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#736e6e;")">FAQ'S</NavLink>
     </li>
 </ul>
+
+@code {
+    // This safely evaluates whether the active browser address points to the link's route
+    private bool IsActive(string href)
+    {
+        var relativePath = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
+        
+        if (string.IsNullOrEmpty(href))
+        {
+            return string.IsNullOrEmpty(relativePath) || relativePath.StartsWith("?");
+        }
+        
+        return relativePath.StartsWith(href.ToLower());
+    }
+
+    protected override void OnInitialized()
+    {
+        // Re-renders the navbar component layout cleanly when changing tabs
+        Navigation.LocationChanged += (s, e) => StateHasChanged();
+    }
+}

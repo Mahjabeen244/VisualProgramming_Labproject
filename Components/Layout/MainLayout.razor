@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
 
-<!-- Top Green Bar -->
 <div style="background-color:#2d7a2d; padding:4px 20px; text-align:right;">
     <a href="/register" style="color:white; margin-right:12px; text-decoration:none; font-size:11px; letter-spacing:1px;">
         REGISTER
@@ -13,11 +14,10 @@
     </a>
 </div>
 
-<!-- White Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <span style="color:#2d7a2d; font-size:22px; font-weight:bold; font-family:Arial;">Punjab</span><span style="color:#2d7a2d; font-size:22px; font-weight:bold;"> J</span><span style="background-color:#2d7a2d; color:white; border-radius:50%; padding:1px 7px; font-size:18px; font-weight:bold;">o</span><span style="color:#333; font-size:22px; font-weight:bold;">bs</span>
+            <span style="color:#2d7a2d; font-size:22px; font-weight:bold; font-family:Arial;">Punjab</span><span style="color:#2d7a2d; font-size:22px; font-weight:bold;"> J</span><span style="background-color:#2d7a2d; color:white; border-radius:50%; padding:1px 7px; font-size:18px; font-weight:bold;">o</span><span style="color:#33; font-size:22px; font-weight:bold;">bs</span>
             <span style="color:#888; font-size:11px; display:block; margin-top:-6px; margin-left:58px; font-style:italic;">online</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -27,26 +27,28 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav gap-4">
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/"
-                       style="color:#1a6bbf; border-bottom:2px solid #1a6bbf; font-size:13px;">HOME</a>
+                    <NavLink class="nav-link fw-bold" href="" Match="NavLinkMatch.All"
+                             style="@GetLinkStyle("")">HOME</NavLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/jobs" style="color:#736e6e; font-size:13px;">JOBS</a>
+                    <NavLink class="nav-link fw-bold" href="jobs" Match="NavLinkMatch.Prefix"
+                             style="@GetLinkStyle("jobs")">JOBS</NavLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/departments" style="color:#7d7575; font-size:13px;">DEPARTMENTAL CONTACTS</a>
+                    <NavLink class="nav-link fw-bold" href="departments" Match="NavLinkMatch.Prefix"
+                             style="@GetLinkStyle("departments")">DEPARTMENTAL CONTACTS</NavLink>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/faq" style="color:#736e6e; font-size:13px;">FAQ'S</a>
+                    <NavLink class="nav-link fw-bold" href="faq" Match="NavLinkMatch.Prefix"
+                             style="@GetLinkStyle("faq")">FAQ'S</NavLink>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Page Content -->
 <main>
-  <article>
+  <article class="content px-4">
     @Body
 </article>
 </main>
@@ -56,3 +58,37 @@
     <a href="." class="reload">Reload</a>
     <span class="dismiss">🗙</span>
 </div>
+
+@code {
+    // This function automatically computes the style on the fly to avoid compiler conflicts
+    private string GetLinkStyle(string segment)
+    {
+        var relativePath = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
+        bool isActive = false;
+
+        if (string.IsNullOrEmpty(segment))
+        {
+            isActive = string.IsNullOrEmpty(relativePath) || relativePath.StartsWith("?");
+        }
+        else
+        {
+            isActive = relativePath.StartsWith(segment.ToLower());
+        }
+
+        // Returns your dynamic colors cleanly without string concat problems
+        if (isActive)
+        {
+            return "color: #1a6bbf; border-bottom: 2px solid #1a6bbf; font-size: 13px; display: inline-block;";
+        }
+
+        // Set baseline gray color depending on target tab name
+        string fallbackColor = (segment == "departments") ? "#7d7575" : "#736e6e";
+        return $"color: {fallbackColor}; font-size: 13px; border-bottom: 2px solid transparent;";
+    }
+
+    protected override void OnInitialized()
+    {
+        // Keeps navigation tabs updating synchronously whenever layout states shift
+        Navigation.LocationChanged += (s, e) => StateHasChanged();
+    }
+}
