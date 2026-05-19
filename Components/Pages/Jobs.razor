@@ -17,12 +17,12 @@
     }
 
     .filter-panel {
-        width: 280px;
+        width: 260px;
         flex-shrink: 0;
     }
 
     .filter-box {
-        background: #f0f0f0;
+        background: #efefef;
         border-radius: 4px;
         padding: 20px;
     }
@@ -30,7 +30,7 @@
     .filter-title {
         color: #1a6bbf;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 17px;
         border-bottom: 2px solid #ccc;
         padding-bottom: 10px;
         margin-bottom: 15px;
@@ -39,18 +39,21 @@
     .filter-section-title {
         color: #1a6bbf;
         font-weight: bold;
-        font-size: 14px;
-        margin-top: 20px;
-        margin-bottom: 10px;
+        font-size: 13px;
+        margin-top: 18px;
+        margin-bottom: 8px;
     }
 
     .clear-link {
         color: #1a6bbf;
         font-size: 12px;
         cursor: pointer;
-        text-decoration: none;
         display: block;
         margin-top: 4px;
+        background: none;
+        border: none;
+        padding: 0;
+        text-decoration: none;
     }
 
     .jobs-panel {
@@ -58,26 +61,33 @@
         background: white;
         border-radius: 4px;
         padding: 20px;
+        border: 1px solid #e0e0e0;
     }
 
     .jobs-table {
         width: 100%;
         border-collapse: collapse;
+        margin-top: 15px;
     }
 
     .jobs-table th {
-        background: #e0e0e0;
+        background: #d6d6d6;
         padding: 12px 10px;
         text-align: left;
         font-size: 13px;
         font-weight: bold;
+        color: #333;
     }
 
     .jobs-table td {
         padding: 12px 10px;
         font-size: 13px;
         border-bottom: 1px solid #eee;
-        vertical-align: top;
+        vertical-align: middle;
+    }
+
+    .jobs-table tr:hover {
+        background: #f9f9f9;
     }
 
     .job-title-link {
@@ -94,11 +104,16 @@
     .apply-btn {
         background: #2d7a2d;
         color: white;
-        padding: 5px 14px;
+        padding: 6px 16px;
         border-radius: 3px;
         border: none;
         font-size: 13px;
         cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .apply-btn:hover {
+        background: #1f5c1f;
     }
 
     .search-btn {
@@ -110,7 +125,7 @@
         cursor: pointer;
         font-size: 14px;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
     .page-btn {
@@ -128,12 +143,9 @@
         border-color: #2d7a2d;
     }
 
-    .show-entries {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 15px;
-        font-size: 13px;
+    .page-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 </style>
 
@@ -171,55 +183,31 @@
         FilteredJobs = AllJobs.ToList();
     }
 
-    private void ApplyFilter()
-    {
-        FilteredJobs = AllJobs.Where(j =>
-            (string.IsNullOrEmpty(SearchText) || j.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-             j.Department.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) &&
-            (string.IsNullOrEmpty(SelectedDepartment) || j.Department.Contains(SelectedDepartment, StringComparison.OrdinalIgnoreCase)) &&
-            (string.IsNullOrEmpty(SelectedLocation) || j.Province.Contains(SelectedLocation, StringComparison.OrdinalIgnoreCase))
-        ).ToList();
-        CurrentPage = 1;
-    }
-
-    private void ClearSearch()
-    {
-        SearchText = "";
-        ApplyFilter();
-    }
-
-    private void ClearDepartment()
-    {
-        SelectedDepartment = "";
-        ApplyFilter();
-    }
-
-    private void ClearLocation()
-    {
-        SelectedLocation = "";
-        ApplyFilter();
-    }
-
-    private void ClearFilter()
-    {
-        SearchText = "";
-        SelectedDepartment = "";
-        SelectedLocation = "";
-        FilteredJobs = AllJobs.ToList();
-        CurrentPage = 1;
-    }
-
-    private void GoToPage(int page)
-    {
-        if (page >= 1 && page <= TotalPages)
-            CurrentPage = page;
-    }
-
     private void OnSearchInput(ChangeEventArgs e)
     {
         SearchText = e.Value?.ToString() ?? "";
         ApplyFilter();
     }
+
+    private void ApplyFilter()
+    {
+        FilteredJobs = AllJobs.Where(j =>
+            (string.IsNullOrEmpty(SearchText) ||
+             j.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+             j.Department.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) &&
+            (string.IsNullOrEmpty(SelectedDepartment) ||
+             j.Department.Contains(SelectedDepartment, StringComparison.OrdinalIgnoreCase)) &&
+            (string.IsNullOrEmpty(SelectedLocation) ||
+             j.Province.Contains(SelectedLocation, StringComparison.OrdinalIgnoreCase))
+        ).ToList();
+        CurrentPage = 1;
+    }
+
+    private void ClearSearch() { SearchText = ""; ApplyFilter(); }
+    private void ClearDepartment() { SelectedDepartment = ""; ApplyFilter(); }
+    private void ClearLocation() { SelectedLocation = ""; ApplyFilter(); }
+    private void ClearAll() { SearchText = ""; SelectedDepartment = ""; SelectedLocation = ""; FilteredJobs = AllJobs.ToList(); CurrentPage = 1; }
+    private void GoToPage(int page) { if (page >= 1 && page <= TotalPages) CurrentPage = page; }
 
     public class JobItem
     {
@@ -233,7 +221,7 @@
 }
 
 <div class="jobs-wrapper">
-    <h2 style="max-width:1200px; margin:0 auto 20px auto; font-weight:bold;">Available Jobs</h2>
+    <h2 style="max-width:1200px; margin:0 auto 20px auto; font-weight:bold; font-size:26px;">Available Jobs</h2>
 
     <div class="jobs-layout">
 
@@ -242,15 +230,14 @@
             <div class="filter-box">
                 <div class="filter-title">Filter Search</div>
 
-                <!-- Looking For -->
-                <input type="text" class="form-control"
+                <input type="text"
+                       class="form-control"
                        placeholder="Looking for..."
                        value="@SearchText"
                        @oninput="OnSearchInput"
                        style="font-size:13px;" />
-                <a class="clear-link" @onclick="ClearSearch">Clear Title</a>
+                <button class="clear-link" @onclick="ClearSearch">Clear Title</button>
 
-                <!-- Departments -->
                 <select class="form-select mt-3" @bind="SelectedDepartment" style="font-size:13px;">
                     <option value="">Departments</option>
                     <option>Social Welfare & Baitul Mall</option>
@@ -261,9 +248,8 @@
                     <option>Finance Department</option>
                     <option>Information Technology</option>
                 </select>
-                <a class="clear-link" @onclick="ClearDepartment">Clear Departments</a>
+                <button class="clear-link" @onclick="ClearDepartment">Clear Departments</button>
 
-                <!-- Location -->
                 <select class="form-select mt-3" @bind="SelectedLocation" style="font-size:13px;">
                     <option value="">Location</option>
                     <option>PUNJAB</option>
@@ -272,11 +258,10 @@
                     <option>Rawalpindi</option>
                     <option>Faisalabad</option>
                 </select>
-                <a class="clear-link" @onclick="ClearLocation">Clear Location</a>
+                <button class="clear-link" @onclick="ClearLocation">Clear Location</button>
 
                 <button class="search-btn" @onclick="ApplyFilter">Search</button>
 
-                <!-- By Industry -->
                 <div class="filter-section-title">By Industry</div>
                 <div style="font-size:13px; line-height:2;">
                     <div>N.G.O/ Social Services (3)</div>
@@ -289,66 +274,64 @@
                     <div>Finance (7)</div>
                 </div>
 
-                <!-- Type of Contract -->
                 <div class="filter-section-title">Type of Contract</div>
-                <div style="font-size:13px; line-height:2;">
+                <div style="font-size:13px; line-height:2.2;">
                     @foreach (var contract in new[] { "Part Time", "Full Time", "Daily Wages", "Permanent", "Regular", "Contract", "Contingency", "Adhoc Basis", "Paid Internship", "Project Based" })
                     {
-                        <div><input type="checkbox" /> @contract</div>
+                        <div><input type="checkbox" style="margin-right:6px;" /> @contract</div>
                     }
                 </div>
-                <button @onclick="ClearFilter" style="background:white; border:1px solid #ccc; padding:5px 15px; border-radius:3px; margin-top:8px; font-size:13px; cursor:pointer;">Clear All</button>
+                <button @onclick="ClearAll" style="background:white; border:1px solid #bbb; padding:5px 15px; border-radius:3px; margin-top:8px; font-size:13px; cursor:pointer; width:100%;">Clear All</button>
 
-                <!-- Career Level -->
                 <div class="filter-section-title">Career Level</div>
-                <div style="font-size:13px; line-height:2;">
+                <div style="font-size:13px; line-height:2.2;">
                     @foreach (var level in new[] { "Student/Internship", "Entry Level", "Mid Career", "Management", "Executive/Director", "Senior Management", "Paid Internship" })
                     {
-                        <div><input type="radio" name="career" /> @level</div>
+                        <div><input type="radio" name="career" style="margin-right:6px;" /> @level</div>
                     }
                 </div>
-                <button @onclick="ClearFilter" style="background:white; border:1px solid #ccc; padding:5px 15px; border-radius:3px; margin-top:8px; font-size:13px; cursor:pointer;">Clear All</button>
+                <button @onclick="ClearAll" style="background:white; border:1px solid #bbb; padding:5px 15px; border-radius:3px; margin-top:8px; font-size:13px; cursor:pointer; width:100%;">Clear All</button>
             </div>
         </div>
 
         <!-- Jobs Panel -->
         <div class="jobs-panel">
 
-            <!-- Show Entries + Search -->
-            <div class="show-entries">
-                <span>Show</span>
-                <select @bind="PageSize" style="width:60px; font-size:13px;" class="form-select form-select-sm">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                </select>
-                <span>entries</span>
-                <span style="margin-left:auto;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px;">
+                    <span>Show</span>
+                    <select @bind="PageSize" class="form-select form-select-sm" style="width:65px; font-size:13px;">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                    <span>entries</span>
+                </div>
+                <div style="font-size:13px;">
                     Search:
                     <input type="text"
                            value="@SearchText"
                            @oninput="OnSearchInput"
-                           style="border:1px solid #ccc; padding:4px 8px; font-size:13px; margin-left:5px;" />
-                </span>
+                           style="border:1px solid #ccc; padding:4px 8px; font-size:13px; margin-left:5px; border-radius:3px;" />
+                </div>
             </div>
 
-            <!-- Table -->
             <table class="jobs-table">
                 <thead>
                     <tr>
-                        <th>Job Title</th>
-                        <th>Department</th>
-                        <th>Project</th>
-                        <th>Province</th>
-                        <th>Last Apply Date</th>
-                        <th></th>
+                        <th style="width:22%;">Job Title</th>
+                        <th style="width:20%;">Department</th>
+                        <th style="width:30%;">Project</th>
+                        <th style="width:10%;">Province</th>
+                        <th style="width:12%;">Last Apply Date</th>
+                        <th style="width:6%;"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (PagedJobs.Count == 0)
                     {
                         <tr>
-                            <td colspan="6" style="text-align:center; padding:20px; color:#666;">
+                            <td colspan="6" style="text-align:center; padding:30px; color:#888;">
                                 No jobs found matching your search.
                             </td>
                         </tr>
@@ -358,42 +341,33 @@
                         @foreach (var job in PagedJobs)
                         {
                             <tr>
-                                <td>
-                                    <a class="job-title-link" href="/job-detail/@job.Id">@job.Title</a>
-                                </td>
-                                <td>@job.Department</td>
-                                <td>@job.Project</td>
-                                <td>@job.Province</td>
-                                <td>@job.LastDate</td>
-                                <td>
-                                    <button class="apply-btn">Apply</button>
-                                </td>
+                                <td><a class="job-title-link" href="/job-detail/@job.Id">@job.Title</a></td>
+                                <td style="font-size:13px;">@job.Department</td>
+                                <td style="font-size:13px;">@job.Project</td>
+                                <td style="font-size:13px;">@job.Province</td>
+                                <td style="font-size:13px;">@job.LastDate</td>
+                                <td><button class="apply-btn">Apply</button></td>
                             </tr>
                         }
                     }
                 </tbody>
             </table>
 
-            <!-- Pagination -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px; font-size:13px;">
-                <span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; font-size:13px;">
+                <span style="color:#555;">
                     Showing @((CurrentPage - 1) * PageSize + 1)
                     to @(Math.Min(CurrentPage * PageSize, FilteredJobs.Count))
                     of @FilteredJobs.Count entries
                 </span>
-                <div style="display:flex; gap:5px;">
-                    <button class="page-btn"
-                            @onclick="() => GoToPage(CurrentPage - 1)"
-                            disabled="@(CurrentPage == 1)">Previous</button>
+                <div style="display:flex; gap:4px;">
+                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
                     @for (int i = 1; i <= TotalPages; i++)
                     {
                         var pageNum = i;
                         <button class="page-btn @(CurrentPage == pageNum ? "active" : "")"
                                 @onclick="() => GoToPage(pageNum)">@pageNum</button>
                     }
-                    <button class="page-btn"
-                            @onclick="() => GoToPage(CurrentPage + 1)"
-                            disabled="@(CurrentPage == TotalPages)">Next</button>
+                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
                 </div>
             </div>
 
