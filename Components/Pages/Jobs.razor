@@ -296,7 +296,7 @@
                 </select>
                 <button class="clear-link" @onclick="ClearDepartment">Clear Departments</button>
 
-                <select class="form-select mt-3" @bind="SelectedLocation" style="font-size:13px;">
+               <select class="form-select mt-3" @bind="SelectedLocation" @bind:after="ApplyFilter" style="font-size:13px;">
                     <option value="">Location</option>
                     <option>PUNJAB</option>
                     <option>Lahore</option>
