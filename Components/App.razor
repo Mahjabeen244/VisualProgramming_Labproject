@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="@Assets["Project.styles.css"]" />
     <ImportMap />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <HeadOutlet />
+    <HeadOutlet @rendermode="InteractiveServer" />
         <style>
     #loadingSpinner {
     position: fixed;
@@ -54,20 +54,27 @@
 </head>
 <body>
 
-    <!-- Loading Spinner -->
     <div id="loadingSpinner">
         <div class="spinner"></div>
     </div>
 
-    <Routes />
+    <Routes @rendermode="InteractiveServer" />
 
     <script src="@Assets["_framework/blazor.web.js"]"></script>
 
     <script>
-        setTimeout(function () {
+        Blazor.start().then(function () {
             var spinner = document.getElementById('loadingSpinner');
-            if (spinner) spinner.style.display = 'none';
-        }, 2000);
+            if (spinner) {
+                spinner.style.display = 'none';
+            }
+        }).catch(function() {
+            // Fallback timeout just in case
+            setTimeout(function () {
+                var spinner = document.getElementById('loadingSpinner');
+                if (spinner) spinner.style.display = 'none';
+            }, 2000);
+        });
     </script>
 
 </body>
