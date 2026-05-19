@@ -3,24 +3,40 @@
 <ul class="navbar-nav gap-4">
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="" Match="NavLinkMatch.All"
-                 style="font-size:13px; @(IsActive("") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#736e6e;")">HOME</NavLink>
+                 style="@GetHomeStyle()">HOME</NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="jobs" Match="NavLinkMatch.Prefix"
-                 style="font-size:13px; @(IsActive("jobs") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#736e6e;")">JOBS</NavLink>
+                 style="@GetJobsStyle()">JOBS</NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="departments" Match="NavLinkMatch.Prefix"
-                 style="font-size:13px; @(IsActive("departments") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#7d7575;")">DEPARTMENTAL CONTACTS</NavLink>
+                 style="@GetDeptStyle()">DEPARTMENTAL CONTACTS</NavLink>
     </li>
     <li class="nav-item">
         <NavLink class="nav-link fw-bold" href="faq" Match="NavLinkMatch.Prefix"
-                 style="font-size:13px; @(IsActive("faq") ? "color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" : "color:#736e6e;")">FAQ'S</NavLink>
+                 style="@GetFaqStyle()">FAQ'S</NavLink>
     </li>
 </ul>
 
 @code {
-    // This safely evaluates whether the active browser address points to the link's route
+    // These 4 small methods completely clean up the HTML style strings to make the compiler happy
+    private string GetHomeStyle() => IsActive("") 
+        ? "font-size:13px; color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" 
+        : "font-size:13px; color:#736e6e;";
+
+    private string GetJobsStyle() => IsActive("jobs") 
+        ? "font-size:13px; color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" 
+        : "font-size:13px; color:#736e6e;";
+
+    private string GetDeptStyle() => IsActive("departments") 
+        ? "font-size:13px; color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" 
+        : "font-size:13px; color:#7d7575;";
+
+    private string GetFaqStyle() => IsActive("faq") 
+        ? "font-size:13px; color:#1a6bbf; border-bottom: 2px solid #1a6bbf;" 
+        : "font-size:13px; color:#736e6e;";
+
     private bool IsActive(string href)
     {
         var relativePath = Navigation.ToBaseRelativePath(Navigation.Uri).ToLower();
@@ -35,7 +51,7 @@
 
     protected override void OnInitialized()
     {
-        // Re-renders the navbar component layout cleanly when changing tabs
         Navigation.LocationChanged += (s, e) => StateHasChanged();
     }
+}
 }
