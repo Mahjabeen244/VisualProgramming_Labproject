@@ -1,63 +1,179 @@
 @page "/departments"
 @using Microsoft.EntityFrameworkCore
+@using Project.Data
+@using Project.Models
 @inject IDbContextFactory<ApplicationDbContext> DbFactory
 @rendermode InteractiveServer
 
 <div class="container py-4">
-    <h2 class="mb-4 text-dark font-weight-bold" style="font-family: Arial, sans-serif;">Departmental Contacts</h2>
+    <h2 class="mb-4 text-dark font-weight-bold" style="font-family: Arial, sans-serif; font-size: 28px;">Departmental Contacts</h2>
 
-    @if (departments == null)
-    {
-        <div class="d-flex justify-content-center my-5">
-            <div class="spinner-border text-success" role="status">
-                <span class="visually-hidden">Loading...</span>
+    <div class="p-4" style="background-color: #e5e5e5; border-radius: 4px; min-height: 500px;">
+        
+        @if (allDepartments == null)
+        {
+            <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+                <div class="spinner-border text-success" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading contacts...</span>
+                </div>
             </div>
-        </div>
-    }
-    else if (!departments.Any())
-    {
-        <div class="alert alert-info">No departmental contacts found in the database.</div>
-    }
-    else
-    {
-        <div class="row g-4">
-            @foreach (var dept in departments)
-            {
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0 p-3" style="border-radius: 4px; background-color: #ffffff;">
-                        <div class="card-body d-flex flex-column justify-content-between p-2">
-                            <div>
-                                <h5 class="card-title text-primary font-weight-bold mb-3" style="font-size: 16px; color: #1a6bbf !important;">
-                                    @dept.Name
-                                </h5>
+        }
+        else if (!allDepartments.Any())
+        {
+            <div class="alert alert-light text-center py-5" role="alert">
+                <h4 class="text-muted">No Departmental Contacts Found</h4>
+                <p class="mb-0">Please verify your MySQL table population scripts.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4 mb-4">
+                @foreach (var dept in PagedDepartments)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 p-3 bg-white hover-shadow transition-all" style="border-radius: 4px;">
+                            <div class="card-body d-flex flex-column justify-content-between p-2">
+                                <div>
+                                    <h5 class="card-title font-weight-bold mb-3" style="font-size: 16px; color: #1a6bbf !important; line-height: 1.4; font-family: 'Helvetica Neue', Arial, sans-serif;">
+                                        @dept.Name
+                                    </h5>
+                                    
+                                    <p class="card-text mb-2 text-muted d-flex align-items-center" style="font-size: 13px;">
+                                        <span class="text-primary me-2" style="transform: rotate(45deg); font-size: 11px;">🚀</span> @dept.Description
+                                    </p>
+                                    
+                                    <p class="card-text mb-2 text-muted d-flex align-items-center" style="font-size: 13px;">
+                                        <span class="text-primary me-2" style="font-size: 12px;">📞</span> 
+                                        <a href="tel:@dept.ContactPhone" style="color: #6c757d; text-decoration: none;">@dept.ContactPhone</a>
+                                    </p>
+                                </div>
                                 
-                                <p class="card-text mb-2 text-muted" style="font-size: 14px;">
-                                    <span class="me-2 text-primary">📍</span> @dept.Description
-                                </p>
-                                
-                                <p class="card-text mb-2 text-muted" style="font-size: 14px;">
-                                    <span class="me-2 text-primary">📞</span> @dept.ContactPhone
+                                <p class="card-text mt-3 mb-0 d-flex align-items-center" style="font-size: 13px; border-top: 1px solid #f8f9fa; padding-top: 12px;">
+                                    <span class="text-primary me-2" style="font-size: 12px;">✉️</span> 
+                                    <a href="mailto:@dept.ContactEmail" style="color: #4a4a4a; text-decoration: none; word-break: break-all;" class="email-link">
+                                        @dept.ContactEmail
+                                    </a>
                                 </p>
                             </div>
-                            
-                            <p class="card-text mt-2 mb-0" style="font-size: 14px;">
-                                <span class="me-2 text-primary">✉️</span> 
-                                <a href="mailto:@dept.ContactEmail" style="color: #4a4a4a; text-decoration: none;">@dept.ContactEmail</a>
-                            </p>
                         </div>
                     </div>
+                }
+            </div>
+
+            @if (TotalPages > 1)
+            {
+                <div class="d-flex justify-content-start mt-4">
+                    <nav aria-label="Department navigation">
+                        <ul class="pagination pagination-sm mb-0 rounded-0">
+                            @for (int i = 1; i <= TotalPages; i++)
+                            {
+                                var pageIndex = i;
+                                <li class="page-item @(currentPage == pageIndex ? "active" : "")">
+                                    <button type="button" class="page-item-button" @onclick="() => ChangePage(pageIndex)">@pageIndex</button>
+                                </li>
+                            }
+
+                            <li class="page-item">
+                                <button type="button" class="page-item-button" @onclick="NextPage" disabled="@(currentPage == TotalPages)">&gt;</button>
+                            </li>
+
+                            <li class="page-item">
+                                <button type="button" class="page-item-button text-primary" @onclick="JumpToLastPage" disabled="@(currentPage == TotalPages)" style="font-size: 11px;">Last ›</button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             }
-        </div>
-    }
+        }
+    </div>
 </div>
 
+<style>
+    .pagination .page-item {
+        margin-right: 2px;
+    }
+    
+    .page-item-button {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        color: #1a6bbf;
+        padding: 5px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .page-item-button:hover:not([disabled]) {
+        background-color: #f8f9fa;
+        color: #0b4d92;
+    }
+
+    .page-item.active .page-item-button {
+        background-color: #1a6bbf !important;
+        border-color: #1a6bbf !important;
+        color: #ffffff !important;
+    }
+
+    .page-item-button:disabled {
+        color: #6c757d;
+        background-color: #e9ecef;
+        cursor: not-allowed;
+        border-color: #dee2e6;
+    }
+
+    .hover-shadow:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
+    }
+
+    .transition-all {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .email-link:hover {
+        color: #1a6bbf !important;
+        text-decoration: underline !important;
+    }
+</style>
+
 @code {
-    private List<Department>? departments;
+    private List<Department>? allDepartments;
+    private int currentPage = 1;
+    private const int PageSize = 9;
+
+    private IEnumerable<Department> PagedDepartments 
+    {
+        get
+        {
+            if (allDepartments == null) return new List<Department>();
+            return allDepartments.Skip((currentPage - 1) * PageSize).Take(PageSize);
+        }
+    }
+
+    private int TotalPages => allDepartments != null 
+        ? (int)Math.Ceiling((double)allDepartments.Count / PageSize) 
+        : 0;
 
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        departments = await context.Departments.ToListAsync();
+        allDepartments = await context.Departments
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
+    private void ChangePage(int targetPage)
+    {
+        currentPage = targetPage;
+    }
+
+    private void NextPage()
+    {
+        if (currentPage < TotalPages) currentPage++;
+    }
+
+    private void JumpToLastPage()
+    {
+        currentPage = TotalPages;
     }
 }
