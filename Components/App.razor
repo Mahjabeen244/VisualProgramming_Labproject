@@ -63,18 +63,20 @@
     <script src="@Assets["_framework/blazor.web.js"]"></script>
 
     <script>
-        Blazor.start().then(function () {
+        // This structural check hides your spinner the exact millisecond Blazor's framework boots up
+        if (window.Blazor) {
             var spinner = document.getElementById('loadingSpinner');
-            if (spinner) {
-                spinner.style.display = 'none';
-            }
-        }).catch(function() {
-            // Fallback timeout just in case
-            setTimeout(function () {
+            if (spinner) spinner.style.display = 'none';
+        } else {
+            // Safe fallback loop if the connection takes a moment
+            var checkBlazor = setInterval(function () {
                 var spinner = document.getElementById('loadingSpinner');
-                if (spinner) spinner.style.display = 'none';
-            }, 2000);
-        });
+                if (spinner) {
+                    spinner.style.display = 'none';
+                    clearInterval(checkBlazor);
+                }
+            }, 500);
+        }
     </script>
 
 </body>
