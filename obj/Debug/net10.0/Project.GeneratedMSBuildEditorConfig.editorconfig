@@ -34,8 +34,8 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/mahi/Desktop/Group4 VisualProgramming_Project/Components/Pages/apply.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9hcHBseS5yYXpvcg==
+[/Users/mahi/Desktop/Group4 VisualProgramming_Project/Components/Pages/Apply.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BcHBseS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/mahi/Desktop/Group4 VisualProgramming_Project/Components/Pages/Counter.razor]
