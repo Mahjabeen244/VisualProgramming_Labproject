@@ -4,67 +4,162 @@
 
 <style>
     .faq-wrapper {
-        padding: 30px 40px;
-        background: #f5f5f5;
+        padding: 40px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
         min-height: 100vh;
     }
 
+    .faq-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .faq-header h2 {
+        font-size: 32px;
+        font-weight: bold;
+        color: #1a5c1a;
+        margin-bottom: 10px;
+    }
+
+    .faq-header p {
+        color: #666;
+        font-size: 15px;
+    }
+
+    .faq-header-line {
+        width: 60px;
+        height: 4px;
+        background: #2d7a2d;
+        margin: 10px auto 0 auto;
+        border-radius: 2px;
+    }
+
+    .faq-container {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
     .faq-item {
-        background: white;
-        border: 1px solid #e0e0e0;
-        margin-bottom: 2px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.12);
     }
 
     .faq-question {
         width: 100%;
-        background: #f0f0f0;
+        background: white;
         border: none;
-        padding: 15px 20px;
+        padding: 18px 25px;
         text-align: left;
-        font-size: 14px;
-        font-weight: normal;
+        font-size: 15px;
+        font-weight: 600;
         color: #333;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-
-    .faq-question:hover {
-        background: #e8e8e8;
+        transition: all 0.3s ease;
     }
 
     .faq-question.active {
-        background: #f0f0f0;
-        color: #333;
+        background: #2d7a2d;
+        color: white;
+    }
+
+    .faq-question:hover:not(.active) {
+        background: #f0f8f0;
+        color: #2d7a2d;
+    }
+
+    .faq-number {
+        background: #2d7a2d;
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .faq-question.active .faq-number {
+        background: white;
+        color: #2d7a2d;
+    }
+
+    .faq-question-text {
+        flex: 1;
+    }
+
+    .faq-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #e8f5e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        color: #2d7a2d;
+    }
+
+    .faq-question.active .faq-icon {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        transform: rotate(180deg);
     }
 
     .faq-answer {
-        padding: 15px 20px 20px 20px;
-        font-size: 14px;
-        color: #444;
-        line-height: 1.7;
-        border-top: 1px solid #eee;
         background: white;
+        padding: 20px 25px 20px 68px;
+        border-top: 2px solid #e8f5e8;
+        animation: slideDown 0.3s ease;
+    }
+
+    @@keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .faq-answer ul {
-        margin: 8px 0;
-        padding-left: 20px;
+        margin: 0;
+        padding-left: 5px;
+        list-style: none;
     }
 
     .faq-answer ul li {
-        margin-bottom: 5px;
+        padding: 6px 0;
+        font-size: 14px;
+        color: #555;
+        line-height: 1.6;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        border-bottom: 1px solid #f5f5f5;
     }
 
-    .arrow {
-        font-size: 12px;
-        color: #666;
-        transition: transform 0.2s;
+    .faq-answer ul li:last-child {
+        border-bottom: none;
     }
 
-    .arrow.open {
-        transform: rotate(180deg);
+    .faq-answer ul li::before {
+        content: '→';
+        color: #2d7a2d;
+        font-weight: bold;
+        flex-shrink: 0;
+        margin-top: 1px;
     }
 </style>
 
@@ -73,10 +168,7 @@
 
     private void Toggle(int index)
     {
-        if (OpenIndex == index)
-            OpenIndex = null;
-        else
-            OpenIndex = index;
+        OpenIndex = OpenIndex == index ? null : index;
     }
 
     private class FaqItem
@@ -87,190 +179,33 @@
 
     private List<FaqItem> Faqs = new()
     {
-        new FaqItem
-        {
-            Question = "1) How can I Register on Job portal?",
-            Answers = new List<string>
-            {
-                "Click on register button available at top right of Job Portal.",
-                "Enter valid e-mail address.",
-                "Set password.",
-                "Click on register.",
-                "An account activation link will be sent to your e-mail ID.",
-                "Click on received link for login and accessing your account at Job Portal."
-            }
-        },
-        new FaqItem
-        {
-            Question = "2) How can I update my profile?",
-            Answers = new List<string>
-            {
-                "Login to your account.",
-                "Click on your profile name at top right.",
-                "Select Edit Profile option.",
-                "Update the required information.",
-                "Click Save to apply changes."
-            }
-        },
-        new FaqItem
-        {
-            Question = "3) How can I add information on my profile?",
-            Answers = new List<string>
-            {
-                "Login to your account.",
-                "Go to My Profile section.",
-                "Click on Add Information button.",
-                "Fill in the required details such as education, experience, skills.",
-                "Click Save to update your profile."
-            }
-        },
-        new FaqItem
-        {
-            Question = "4) How can I view my profile?",
-            Answers = new List<string>
-            {
-                "Login to your account.",
-                "Click on your name at the top right corner.",
-                "Select View Profile from the dropdown menu."
-            }
-        },
-        new FaqItem
-        {
-            Question = "5) How can I edit my profile?",
-            Answers = new List<string>
-            {
-                "Login to your account.",
-                "Go to My Profile.",
-                "Click the Edit button next to the section you want to update.",
-                "Make your changes and click Save."
-            }
-        },
-        new FaqItem
-        {
-            Question = "6) How can I search target job?",
-            Answers = new List<string>
-            {
-                "Use the search bar on the home page.",
-                "Enter job title, department, or keywords.",
-                "Select location and department filters.",
-                "Click the Search button to view results."
-            }
-        },
-        new FaqItem
-        {
-            Question = "7) How to view all jobs on Job Portal?",
-            Answers = new List<string>
-            {
-                "Click on JOBS in the navigation menu.",
-                "All available jobs will be listed.",
-                "Use filters on the left to narrow down results.",
-                "Click on any job title to view full details."
-            }
-        },
-        new FaqItem
-        {
-            Question = "8) What are saved jobs?",
-            Answers = new List<string>
-            {
-                "Saved jobs are jobs you have bookmarked for later.",
-                "You can save a job by clicking the bookmark icon on any job listing.",
-                "Access your saved jobs from your profile dashboard.",
-                "You can apply to saved jobs anytime before the closing date."
-            }
-        },
-        new FaqItem
-        {
-            Question = "9) How do I apply for Jobs?",
-            Answers = new List<string>
-            {
-                "Login to your account.",
-                "Search for the job you want to apply for.",
-                "Click on the job title to view details.",
-                "Click the Apply for this Job button.",
-                "Confirm your application details and submit."
-            }
-        },
-        new FaqItem
-        {
-            Question = "10) How do I know if my job application was submitted successfully?",
-            Answers = new List<string>
-            {
-                "After submitting, you will see a confirmation message on screen.",
-                "A confirmation email will be sent to your registered email address.",
-                "You can also check your application status in My Applications section."
-            }
-        },
-        new FaqItem
-        {
-            Question = "11) How much time it will take to schedule interview after applying for a job?",
-            Answers = new List<string>
-            {
-                "Interview scheduling depends on the hiring department.",
-                "You will be notified via email when shortlisted.",
-                "Typically it takes 2 to 4 weeks after the application deadline.",
-                "Keep checking your email and portal notifications regularly."
-            }
-        },
-        new FaqItem
-        {
-            Question = "12) Can I apply for multiple jobs at the same time?",
-            Answers = new List<string>
-            {
-                "Yes, you can apply for multiple jobs simultaneously.",
-                "Each application is tracked separately in your profile.",
-                "Make sure your profile is complete before applying to multiple positions."
-            }
-        },
-        new FaqItem
-        {
-            Question = "13) What documents do I need to apply?",
-            Answers = new List<string>
-            {
-                "Updated CV or Resume.",
-                "Educational certificates and transcripts.",
-                "CNIC copy.",
-                "Experience letters if applicable.",
-                "Any other documents mentioned in the job description."
-            }
-        },
-        new FaqItem
-        {
-            Question = "14) How can I reset my password?",
-            Answers = new List<string>
-            {
-                "Click on Login at the top of the page.",
-                "Click Forgot Password link.",
-                "Enter your registered email address.",
-                "Check your email for a password reset link.",
-                "Click the link and set a new password."
-            }
-        },
-        new FaqItem
-        {
-            Question = "15) Who can I contact for support?",
-            Answers = new List<string>
-            {
-                "For technical issues, email: support@punjabgov.pk",
-                "For job related queries, contact the respective department.",
-                "You can also use the Contact Us form on the portal.",
-                "Support is available Monday to Friday, 9am to 5pm."
-            }
-        },
-         new FaqItem
-        {
-            Question = "15)I am applying for a job and I receive the message on screen saying your profile doesnot match with this job requirement?",
-            Answers = new List<string>
-            {
-                "In this case you are either not eligible for a job or your profile is incomplete, not downloaded ",
-            }
-        },
+        new FaqItem { Question="How can I Register on Job portal?", Answers=new(){"Click on register button available at top right of Job Portal.","Enter valid e-mail address.","Set password and click on register.","An account activation link will be sent to your e-mail ID.","Click on received link for login and accessing your account."} },
+        new FaqItem { Question="How can I update my profile?", Answers=new(){"Login to your account.","Click on your profile name at top right.","Select Edit Profile option.","Update the required information and click Save."} },
+        new FaqItem { Question="How can I add information on my profile?", Answers=new(){"Login to your account.","Go to My Profile section.","Click on Add Information button.","Fill in details such as education, experience, skills.","Click Save to update your profile."} },
+        new FaqItem { Question="How can I view my profile?", Answers=new(){"Login to your account.","Click on your name at the top right corner.","Select View Profile from the dropdown menu."} },
+        new FaqItem { Question="How can I edit my profile?", Answers=new(){"Login to your account.","Go to My Profile.","Click the Edit button next to the section you want to update.","Make your changes and click Save."} },
+        new FaqItem { Question="How can I search target job?", Answers=new(){"Use the search bar on the home page.","Enter job title, department, or keywords.","Select location and department filters.","Click the Search button to view results."} },
+        new FaqItem { Question="How to view all jobs on Job Portal?", Answers=new(){"Click on JOBS in the navigation menu.","All available jobs will be listed.","Use filters on the left to narrow down results.","Click on any job title to view full details."} },
+        new FaqItem { Question="What are saved jobs?", Answers=new(){"Saved jobs are jobs you have bookmarked for later.","You can save a job by clicking the bookmark icon on any job listing.","Access your saved jobs from your profile dashboard.","You can apply to saved jobs anytime before the closing date."} },
+        new FaqItem { Question="How do I apply for Jobs?", Answers=new(){"Login to your account.","Search for the job you want to apply for.","Click on the job title to view details.","Click the Apply for this Job button.","Confirm your application details and submit."} },
+        new FaqItem { Question="How do I know if my job application was submitted successfully?", Answers=new(){"After submitting, you will see a confirmation message on screen.","A confirmation email will be sent to your registered email address.","You can also check your application status in My Applications section."} },
+        new FaqItem { Question="How much time will it take to schedule interview after applying?", Answers=new(){"Interview scheduling depends on the hiring department.","You will be notified via email when shortlisted.","Typically it takes 2 to 4 weeks after the application deadline.","Keep checking your email and portal notifications regularly."} },
+        new FaqItem { Question="Can I apply for multiple jobs at the same time?", Answers=new(){"Yes, you can apply for multiple jobs simultaneously.","Each application is tracked separately in your profile.","Make sure your profile is complete before applying to multiple positions."} },
+        new FaqItem { Question="What documents do I need to apply?", Answers=new(){"Updated CV or Resume.","Educational certificates and transcripts.","CNIC copy.","Experience letters if applicable.","Any other documents mentioned in the job description."} },
+        new FaqItem { Question="How can I reset my password?", Answers=new(){"Click on Login at the top of the page.","Click Forgot Password link.","Enter your registered email address.","Check your email for a password reset link.","Click the link and set a new password."} },
+        new FaqItem { Question="Who can I contact for support?", Answers=new(){"For technical issues, email: support@punjabgov.pk","For job related queries, contact the respective department.","You can also use the Contact Us form on the portal.","Support is available Monday to Friday, 9am to 5pm."} },
     };
 }
 
 <div class="faq-wrapper">
-    <h2 style="font-weight:bold; font-size:26px; margin-bottom:20px;">FAQ's</h2>
 
-    <div>
+    <div class="faq-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about Punjab Jobs Online</p>
+        <div class="faq-header-line"></div>
+    </div>
+
+    <div class="faq-container">
         @for (int i = 0; i < Faqs.Count; i++)
         {
             var index = i;
@@ -280,8 +215,9 @@
             <div class="faq-item">
                 <button class="faq-question @(isOpen ? "active" : "")"
                         @onclick="() => Toggle(index)">
-                    <span>@faq.Question</span>
-                    <span class="arrow @(isOpen ? "open" : "")">▼</span>
+                    <div class="faq-number">@(index + 1)</div>
+                    <span class="faq-question-text">@faq.Question</span>
+                    <div class="faq-icon">▼</div>
                 </button>
 
                 @if (isOpen)
