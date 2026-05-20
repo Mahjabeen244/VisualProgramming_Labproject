@@ -435,6 +435,8 @@ padding: 20px;
     private string SearchText = "";
     private bool ShowDropdown = false;
     private List<string> Suggestions = new();
+    private string SelectedDept = "";
+    private string SelectedLoc = "";
 
     [Inject] private NavigationManager Navigation { get; set; } = default!;
 
@@ -474,6 +476,11 @@ padding: 20px;
         "Chief Conservationist (Built Heritage)",
     };
 
+private void GoToJobs()
+{
+    if (!string.IsNullOrEmpty(SelectedDept) || !string.IsNullOrEmpty(SelectedLoc))
+        Navigation.NavigateTo("/jobs");
+}
     private void OnSearchInput(ChangeEventArgs e)
     {
         SearchText = e.Value?.ToString() ?? "";
