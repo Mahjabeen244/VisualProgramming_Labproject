@@ -1,6 +1,6 @@
-@page "/register"
+@page "/login"
 @rendermode InteractiveServer
-<PageTitle>Register - Punjab Jobs Online</PageTitle>
+<PageTitle>Login - Punjab Jobs Online</PageTitle>
 
 <style>
     .auth-wrapper {
@@ -108,23 +108,24 @@
     .auth-footer {
         padding: 15px 30px 25px 30px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .btn-register {
+    .btn-green {
         background: #2d7a2d;
         color: white;
         border: none;
-        padding: 10px 30px;
+        padding: 10px 25px;
         border-radius: 4px;
         font-size: 14px;
         cursor: pointer;
         font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
     }
 
-    .btn-register:hover {
-        background: #1f5c1f;
-    }
+    .btn-green:hover { background: #1f5c1f; }
 
     .success-msg {
         background: #d4edda;
@@ -150,7 +151,6 @@
 @code {
     private string Email = "";
     private string Password = "";
-    private string ConfirmPassword = "";
     private string CaptchaInput = "";
     private string CaptchaCode = "";
     private string Message = "";
@@ -170,24 +170,15 @@
             .Select(_ => chars[random.Next(chars.Length)]).ToArray());
     }
 
-    private async Task HandleRegister()
+    private async Task HandleLogin()
     {
         Message = "";
 
         if (string.IsNullOrEmpty(Email))
         { Message = "Please enter email address."; return; }
 
-        if (!Email.Contains("@"))
-        { Message = "Please enter a valid email address."; return; }
-
         if (string.IsNullOrEmpty(Password))
         { Message = "Please enter password."; return; }
-
-        if (Password.Length < 6)
-        { Message = "Password must be at least 6 characters."; return; }
-
-        if (Password != ConfirmPassword)
-        { Message = "Passwords do not match."; return; }
 
         if (CaptchaInput.ToUpper() != CaptchaCode)
         { Message = "Invalid captcha. Please try again."; GenerateCaptcha(); CaptchaInput = ""; return; }
@@ -196,14 +187,14 @@
         await Task.Delay(1000);
         IsLoading = false;
         IsSuccess = true;
-        Message = "Registration successful! You can now login.";
+        Message = "Login successful! Welcome back.";
     }
 }
 
 <div class="auth-wrapper">
     <div class="auth-card">
         <div class="auth-header">
-            <h4>Register</h4>
+            <h4>Login</h4>
             <a href="/"><button class="close-btn">✕</button></a>
         </div>
 
@@ -219,20 +210,12 @@
             {
                 <div class="form-row">
                     <label>Email Address</label>
-                    <input type="email" placeholder="Email"
-                           @bind="Email" />
+                    <input type="email" placeholder="Email" @bind="Email" />
                 </div>
 
                 <div class="form-row">
                     <label>Password</label>
-                    <input type="password" placeholder="Password"
-                           @bind="Password" />
-                </div>
-
-                <div class="form-row">
-                    <label>Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password"
-                           @bind="ConfirmPassword" />
+                    <input type="password" placeholder="Password" @bind="Password" />
                 </div>
 
                 <div class="form-row">
@@ -243,19 +226,18 @@
 
                 <div class="form-row">
                     <label></label>
-                    <input type="text" placeholder="Enter Captcha"
-                           @bind="CaptchaInput" />
+                    <input type="text" placeholder="Enter Captcha" @bind="CaptchaInput" />
                 </div>
             }
             else
             {
                 <div style="text-align:center; padding:20px;">
                     <div style="font-size:50px;">✅</div>
-                    <h5 style="color:#2d7a2d; margin-top:10px;">Registration Successful!</h5>
-                    <p style="color:#666; font-size:14px;">Your account has been created successfully.</p>
-                    <a href="/login">
+                    <h5 style="color:#2d7a2d; margin-top:10px;">Login Successful!</h5>
+                    <p style="color:#666; font-size:14px;">Welcome back to Punjab Jobs Online.</p>
+                    <a href="/">
                         <button style="background:#2d7a2d; color:white; border:none; padding:10px 25px; border-radius:4px; cursor:pointer; margin-top:10px;">
-                            Go to Login
+                            Go to Home
                         </button>
                     </a>
                 </div>
@@ -265,8 +247,12 @@
         @if (!IsSuccess)
         {
             <div class="auth-footer">
-                <button class="btn-register" @onclick="HandleRegister" disabled="@IsLoading">
-                    @(IsLoading ? "Registering..." : "Register")
+                <div style="display:flex; gap:10px;">
+                    <a href="/register" class="btn-green">Register</a>
+                    <button class="btn-green" style="background:#2d7a2d;">Forget Password</button>
+                </div>
+                <button class="btn-green" @onclick="HandleLogin" disabled="@IsLoading">
+                    @(IsLoading ? "Logging in..." : "Login")
                 </button>
             </div>
         }
