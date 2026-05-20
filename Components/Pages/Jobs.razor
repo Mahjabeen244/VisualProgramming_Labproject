@@ -3,430 +3,263 @@
 <PageTitle>Jobs - Punjab Jobs Online</PageTitle>
 
 <style>
+    /* Premium Radiant Mint Soft Blend Background */
     .jobs-wrapper {
-        padding: 30px 20px;
-        background: #f5f5f5;
+        background: linear-gradient(135deg, #eef9ee 0%, #d8edd8 100%);
+        padding: 40px 20px;
         min-height: 100vh;
+        font-family: system-ui, -apple-system, sans-serif;
     }
 
     .jobs-layout {
         display: flex;
-        gap: 20px;
-        max-width: 1200px;
+        gap: 25px;
+        max-width: 1250px;
         margin: 0 auto;
+        align-items: flex-start;
     }
 
+    /* Left Sidebar Glassmorphism Architecture */
     .filter-panel {
-        width: 260px;
+        width: 300px;
         flex-shrink: 0;
     }
 
     .filter-box {
-        background: #efefef;
-        border-radius: 4px;
-        padding: 20px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(16, 73, 16, 0.05);
     }
 
     .filter-title {
-        color: #1a6bbf;
-        font-weight: bold;
-        font-size: 17px;
-        border-bottom: 2px solid #ccc;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
+        color: #0b2e0b;
+        font-weight: 800;
+        font-size: 19px;
+        border-bottom: 2px solid rgba(16, 73, 16, 0.15);
+        padding-bottom: 12px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .filter-section-title {
-        color: #1a6bbf;
-        font-weight: bold;
-        font-size: 13px;
-        margin-top: 18px;
-        margin-bottom: 8px;
+        color: #114711;
+        font-weight: 800;
+        font-size: 14px;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Glass styled Form Inputs */
+    .glass-input, .glass-select {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.65) !important;
+        border: 1px solid rgba(16, 73, 16, 0.2) !important;
+        border-radius: 8px !important;
+        padding: 10px 12px;
+        color: #111 !important;
+        font-weight: 500;
+        outline: none;
+        transition: all 0.2s ease;
+    }
+    
+    .glass-input:focus, .glass-select:focus {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-color: #1b5e20 !important;
+        box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.15);
     }
 
     .clear-link {
-        color: #1a6bbf;
-        font-size: 12px;
+        color: #b32417;
+        font-size: 11.5px;
+        font-weight: 700;
         cursor: pointer;
-        display: block;
-        margin-top: 4px;
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 15px;
         background: none;
         border: none;
         padding: 0;
         text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    .clear-link:hover {
+        opacity: 0.8;
+        text-decoration: underline;
     }
 
+    /* Right Job Panel Glassmorphism Architecture */
     .jobs-panel {
         flex: 1;
-        background: rgb(230, 227, 227);
-        border-radius: 4px;
-        padding: 20px;
-        border: 1px solid #e0e0e0;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        padding: 26px;
+        box-shadow: 0 16px 36px rgba(16, 54, 16, 0.06);
     }
 
+    /* Glass Table Design */
     .jobs-table {
         width: 100%;
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0 8px; /* Gives row card separation effect */
         margin-top: 15px;
     }
 
     .jobs-table th {
-        background: #d6d6d6;
-        padding: 12px 10px;
+        background: rgba(16, 73, 16, 0.08);
+        padding: 14px 12px;
         text-align: left;
-        font-size: 13px;
-        font-weight: bold;
-        color: #333;
+        font-size: 13.5px;
+        font-weight: 800;
+        color: #0d380d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
+    
+    .jobs-table th:first-child { border-radius: 8px 0 0 8px; }
+    .jobs-table th:last-child { border-radius: 0 8px 8px 0; }
 
     .jobs-table td {
-        padding: 12px 10px;
-        font-size: 13px;
-        border-bottom: 1px solid #eee;
+        background: rgba(255, 255, 255, 0.4);
+        border-top: 1px solid rgba(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 16px 12px;
+        font-size: 14px;
+        color: #222;
+        font-weight: 500;
         vertical-align: middle;
+        transition: all 0.2s ease;
+    }
+    
+    .jobs-table td:first-child { 
+        border-left: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 8px 0 0 8px; 
+    }
+    .jobs-table td:last-child { 
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 0 8px 8px 0; 
     }
 
-    .jobs-table tr:hover { background: #f9f9f9; }
+    /* Frosted lift interaction on hovering rows */
+    .jobs-table tr:hover td { 
+        background: rgba(255, 255, 255, 0.85); 
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16, 73, 16, 0.04);
+        color: #000;
+    }
 
     .job-title-link {
-        color: #1a6bbf;
-        font-weight: bold;
+        color: #114711;
+        font-weight: 700;
         text-decoration: none;
         cursor: pointer;
+        transition: color 0.2s;
+    }
+    .job-title-link:hover { 
+        color: #1b5e20;
+        text-decoration: underline; 
     }
 
-    .job-title-link:hover { text-decoration: underline; }
-
+    /* Premium Dynamic Action Buttons */
     .apply-btn {
-        background: #2d7a2d;
+        background: linear-gradient(135deg, #1b5e20 0%, #0d3c11 100%);
         color: white;
-        padding: 6px 16px;
-        border-radius: 3px;
+        padding: 8px 18px;
+        border-radius: 6px;
         border: none;
         font-size: 13px;
+        font-weight: 700;
         cursor: pointer;
         white-space: nowrap;
+        box-shadow: 0 4px 10px rgba(27, 94, 32, 0.2);
+        transition: all 0.2s ease;
+    }
+    .apply-btn:hover { 
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(27, 94, 32, 0.3);
     }
 
-    .apply-btn:hover { background: #1f5c1f; }
-
     .search-btn {
-        background: #2d7a2d;
+        background: linear-gradient(135deg, #1b5e20 0%, #0d3c11 100%);
         color: white;
-        padding: 8px 20px;
+        padding: 10px 20px;
         border: none;
-        border-radius: 3px;
+        border-radius: 8px;
         cursor: pointer;
         font-size: 14px;
+        font-weight: 700;
         width: 100%;
-        margin-top: 12px;
+        margin-top: 5px;
+        box-shadow: 0 4px 10px rgba(27, 94, 32, 0.2);
+        transition: all 0.2s ease;
+    }
+    .search-btn:hover {
+        box-shadow: 0 6px 14px rgba(27, 94, 32, 0.3);
+    }
+
+    .clear-all-btn {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(16, 73, 16, 0.3);
+        color: #114711;
+        padding: 7px 15px;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.2s ease;
+    }
+    .clear-all-btn:hover {
+        background: #ffffff;
+        border-color: #1b5e20;
     }
 
     .page-btn {
-        padding: 5px 10px;
-        border: 1px solid #ddd;
-        border-radius: 3px;
+        padding: 6px 12px;
+        border: 1px solid rgba(16, 73, 16, 0.2);
+        border-radius: 6px;
         cursor: pointer;
-        background: white;
+        background: rgba(255, 255, 255, 0.6);
+        color: #114711;
         font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s ease;
     }
-
+    .page-btn:hover:not(:disabled) {
+        background: #ffffff;
+        border-color: #1b5e20;
+    }
     .page-btn.active {
-        background: #2d7a2d;
+        background: #1b5e20;
         color: white;
-        border-color: #2d7a2d;
+        border-color: #1b5e20;
     }
-
     .page-btn:disabled {
-        opacity: 0.5;
+        opacity: 0.4;
         cursor: not-allowed;
     }
+
+    /* Industry metric list items styling */
+    .industry-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 0;
+        border-bottom: 1px dashed rgba(16, 73, 16, 0.1);
+    }
+    .industry-item:last-child { border-bottom: none; }
+
+    @@media (max-width: 1050px) {
+        .jobs-layout { flex-direction: column; }
+        .filter-panel { width: 100%; }
+    }
 </style>
-
-@code {
-    private List<JobItem> AllJobs = new();
-    private List<JobItem> FilteredJobs = new();
-    private string SearchText = "";
-    private string SelectedDepartment = "";
-    private string SelectedLocation = "";
-    private List<string> SelectedContracts = new();
-    private string SelectedCareerLevel = "";
-    private int CurrentPage = 1;
-    private int PageSize = 10;
-    private int TotalPages => (int)Math.Ceiling((double)FilteredJobs.Count / PageSize);
-    private List<JobItem> PagedJobs => FilteredJobs.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
-
-    protected override void OnInitialized()
-    {
-        AllJobs = new List<JobItem>
-        {
-            new JobItem { Id=1, Title="Assistant Director (Research, Data & Evaluation)", Department="Social Welfare & Baitul Mall", Project="Social Welfare and Bait ul Maal Punjab", Province="PUNJAB", LastDate="01-Jun-2026", ContractType="Full Time", CareerLevel="Mid Career" },
-            new JobItem { Id=2, Title="Deputy Director (Admin & Finance)", Department="Social Welfare & Baitul Mall", Project="Social Welfare and Bait ul Maal Punjab", Province="PUNJAB", LastDate="01-Jun-2026", ContractType="Full Time", CareerLevel="Management" },
-            new JobItem { Id=3, Title="Assistant Director (Administration)", Department="Social Welfare & Baitul Mall", Project="Social Welfare and Bait ul Maal Punjab", Province="PUNJAB", LastDate="01-Jun-2026", ContractType="Full Time", CareerLevel="Mid Career" },
-            new JobItem { Id=4, Title="Quality Assurance Programmer", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Contract", CareerLevel="Entry Level" },
-            new JobItem { Id=5, Title="Database Administrator", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Contract", CareerLevel="Mid Career" },
-            new JobItem { Id=6, Title="Software Programmer", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Contract", CareerLevel="Entry Level" },
-            new JobItem { Id=7, Title="Sr. Software Programmer", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Contract", CareerLevel="Mid Career" },
-            new JobItem { Id=8, Title="Deputy Director (Communications Specialist)", Department="Punjab Environment Protection Department", Project="SP&IU", Province="PUNJAB", LastDate="28-May-2026", ContractType="Full Time", CareerLevel="Management" },
-            new JobItem { Id=9, Title="Deputy Director (Monitoring & Evaluation Expert)", Department="Punjab Environment Protection Department", Project="SP&IU", Province="PUNJAB", LastDate="28-May-2026", ContractType="Full Time", CareerLevel="Management" },
-            new JobItem { Id=10, Title="Bomb Disposal Technician", Department="Directorate Civil Defence Punjab", Project="Directorate Civil Defence Punjab", Province="PUNJAB", LastDate="02-Jun-2026", ContractType="Permanent", CareerLevel="Entry Level" },
-            new JobItem { Id=11, Title="Chief Financial Officer (CFO)", Department="Punjab Agriculture Food & Drug Authority", Project="Punjab Agriculture Food & Drug Authority", Province="Pakistan", LastDate="03-Jun-2026", ContractType="Full Time", CareerLevel="Executive/Director" },
-            new JobItem { Id=12, Title="Corporate Governance Specialist", Department="Punjab Finance Department", Project="CFU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Contract", CareerLevel="Management" },
-            new JobItem { Id=13, Title="Data Analytics Manager", Department="Punjab Finance Department", Project="DMU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Management" },
-            new JobItem { Id=14, Title="Deputy Director (Admin/HR)", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Full Time", CareerLevel="Management" },
-            new JobItem { Id=15, Title="Deputy Director (Project Management)", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Full Time", CareerLevel="Management" },
-            new JobItem { Id=16, Title="Financial Analyst", Department="Punjab Finance Department", Project="DMU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Mid Career" },
-            new JobItem { Id=17, Title="Front End Developer", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Contract", CareerLevel="Entry Level" },
-            new JobItem { Id=18, Title="General Manager (Works)", Department="Punjab Agriculture Food & Drug Authority", Project="Punjab Agriculture Food & Drug Authority", Province="Pakistan", LastDate="03-Jun-2026", ContractType="Full Time", CareerLevel="Senior Management" },
-            new JobItem { Id=19, Title="Head Corporate Finance Unit", Department="Punjab Finance Department", Project="CFU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Senior Management" },
-            new JobItem { Id=20, Title="Head Debt Management Unit", Department="Punjab Finance Department", Project="DMU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Senior Management" },
-            new JobItem { Id=21, Title="Head Risk Management Unit", Department="Punjab Finance Department", Project="RMU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Senior Management" },
-            new JobItem { Id=22, Title="Infrastructure Engineer", Department="Directorate General Monitoring and Evaluation", Project="DG M&E Planning and Development Board", Province="PUNJAB", LastDate="10-Jun-2026", ContractType="Contract", CareerLevel="Mid Career" },
-            new JobItem { Id=23, Title="Management Trainee Officer (Environment)", Department="Punjab Rural Municipal Services Company", Project="Local Government & Community Development", Province="PUNJAB", LastDate="22-May-2026", ContractType="Paid Internship", CareerLevel="Student/Internship" },
-            new JobItem { Id=24, Title="Senior Risk Analyst", Department="Punjab Finance Department", Project="RMU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Mid Career" },
-            new JobItem { Id=25, Title="Assistant Director HR", Department="Punjab Govt.", Project="Punjab Public Service Commission", Province="PUNJAB", LastDate="15-Jun-2026", ContractType="Permanent", CareerLevel="Mid Career" },
-            new JobItem { Id=26, Title="Data Entry Operator", Department="LGCD Govt of Punjab", Project="Local Government Punjab", Province="PUNJAB", LastDate="20-Jun-2026", ContractType="Regular", CareerLevel="Entry Level" },
-            new JobItem { Id=27, Title="Finance Officer", Department="Finance Department", Project="Punjab Finance Department", Province="PUNJAB", LastDate="25-Jun-2026", ContractType="Full Time", CareerLevel="Mid Career" },
-            new JobItem { Id=28, Title="IT Officer", Department="Information Technology", Project="Punjab IT Board", Province="PUNJAB", LastDate="30-Jun-2026", ContractType="Full Time", CareerLevel="Entry Level" },
-            new JobItem { Id=29, Title="Environmental Inspector", Department="Environmental Protection", Project="Punjab EPA", Province="PUNJAB", LastDate="05-Jul-2026", ContractType="Permanent", CareerLevel="Entry Level" },
-            new JobItem { Id=30, Title="Procurement Officer", Department="Punjab Finance Department", Project="CFU", Province="PUNJAB", LastDate="20-May-2026", ContractType="Full Time", CareerLevel="Mid Career" },
-        };
-        FilteredJobs = AllJobs.ToList();
-    }
-
-    private void OnSearchInput(ChangeEventArgs e)
-    {
-        SearchText = e.Value?.ToString() ?? "";
-        ApplyFilter();
-    }
-
-    private void ApplyFilter()
-    {
-        FilteredJobs = AllJobs.Where(j =>
-            (string.IsNullOrEmpty(SearchText) ||
-             j.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-             j.Department.Contains(SearchText, StringComparison.OrdinalIgnoreCase)) &&
-            (string.IsNullOrEmpty(SelectedDepartment) ||
-             j.Department.Contains(SelectedDepartment, StringComparison.OrdinalIgnoreCase)) &&
-            (string.IsNullOrEmpty(SelectedLocation) ||
-             j.Province.Contains(SelectedLocation, StringComparison.OrdinalIgnoreCase)) &&
-            (SelectedContracts.Count == 0 ||
-             SelectedContracts.Contains(j.ContractType)) &&
-            (string.IsNullOrEmpty(SelectedCareerLevel) ||
-             j.CareerLevel == SelectedCareerLevel)
-        ).ToList();
-        CurrentPage = 1;
-    }
-
-    private void OnContractChanged(string contract, ChangeEventArgs e)
-    {
-        bool isChecked = (bool)(e.Value ?? false);
-        if (isChecked)
-            SelectedContracts.Add(contract);
-        else
-            SelectedContracts.Remove(contract);
-        ApplyFilter();
-    }
-
-    private void OnCareerLevelChanged(string level)
-    {
-        SelectedCareerLevel = level;
-        ApplyFilter();
-    }
-
-    private void ClearSearch() { SearchText = ""; ApplyFilter(); }
-    private void ClearDepartment() { SelectedDepartment = ""; ApplyFilter(); }
-    private void ClearLocation() { SelectedLocation = ""; ApplyFilter(); }
-
-    private void ClearAll()
-    {
-        SearchText = "";
-        SelectedDepartment = "";
-        SelectedLocation = "";
-        SelectedContracts = new();
-        SelectedCareerLevel = "";
-        FilteredJobs = AllJobs.ToList();
-        CurrentPage = 1;
-    }
-
-    private void GoToPage(int page)
-    {
-        if (page >= 1 && page <= TotalPages)
-            CurrentPage = page;
-    }
-
-    public class JobItem
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } = "";
-        public string Department { get; set; } = "";
-        public string Project { get; set; } = "";
-        public string Province { get; set; } = "";
-        public string LastDate { get; set; } = "";
-        public string ContractType { get; set; } = "";
-        public string CareerLevel { get; set; } = "";
-    }
-}
-
-<div class="jobs-wrapper">
-    <h2 style="max-width:1200px; margin:0 auto 20px auto; font-weight:bold; font-size:26px;">Available Jobs</h2>
-
-    <div class="jobs-layout">
-
-        <!-- Filter Panel -->
-        <div class="filter-panel">
-            <div class="filter-box">
-                <div class="filter-title">Filter Search</div>
-
-                <input type="text" class="form-control" placeholder="Looking for..."
-                       value="@SearchText" @oninput="OnSearchInput" style="font-size:13px;" />
-                <button class="clear-link" @onclick="ClearSearch">Clear Title</button>
-
-                <select class="form-select mt-3" @bind="SelectedDepartment" @bind:after="ApplyFilter" style="font-size:13px;">
-                    <option value="">Departments</option>
-                    <option>Social Welfare & Baitul Mall</option>
-                    <option>Directorate General Monitoring and Evaluation</option>
-                    <option>Punjab Environment Protection Department</option>
-                    <option>Directorate Civil Defence Punjab</option>
-                    <option>LGCD Govt of Punjab</option>
-                    <option>Finance Department</option>
-                    <option>Punjab Finance Department</option>
-                    <option>Information Technology</option>
-                    <option>Punjab Agriculture Food & Drug Authority</option>
-                </select>
-                <button class="clear-link" @onclick="ClearDepartment">Clear Departments</button>
-
-               <select class="form-select mt-3" @bind="SelectedLocation" @bind:after="ApplyFilter" style="font-size:13px;">
-                    <option value="">Location</option>
-                    <option>PUNJAB</option>
-                    <option>Lahore</option>
-                    <option>Multan</option>
-                    <option>Rawalpindi</option>
-                    <option>Faisalabad</option>
-                    <option>Pakistan</option>
-                </select>
-                <button class="clear-link" @onclick="ClearLocation">Clear Location</button>
-
-                <button class="search-btn" @onclick="ApplyFilter">Search</button>
-
-                <div class="filter-section-title">By Industry</div>
-                <div style="font-size:13px; line-height:2;">
-                    <div>N.G.O/ Social Services (3)</div>
-                    <div>Environmental Protection (2)</div>
-                    <div>Information Technology (7)</div>
-                    <div>Punjab Govt. (32)</div>
-                    <div>Services (19)</div>
-                    <div>Energy Department (2)</div>
-                    <div>LGCD Govt of Punjab (22)</div>
-                    <div>Finance (7)</div>
-                </div>
-
-                <div class="filter-section-title">Type of Contract</div>
-                <div style="font-size:13px; line-height:2.2;">
-                    @foreach (var contract in new[] { "Part Time", "Full Time", "Daily Wages", "Permanent", "Regular", "Contract", "Contingency", "Adhoc Basis", "Paid Internship", "Project Based" })
-                    {
-                        <div>
-                            <input type="checkbox"
-                                   style="margin-right:6px;"
-                                   checked="@SelectedContracts.Contains(contract)"
-                                   @onchange="e => OnContractChanged(contract, e)" />
-                            @contract
-                        </div>
-                    }
-                </div>
-                <button @onclick="ClearAll" style="background:white; border:1px solid #bbb; padding:5px 15px; border-radius:3px; margin-top:8px; font-size:13px; cursor:pointer; width:100%;">Clear All</button>
-
-                <div class="filter-section-title">Career Level</div>
-                <div style="font-size:13px; line-height:2.2;">
-                    @foreach (var level in new[] { "Student/Internship", "Entry Level", "Mid Career", "Management", "Executive/Director", "Senior Management", "Paid Internship" })
-                    {
-                        <div>
-                            <input type="radio"
-                                   name="career"
-                                   style="margin-right:6px;"
-                                   checked="@(SelectedCareerLevel == level)"
-                                   @onchange="() => OnCareerLevelChanged(level)" />
-                            @level
-                        </div>
-                    }
-                </div>
-                <button @onclick="ClearAll" style="background:white; border:1px solid #bbb; padding:5px 15px; border-radius:3px; margin-top:8px; font-size:13px; cursor:pointer; width:100%;">Clear All</button>
-            </div>
-        </div>
-
-        <!-- Jobs Panel -->
-        <div class="jobs-panel">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <div style="display:flex; align-items:center; gap:8px; font-size:13px;">
-                    <span>Show</span>
-                    <select @bind="PageSize" class="form-select form-select-sm" style="width:65px; font-size:13px;">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                    </select>
-                    <span>entries</span>
-                </div>
-                <div style="font-size:13px;">
-                    Search:
-                    <input type="text" value="@SearchText" @oninput="OnSearchInput"
-                           style="border:1px solid #ccc; padding:4px 8px; font-size:13px; margin-left:5px; border-radius:3px;" />
-                </div>
-            </div>
-
-            <table class="jobs-table">
-                <thead>
-                    <tr>
-                        <th style="width:22%;">Job Title</th>
-                        <th style="width:20%;">Department</th>
-                        <th style="width:30%;">Project</th>
-                        <th style="width:10%;">Province</th>
-                        <th style="width:12%;">Last Apply Date</th>
-                        <th style="width:6%;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (PagedJobs.Count == 0)
-                    {
-                        <tr>
-                            <td colspan="6" style="text-align:center; padding:30px; color:#888;">
-                                No jobs found matching your search.
-                            </td>
-                        </tr>
-                    }
-                    else
-                    {
-                        @foreach (var job in PagedJobs)
-                        {
-                            <tr>
-                                <td><a class="job-title-link" href="/job-detail/@job.Id">@job.Title</a></td>
-                                <td>@job.Department</td>
-                                <td>@job.Project</td>
-                                <td>@job.Province</td>
-                                <td>@job.LastDate</td>
-                                <td><a href="/Apply/@job.Id"><button class="apply-btn">Apply</button></a></td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
-
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; font-size:13px;">
-                <span style="color:#555;">
-                    Showing @((CurrentPage - 1) * PageSize + 1)
-                    to @(Math.Min(CurrentPage * PageSize, FilteredJobs.Count))
-                    of @FilteredJobs.Count entries
-                </span>
-                <div style="display:flex; gap:4px;">
-                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
-                    @for (int i = 1; i <= TotalPages; i++)
-                    {
-                        var pageNum = i;
-                        <button class="page-btn @(CurrentPage == pageNum ? "active" : "")"
-                                @onclick="() => GoToPage(pageNum)">@pageNum</button>
-                    }
-                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
