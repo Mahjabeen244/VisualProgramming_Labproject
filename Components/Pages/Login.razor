@@ -3,28 +3,62 @@
 <PageTitle>Login - Punjab Jobs Online</PageTitle>
 
 <style>
+    /* Full-Screen Ambient Background Layer */
     .auth-wrapper {
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
-        padding: 30px 20px;
-    }
-
-    .auth-card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        width: 100%;
-        max-width: 500px;
+        background: linear-gradient(135deg, #407740 0%, #e6f2e6 100%);
+        padding: 40px 20px;
+        position: relative;
         overflow: hidden;
+        font-family: system-ui, -apple-system, sans-serif;
     }
 
+    /* Ambient background blur orbs matching the application setup */
+    .bg-glow-1 {
+        position: absolute;
+        top: -10%;
+        left: 15%;
+        width: 450px;
+        height: 450px;
+        background: rgba(45, 122, 45, 0.22);
+        filter: blur(100px);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .bg-glow-2 {
+        position: absolute;
+        bottom: -5%;
+        right: 15%;
+        width: 450px;
+        height: 450px;
+        background: rgba(139, 195, 74, 0.25);
+        filter: blur(110px);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    /* Pure White Glassmorphism Content Card */
+    .auth-card {
+        background: rgba(255, 255, 255, 0.78) !important;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        border-radius: 24px;
+        width: 100%;
+        max-width: 520px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Integrated Clean Glass Header */
     .auth-header {
-        background: #2d7a2d;
-        color: white;
-        padding: 20px 30px;
+        padding: 30px 35px 15px 35px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -32,121 +66,279 @@
 
     .auth-header h4 {
         margin: 0;
-        font-size: 20px;
-        font-weight: bold;
+        color: #1b5e20;
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
 
     .close-btn {
-        background: white;
-        color: #2d7a2d;
+        background: rgba(0, 0, 0, 0.05);
+        color: #333;
         border: none;
         border-radius: 50%;
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
         font-weight: bold;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+    }
+
+    .close-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
     }
 
     .auth-body {
-        padding: 30px;
+        padding: 15px 35px 20px 35px;
     }
 
+    /* Modern Flex Form Architecture */
     .form-row {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         margin-bottom: 20px;
-        gap: 15px;
+        gap: 6px;
     }
 
     .form-row label {
-        width: 160px;
         font-size: 14px;
-        color: #333;
-        flex-shrink: 0;
+        font-weight: 700;
+        color: #1c331c;
     }
 
+    /* Glass Input Fields */
     .form-row input {
-        flex: 1;
-        padding: 10px 14px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        font-size: 14.5px;
+        color: #222;
         outline: none;
+        transition: all 0.25s ease;
     }
 
     .form-row input:focus {
+        background: #ffffff;
         border-color: #2d7a2d;
-        box-shadow: 0 0 0 2px rgba(45,122,45,0.1);
+        box-shadow: 0 0 0 4px rgba(45, 122, 45, 0.15);
+    }
+
+    /* Captcha Component Matrix Layout */
+    .captcha-container {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        width: 100%;
     }
 
     .captcha-box {
         background: #2d7a2d;
         color: white;
-        padding: 12px 20px;
-        border-radius: 4px;
+        height: 46px;
+        border-radius: 12px;
         font-size: 20px;
         font-weight: bold;
-        letter-spacing: 8px;
+        letter-spacing: 6px;
         flex: 1;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-family: monospace;
         user-select: none;
+        box-shadow: 0 4px 10px rgba(45, 122, 45, 0.15);
     }
 
     .refresh-btn {
-        background: #2d7a2d;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(0, 0, 0, 0.12);
         color: white;
-        border: none;
-        border-radius: 4px;
-        width: 40px;
-        height: 44px;
+        border-radius: 12px;
+        width: 46px;
+        height: 46px;
         cursor: pointer;
         font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
     }
 
+    .refresh-btn:hover {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer Navigation Area */
     .auth-footer {
-        padding: 15px 30px 25px 30px;
+        padding: 10px 35px 35px 35px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-actions-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
+    .secondary-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* Button Variations matching system guidelines */
     .btn-green {
         background: #2d7a2d;
         color: white;
         border: none;
-        padding: 10px 25px;
-        border-radius: 4px;
+        padding: 11px 22px;
+        border-radius: 12px;
         font-size: 14px;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 700;
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(45, 122, 45, 0.15);
+        transition: all 0.25s ease;
     }
 
-    .btn-green:hover { background: #1f5c1f; }
+    .btn-green:hover:not(:disabled) {
+        background: #1f5c1f;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(31, 92, 31, 0.2);
+    }
 
-    .success-msg {
-        background: #d4edda;
-        color: #155724;
-        padding: 12px 15px;
-        border-radius: 4px;
-        margin-bottom: 15px;
+    .btn-slate {
+        background: #556b55;
+        color: white;
+        border: none;
+        padding: 11px 20px;
+        border-radius: 12px;
         font-size: 14px;
+        cursor: pointer;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+
+    .btn-slate:hover {
+        background: #425442;
+    }
+
+    .btn-green:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    /* Status Notifications */
+    .success-msg {
+        background: rgba(212, 237, 218, 0.9);
+        color: #155724;
+        padding: 14px 18px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: 600;
         border: 1px solid #c3e6cb;
     }
 
     .error-msg {
-        background: #f8d7da;
+        background: rgba(248, 215, 218, 0.9);
         color: #721c24;
-        padding: 12px 15px;
-        border-radius: 4px;
-        margin-bottom: 15px;
+        padding: 14px 18px;
+        border-radius: 12px;
+        margin-bottom: 20px;
         font-size: 14px;
+        font-weight: 600;
         border: 1px solid #f5c6cb;
     }
 </style>
+
+<div class="auth-wrapper">
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="auth-card">
+        <div class="auth-header">
+            <h4>Login</h4>
+            <a href="/" style="text-decoration: none;"><button type="button" class="close-btn">✕</button></a>
+        </div>
+
+        <div class="auth-body">
+            @if (!string.IsNullOrEmpty(Message))
+            {
+                <div class="@(IsSuccess ? "success-msg" : "error-msg")">
+                    @Message
+                </div>
+            }
+
+            @if (!IsSuccess)
+            {
+                <div class="form-row">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email address" @bind="Email" />
+                </div>
+
+                <div class="form-row">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" @bind="Password" />
+                </div>
+
+                <div class="form-row">
+                    <label>Verification Code</label>
+                    <div class="captcha-container">
+                        <div class="captcha-box">@CaptchaCode</div>
+                        <button type="button" class="refresh-btn" @onclick="GenerateCaptcha">🔄</button>
+                    </div>
+                </div>
+
+                <div class="form-row" style="margin-bottom: 10px;">
+                    <input type="text" placeholder="Enter verification code shown above" @bind="CaptchaInput" />
+                </div>
+            }
+            else
+            {
+                <div style="text-align:center; padding: 20px 10px 10px 10px;">
+                    <div style="font-size:55px; margin-bottom: 10px;">✨</div>
+                    <h5 style="color:#2d7a2d; font-weight:800; font-size:18px; margin: 0 0 8px 0;">Welcome Back!</h5>
+                    <p style="color:#333; font-size:14.5px; font-weight:500; margin-bottom: 20px;">You have logged into your dashboard space successfully.</p>
+                    <a href="/" style="text-decoration: none;">
+                        <button type="button" class="btn-green" style="padding: 12px 30px; width: 100%;">
+                            Proceed to Home Dashboard
+                        </button>
+                    </a>
+                </div>
+            }
+        </div>
+
+        @if (!IsSuccess)
+        {
+            <div class="auth-footer">
+                <button type="button" class="btn-green" style="width: 100%; padding: 13px;" @onclick="HandleLogin" disabled="@IsLoading">
+                    @(IsLoading ? "Authenticating Secure Session..." : "Secure Login")
+                </button>
+                
+                <div class="footer-actions-row">
+                    <div class="secondary-links">
+                        <a href="/register" class="btn-slate">Register</a>
+                        <button type="button" class="btn-slate">Forgot Password</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 @code {
     private string Email = "";
@@ -175,86 +367,23 @@
         Message = "";
 
         if (string.IsNullOrEmpty(Email))
-        { Message = "Please enter email address."; return; }
+        { Message = "⚠️ Please enter your email address."; return; }
 
         if (string.IsNullOrEmpty(Password))
-        { Message = "Please enter password."; return; }
+        { Message = "⚠️ Please enter your account password."; return; }
 
-        if (CaptchaInput.ToUpper() != CaptchaCode)
-        { Message = "Invalid captcha. Please try again."; GenerateCaptcha(); CaptchaInput = ""; return; }
+        if (string.IsNullOrEmpty(CaptchaInput) || CaptchaInput.ToUpper() != CaptchaCode)
+        { 
+            Message = "⚠️ Invalid verification code. Please check and retry."; 
+            GenerateCaptcha(); 
+            CaptchaInput = ""; 
+            return; 
+        }
 
         IsLoading = true;
-        await Task.Delay(1000);
+        await Task.Delay(1200);
         IsLoading = false;
         IsSuccess = true;
-        Message = "Login successful! Welcome back.";
+        Message = "Success! Initializing user session environment...";
     }
 }
-
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <div class="auth-header">
-            <h4>Login</h4>
-            <a href="/"><button class="close-btn">✕</button></a>
-        </div>
-
-        <div class="auth-body">
-            @if (!string.IsNullOrEmpty(Message))
-            {
-                <div class="@(IsSuccess ? "success-msg" : "error-msg")">
-                    @Message
-                </div>
-            }
-
-            @if (!IsSuccess)
-            {
-                <div class="form-row">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="Email" @bind="Email" />
-                </div>
-
-                <div class="form-row">
-                    <label>Password</label>
-                    <input type="password" placeholder="Password" @bind="Password" />
-                </div>
-
-                <div class="form-row">
-                    <label></label>
-                    <div class="captcha-box">@CaptchaCode</div>
-                    <button class="refresh-btn" @onclick="GenerateCaptcha">🔄</button>
-                </div>
-
-                <div class="form-row">
-                    <label></label>
-                    <input type="text" placeholder="Enter Captcha" @bind="CaptchaInput" />
-                </div>
-            }
-            else
-            {
-                <div style="text-align:center; padding:20px;">
-                    <div style="font-size:50px;">✅</div>
-                    <h5 style="color:#2d7a2d; margin-top:10px;">Login Successful!</h5>
-                    <p style="color:#666; font-size:14px;">Welcome back to Punjab Jobs Online.</p>
-                    <a href="/">
-                        <button style="background:#2d7a2d; color:white; border:none; padding:10px 25px; border-radius:4px; cursor:pointer; margin-top:10px;">
-                            Go to Home
-                        </button>
-                    </a>
-                </div>
-            }
-        </div>
-
-        @if (!IsSuccess)
-        {
-            <div class="auth-footer">
-                <div style="display:flex; gap:10px;">
-                    <a href="/register" class="btn-green">Register</a>
-                    <button class="btn-green" style="background:#2d7a2d;">Forget Password</button>
-                </div>
-                <button class="btn-green" @onclick="HandleLogin" disabled="@IsLoading">
-                    @(IsLoading ? "Logging in..." : "Login")
-                </button>
-            </div>
-        }
-    </div>
-</div>
