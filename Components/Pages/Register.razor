@@ -3,146 +3,239 @@
 <PageTitle>Register - Punjab Jobs Online</PageTitle>
 
 <style>
+    /* Full-Screen Ambient Fluid Glass Workspace */
     .auth-wrapper {
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
-        padding: 30px 20px;
-    }
-
-    .auth-card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        width: 100%;
-        max-width: 500px;
+        background: linear-gradient(135deg, #407740 0%, #e6f2e6 100%);
+        padding: 40px 20px;
+        position: relative;
         overflow: hidden;
+        font-family: system-ui, -apple-system, sans-serif;
     }
 
+    /* Ambient Background Depth Orbs */
+    .bg-glow-1 {
+        position: absolute;
+        top: 10%;
+        left: 15%;
+        width: 350px;
+        height: 350px;
+        background: rgba(45, 122, 45, 0.25);
+        filter: blur(80px);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .bg-glow-2 {
+        position: absolute;
+        bottom: 10%;
+        right: 15%;
+        width: 400px;
+        height: 400px;
+        background: rgba(139, 195, 74, 0.28);
+        filter: blur(90px);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    /* Core Glassmorphism Architectural Registration Card */
+    .auth-card {
+        background: rgba(255, 255, 255, 0.45) !important;
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(16, 54, 16, 0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+        width: 100%;
+        max-width: 550px;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease;
+    }
+
+    /* Integrated Glass Banner Header */
     .auth-header {
-        background: #2d7a2d;
+        background: rgba(27, 94, 32, 0.85);
+        backdrop-filter: blur(10px);
         color: white;
-        padding: 20px 30px;
+        padding: 24px 35px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .auth-header h4 {
         margin: 0;
-        font-size: 20px;
-        font-weight: bold;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
     }
 
     .close-btn {
-        background: white;
-        color: #2d7a2d;
-        border: none;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
         font-weight: bold;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .close-btn:hover {
+        background: white;
+        color: #1b5e20;
     }
 
     .auth-body {
-        padding: 30px;
+        padding: 35px;
     }
 
     .form-row {
         display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        gap: 15px;
+        flex-direction: column;
+        margin-bottom: 22px;
+        gap: 8px;
     }
 
+    /* Clear High-Contrast Typography Labels */
     .form-row label {
-        width: 160px;
-        font-size: 14px;
-        color: #333;
-        flex-shrink: 0;
+        font-size: 14.5px;
+        color: #0b2e0b;
+        font-weight: 700;
     }
 
+    /* Frosted Glass Inputs */
     .form-row input {
-        flex: 1;
-        padding: 10px 14px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(16, 73, 16, 0.2);
+        border-radius: 10px;
+        font-size: 14.5px;
+        color: #0b2e0b;
+        font-weight: 500;
         outline: none;
+        transition: all 0.25s ease;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .form-row input::placeholder {
+        color: #556b55;
+        opacity: 0.7;
     }
 
     .form-row input:focus {
-        border-color: #2d7a2d;
-        box-shadow: 0 0 0 2px rgba(45,122,45,0.1);
+        background: rgba(255, 255, 255, 0.9);
+        border-color: #1b5e20;
+        box-shadow: 0 0 0 4px rgba(27, 94, 32, 0.12);
+    }
+
+    /* Premium Matte Velvet Captcha Segment */
+    .captcha-flex {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        width: 100%;
     }
 
     .captcha-box {
-        background: #2d7a2d;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 4px;
-        font-size: 20px;
-        font-weight: bold;
-        letter-spacing: 8px;
+        background: linear-gradient(135deg, #114711 0%, #1b5e20 100%);
+        color: #ffffff;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 6px;
         flex: 1;
         text-align: center;
-        font-family: monospace;
+        font-family: 'Courier New', monospace;
         user-select: none;
+        box-shadow: 0 4px 15px rgba(27, 94, 32, 0.2);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .refresh-btn {
-        background: #2d7a2d;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        width: 40px;
-        height: 44px;
+        background: rgba(255, 255, 255, 0.6);
+        color: #114711;
+        border: 1px solid rgba(16, 73, 16, 0.2);
+        border-radius: 10px;
+        width: 50px;
+        height: 52px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .refresh-btn:hover {
+        background: #ffffff;
+        border-color: #1b5e20;
+        transform: rotate(45deg);
     }
 
     .auth-footer {
-        padding: 15px 30px 25px 30px;
-        display: flex;
-        justify-content: flex-end;
+        padding: 0 35px 35px 35px;
     }
 
+    /* High-Fidelity Solid Action Button */
     .btn-register {
-        background: #2d7a2d;
+        background: #1b5e20;
         color: white;
         border: none;
-        padding: 10px 30px;
-        border-radius: 4px;
-        font-size: 14px;
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-size: 15px;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 700;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(27, 94, 32, 0.25);
+        transition: all 0.25s;
     }
 
-    .btn-register:hover {
-        background: #1f5c1f;
+    .btn-register:hover:not(:disabled) {
+        background: #0b2e0b;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(11, 46, 11, 0.3);
+    }
+
+    .btn-register:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    /* Notification Styling Refinements */
+    .success-msg, .error-msg {
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin-bottom: 24px;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
     }
 
     .success-msg {
-        background: #d4edda;
+        background: rgba(212, 237, 218, 0.85);
         color: #155724;
-        padding: 12px 15px;
-        border-radius: 4px;
-        margin-bottom: 15px;
-        font-size: 14px;
         border: 1px solid #c3e6cb;
     }
 
     .error-msg {
-        background: #f8d7da;
+        background: rgba(248, 215, 218, 0.85);
         color: #721c24;
-        padding: 12px 15px;
-        border-radius: 4px;
-        margin-bottom: 15px;
-        font-size: 14px;
         border: 1px solid #f5c6cb;
     }
 </style>
@@ -175,22 +268,22 @@
         Message = "";
 
         if (string.IsNullOrEmpty(Email))
-        { Message = "Please enter email address."; return; }
+        { Message = "⚠️ Please enter email address."; return; }
 
         if (!Email.Contains("@"))
-        { Message = "Please enter a valid email address."; return; }
+        { Message = "⚠️ Please enter a valid email address."; return; }
 
         if (string.IsNullOrEmpty(Password))
-        { Message = "Please enter password."; return; }
+        { Message = "⚠️ Please enter password."; return; }
 
         if (Password.Length < 6)
-        { Message = "Password must be at least 6 characters."; return; }
+        { Message = "⚠️ Password must be at least 6 characters."; return; }
 
         if (Password != ConfirmPassword)
-        { Message = "Passwords do not match."; return; }
+        { Message = "⚠️ Passwords do not match."; return; }
 
         if (CaptchaInput.ToUpper() != CaptchaCode)
-        { Message = "Invalid captcha. Please try again."; GenerateCaptcha(); CaptchaInput = ""; return; }
+        { Message = "⚠️ Invalid captcha. Please try again."; GenerateCaptcha(); CaptchaInput = ""; return; }
 
         IsLoading = true;
         await Task.Delay(1000);
@@ -201,10 +294,13 @@
 }
 
 <div class="auth-wrapper">
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
     <div class="auth-card">
         <div class="auth-header">
-            <h4>Register</h4>
-            <a href="/"><button class="close-btn">✕</button></a>
+            <h4>Register Account</h4>
+            <a href="/" style="text-decoration:none;"><button class="close-btn">✕</button></a>
         </div>
 
         <div class="auth-body">
@@ -219,43 +315,42 @@
             {
                 <div class="form-row">
                     <label>Email Address</label>
-                    <input type="email" placeholder="Email"
-                           @bind="Email" />
+                    <input type="email" placeholder="name@example.com" @bind="Email" />
                 </div>
 
                 <div class="form-row">
                     <label>Password</label>
-                    <input type="password" placeholder="Password"
-                           @bind="Password" />
+                    <input type="password" placeholder="Create robust password" @bind="Password" />
                 </div>
 
                 <div class="form-row">
                     <label>Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password"
-                           @bind="ConfirmPassword" />
+                    <input type="password" placeholder="Verify security password" @bind="ConfirmPassword" />
                 </div>
 
                 <div class="form-row">
-                    <label></label>
-                    <div class="captcha-box">@CaptchaCode</div>
-                    <button class="refresh-btn" @onclick="GenerateCaptcha">🔄</button>
+                    <label>Verification Security Code</label>
+                    <div class="captcha-flex">
+                        <div class="captcha-box">@CaptchaCode</div>
+                        <button type="button" class="refresh-btn" @onclick="GenerateCaptcha">🔄</button>
+                    </div>
                 </div>
 
                 <div class="form-row">
-                    <label></label>
-                    <input type="text" placeholder="Enter Captcha"
-                           @bind="CaptchaInput" />
+                    <input type="text" placeholder="Type captcha security code above" @bind="CaptchaInput" />
                 </div>
             }
             else
             {
                 <div style="text-align:center; padding:20px;">
-                    <div style="font-size:50px;">✅</div>
-                    <h5 style="color:#2d7a2d; margin-top:10px;">Registration Successful!</h5>
-                    <p style="color:#666; font-size:14px;">Your account has been created successfully.</p>
-                    <a href="/login">
-                        <button style="background:#2d7a2d; color:white; border:none; padding:10px 25px; border-radius:4px; cursor:pointer; margin-top:10px;">
-                            Go to Login
+                    <div style="font-size:65px; margin-bottom: 15px;">✨</div>
+                    <h4 style="color:#1b5e20; font-weight:800; margin-bottom:10px;">Account Verified!</h4>
+                    <p style="color:#222; font-size:14.5px; font-weight: 500; line-height:1.6; margin-bottom:25px;">
+                        Your credentials have been authenticated within the Punjab Jobs cloud ecosystem successfully.
+                    </p>
+                    <a href="/login" style="text-decoration:none;">
+                        <button type="button" style="background:#1b5e20; color:white; border:none; padding:12px 35px; border-radius:10px; font-weight:700; font-size:14.5px; cursor:pointer; width:100%; box-shadow:0 4px 15px rgba(27,94,32,0.2);">
+                            Proceed to Login Securely
                         </button>
                     </a>
                 </div>
@@ -266,7 +361,7 @@
         {
             <div class="auth-footer">
                 <button class="btn-register" @onclick="HandleRegister" disabled="@IsLoading">
-                    @(IsLoading ? "Registering..." : "Register")
+                    @(IsLoading ? "Authenticating Profile..." : "Create Free Account")
                 </button>
             </div>
         }
