@@ -1,0 +1,81 @@
+@page "/admin/jobs"
+@rendermode InteractiveServer
+@inject GROUP4_VISUALPROGRAMMING_PROJECT.Data.ApplicationDbContext DbContext
+@inject NavigationManager NavManager
+@using Microsoft.EntityFrameworkCore
+@using GROUP4_VISUALPROGRAMMING_PROJECT.Data
+
+<div class="container mt-5 pt-4">
+    <div class="glass-main-card p-4 text-white" style="background: rgba(20, 50, 20, 0.6); backdrop-filter: blur(15px); border-radius: 15px;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Govt Admin Portal: Manage Job Openings</h2>
+            <button class="btn btn-success" @onclick="OpenAddModal">＋ Post New Position</button>
+        </div>
+
+        <table class="table text-white table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Position Title</th>
+                    <th>Location</th>
+                    <th>Contract</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (AdminJobList == null)
+                {
+                    <tr><td colspan="4" class="text-center">Loading Admin Database Context...</td></tr>
+                }
+                else if (!AdminJobList.Any())
+                {
+                    <tr><td colspan="4" class="text-center">No jobs found in the administrative registry.</td></tr>
+                }
+                else
+                {
+                    @foreach (var job in AdminJobList)
+                    {
+                        <tr>
+                            <td>@job.Title</td>
+                            <td>@job.Location</td> 
+                            <td><span class="badge bg-warning text-dark">@job.Description</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" @onclick="() => DeletePosition(job.Id)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    // MATCHED: Back to Job (singular) to match your Job.cs file tab!
+    private List<Models.Job> AdminJobList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPositions();
+    }
+
+    private async Task LoadPositions()
+    {
+        AdminJobList = await DbContext.Jobs.ToListAsync();
+    }
+
+    private void OpenAddModal()
+    {
+        NavManager.NavigateTo("/jobs");
+    }
+
+    private async Task DeletePosition(int jobId)
+    {
+        var targetJob = await DbContext.Jobs.FindAsync(jobId);
+        if (targetJob != null)
+        {
+            DbContext.Jobs.Remove(targetJob);
+            await DbContext.SaveChangesAsync();
+            await LoadPositions(); 
+        }
+    }
+}

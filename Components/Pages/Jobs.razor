@@ -1,5 +1,6 @@
 @page "/jobs"
 @rendermode InteractiveServer
+@inject NavigationManager NavManager
 <PageTitle>Jobs - Punjab Jobs Online</PageTitle>
 
 <style>
@@ -511,21 +512,21 @@
                     }
                     else
                     {
-                        @foreach (var job in PagedJobs)
-                        {
-                            <tr>
-                                <td><a class="job-title-link" href="/job-detail/@job.Id">@job.Title</a></td>
-                                <td>@job.Department</td>
-                                <td>@job.Project</td>
-                                <td>@job.Province</td>
-                                <td style="color: #b32417; font-weight: 700;">@job.LastDate</td>
-                                <td style="text-align: center;">
-                                    <a href="/Apply/@job.Id">
-                                        <button class="apply-btn">Apply</button>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
+                       @foreach (var job in PagedJobs)
+{
+    <tr>
+        <td><a class="job-title-link" href="/job-detail/@job.Id">@job.Title</a></td>
+        <td>@job.Department</td>
+        <td>@job.Project</td>
+        <td>@job.Province</td>
+        <td style="color: #b32417; font-weight: 700;">@job.LastDate</td>
+        <td style="text-align: center;">
+            <a href="/Apply/@job.Id">
+                <button class="apply-btn">Apply</button>
+            </a>
+        </td>
+    </tr>
+}
                     }
                 </tbody>
             </table>
