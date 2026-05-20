@@ -1,179 +1,182 @@
 @page "/departments"
-@using Microsoft.EntityFrameworkCore
-@using Project.Data
-@using Project.Models
-@inject IDbContextFactory<ApplicationDbContext> DbFactory
 @rendermode InteractiveServer
-
-<div class="container py-4">
-    <h2 class="mb-4 text-dark font-weight-bold" style="font-family: Arial, sans-serif; font-size: 28px;">Departmental Contacts</h2>
-
-    <div class="p-4" style="background-color: #e5e5e5; border-radius: 4px; min-height: 500px;">
-        
-        @if (allDepartments == null)
-        {
-            <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
-                <div class="spinner-border text-success" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">Loading contacts...</span>
-                </div>
-            </div>
-        }
-        else if (!allDepartments.Any())
-        {
-            <div class="alert alert-light text-center py-5" role="alert">
-                <h4 class="text-muted">No Departmental Contacts Found</h4>
-                <p class="mb-0">Please verify your MySQL table population scripts.</p>
-            </div>
-        }
-        else
-        {
-            <div class="row g-4 mb-4">
-                @foreach (var dept in PagedDepartments)
-                {
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card h-100 shadow-sm border-0 p-3 bg-white hover-shadow transition-all" style="border-radius: 4px;">
-                            <div class="card-body d-flex flex-column justify-content-between p-2">
-                                <div>
-                                    <h5 class="card-title font-weight-bold mb-3" style="font-size: 16px; color: #1a6bbf !important; line-height: 1.4; font-family: 'Helvetica Neue', Arial, sans-serif;">
-                                        @dept.Name
-                                    </h5>
-                                    
-                                    <p class="card-text mb-2 text-muted d-flex align-items-center" style="font-size: 13px;">
-                                        <span class="text-primary me-2" style="transform: rotate(45deg); font-size: 11px;">🚀</span> @dept.Description
-                                    </p>
-                                    
-                                    <p class="card-text mb-2 text-muted d-flex align-items-center" style="font-size: 13px;">
-                                        <span class="text-primary me-2" style="font-size: 12px;">📞</span> 
-                                        <a href="tel:@dept.ContactPhone" style="color: #6c757d; text-decoration: none;">@dept.ContactPhone</a>
-                                    </p>
-                                </div>
-                                
-                                <p class="card-text mt-3 mb-0 d-flex align-items-center" style="font-size: 13px; border-top: 1px solid #f8f9fa; padding-top: 12px;">
-                                    <span class="text-primary me-2" style="font-size: 12px;">✉️</span> 
-                                    <a href="mailto:@dept.ContactEmail" style="color: #4a4a4a; text-decoration: none; word-break: break-all;" class="email-link">
-                                        @dept.ContactEmail
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-
-            @if (TotalPages > 1)
-            {
-                <div class="d-flex justify-content-start mt-4">
-                    <nav aria-label="Department navigation">
-                        <ul class="pagination pagination-sm mb-0 rounded-0">
-                            @for (int i = 1; i <= TotalPages; i++)
-                            {
-                                var pageIndex = i;
-                                <li class="page-item @(currentPage == pageIndex ? "active" : "")">
-                                    <button type="button" class="page-item-button" @onclick="() => ChangePage(pageIndex)">@pageIndex</button>
-                                </li>
-                            }
-
-                            <li class="page-item">
-                                <button type="button" class="page-item-button" @onclick="NextPage" disabled="@(currentPage == TotalPages)">&gt;</button>
-                            </li>
-
-                            <li class="page-item">
-                                <button type="button" class="page-item-button text-primary" @onclick="JumpToLastPage" disabled="@(currentPage == TotalPages)" style="font-size: 11px;">Last ›</button>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            }
-        }
-    </div>
-</div>
+<PageTitle>Departmental Contacts - Punjab Jobs Online</PageTitle>
 
 <style>
-    .pagination .page-item {
-        margin-right: 2px;
+    .dept-wrapper {
+        padding: 30px 40px;
+        background: white;
+        min-height: 100vh;
     }
-    
-    .page-item-button {
-        background: #ffffff;
-        border: 1px solid #dee2e6;
+
+    .dept-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 20px;
+        height: 100%;
+        transition: all 0.25s ease;
+    }
+
+    .dept-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .dept-name {
         color: #1a6bbf;
-        padding: 5px 10px;
-        font-size: 12px;
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    .dept-info {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .dept-info a {
+        color: #555;
+        text-decoration: none;
+        word-break: break-all;
+    }
+
+    .dept-info a:hover {
+        color: #1a6bbf;
+        text-decoration: underline;
+    }
+
+    .page-btn {
+        padding: 5px 12px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
         cursor: pointer;
-        transition: all 0.2s ease;
+        background: white;
+        font-size: 13px;
+        color: #1a6bbf;
     }
 
-    .page-item-button:hover:not([disabled]) {
-        background-color: #f8f9fa;
-        color: #0b4d92;
+    .page-btn.active {
+        background: #1a6bbf;
+        color: white;
+        border-color: #1a6bbf;
     }
 
-    .page-item.active .page-item-button {
-        background-color: #1a6bbf !important;
-        border-color: #1a6bbf !important;
-        color: #ffffff !important;
-    }
-
-    .page-item-button:disabled {
-        color: #6c757d;
-        background-color: #e9ecef;
+    .page-btn:disabled {
+        color: #999;
         cursor: not-allowed;
-        border-color: #dee2e6;
+        background: #f5f5f5;
     }
 
-    .hover-shadow:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
-    }
-
-    .transition-all {
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .email-link:hover {
-        color: #1a6bbf !important;
-        text-decoration: underline !important;
+    .grey-box {
+        background: #e8e8e8;
+        border-radius: 4px;
+        padding: 25px;
     }
 </style>
 
 @code {
-    private List<Department>? allDepartments;
-    private int currentPage = 1;
+    private List<DeptItem> AllDepts = new();
+    private int CurrentPage = 1;
     private const int PageSize = 9;
+    private int TotalPages => (int)Math.Ceiling((double)AllDepts.Count / PageSize);
+    private List<DeptItem> PagedDepts => AllDepts.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
 
-    private IEnumerable<Department> PagedDepartments 
+    protected override void OnInitialized()
     {
-        get
+        AllDepts = new List<DeptItem>
         {
-            if (allDepartments == null) return new List<Department>();
-            return allDepartments.Skip((currentPage - 1) * PageSize).Take(PageSize);
-        }
+            new DeptItem { Name="Agency For Barani Area Development", Location="Rawalpindi", Phone="00519292019", Email="abad.development@gmail.com" },
+            new DeptItem { Name="Agriculture Department", Location="Lahore", Phone="04299210499", Email="agri@punjab.gov.pk" },
+            new DeptItem { Name="Allied Hospital, Faisalabad", Location="Faisalabad", Phone="00419210186", Email="ms.ah.fsd@punjab.gov.pk" },
+            new DeptItem { Name="Aviation Flight (RW), S&GAD", Location="Lahore", Phone="04299220312", Email="soaviationsgad@gmail.com" },
+            new DeptItem { Name="Ayub Agricultural Research Institute, Faisalabad", Location="Faisalabad", Phone="04211111111", Email="director.general@aari.punjab.gov.pk" },
+            new DeptItem { Name="Aziz Bhatti Shaheed Teaching Hospital, Gujrat", Location="Gujrat", Phone="04211111111", Email="absh.gujrat@yahoo.com" },
+            new DeptItem { Name="Aziz Bhatti Shaheed Teaching Hospital, Gujrat", Location="Gujrat", Phone="00539260101", Email="absh.gujrat@yahoo.com" },
+            new DeptItem { Name="Bahawalpur Waste Management Company", Location="Bahawalpur", Phone="00429255202", Email="jobsonlinesupport@punjab.gov.pk" },
+            new DeptItem { Name="Bhakkar Job Bureau", Location="Bhakkar", Phone="00453920006", Email="bhakkarjobbureau@gmail.com" },
+            new DeptItem { Name="Board of Intermediate & Secondary Education, Lahore", Location="Lahore", Phone="04299200161", Email="bise.lahore@punjab.gov.pk" },
+            new DeptItem { Name="Child Protection & Welfare Bureau", Location="Lahore", Phone="04299211234", Email="cpwb@punjab.gov.pk" },
+            new DeptItem { Name="Civil Hospital Bahawalpur", Location="Bahawalpur", Phone="00629200001", Email="chb@punjab.gov.pk" },
+            new DeptItem { Name="DCO Office Multan", Location="Multan", Phone="06199200001", Email="dco.multan@punjab.gov.pk" },
+            new DeptItem { Name="Directorate Civil Defence Punjab", Location="Lahore", Phone="04299220000", Email="civildefence@punjab.gov.pk" },
+            new DeptItem { Name="Directorate General Monitoring and Evaluation", Location="Lahore", Phone="04299211111", Email="dgme@punjab.gov.pk" },
+            new DeptItem { Name="Environmental Protection Department", Location="Lahore", Phone="04299230000", Email="epd@punjab.gov.pk" },
+            new DeptItem { Name="Finance Department Punjab", Location="Lahore", Phone="04299212000", Email="finance@punjab.gov.pk" },
+            new DeptItem { Name="Health Department Punjab", Location="Lahore", Phone="04299213000", Email="health@punjab.gov.pk" },
+            new DeptItem { Name="Information Technology Board", Location="Lahore", Phone="04299214000", Email="info@pitb.gov.pk" },
+            new DeptItem { Name="LGCD Govt of Punjab", Location="Lahore", Phone="04299215000", Email="lgcd@punjab.gov.pk" },
+            new DeptItem { Name="Punjab Agriculture Food & Drug Authority", Location="Lahore", Phone="04299216000", Email="pafda@punjab.gov.pk" },
+            new DeptItem { Name="Punjab Environment Protection Agency", Location="Lahore", Phone="04299217000", Email="pepa@punjab.gov.pk" },
+            new DeptItem { Name="Punjab Public Service Commission", Location="Lahore", Phone="04299218000", Email="ppsc@punjab.gov.pk" },
+            new DeptItem { Name="Punjab Rural Municipal Services Company", Location="Lahore", Phone="04299219000", Email="prmsc@punjab.gov.pk" },
+            new DeptItem { Name="Social Welfare & Baitul Mall Punjab", Location="Lahore", Phone="04299220001", Email="swbm@punjab.gov.pk" },
+            new DeptItem { Name="Special Education Department", Location="Lahore", Phone="04299221000", Email="sed@punjab.gov.pk" },
+            new DeptItem { Name="Sports Board Punjab", Location="Lahore", Phone="04299222000", Email="sbp@punjab.gov.pk" },
+        };
     }
 
-    private int TotalPages => allDepartments != null 
-        ? (int)Math.Ceiling((double)allDepartments.Count / PageSize) 
-        : 0;
-
-    protected override async Task OnInitializedAsync()
+    private void GoToPage(int page)
     {
-        using var context = DbFactory.CreateDbContext();
-        allDepartments = await context.Departments
-            .AsNoTracking()
-            .ToListAsync();
+        if (page >= 1 && page <= TotalPages)
+            CurrentPage = page;
     }
 
-    private void ChangePage(int targetPage)
+    public class DeptItem
     {
-        currentPage = targetPage;
-    }
-
-    private void NextPage()
-    {
-        if (currentPage < TotalPages) currentPage++;
-    }
-
-    private void JumpToLastPage()
-    {
-        currentPage = TotalPages;
+        public string Name { get; set; } = "";
+        public string Location { get; set; } = "";
+        public string Phone { get; set; } = "";
+        public string Email { get; set; } = "";
     }
 }
+
+<div class="dept-wrapper">
+    <h2 style="font-weight:bold; font-size:26px; margin-bottom:20px;">Departmental Contacts</h2>
+
+    <div class="grey-box">
+        <div class="row g-4 mb-4">
+            @foreach (var dept in PagedDepts)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="dept-card">
+                        <div class="dept-name">@dept.Name</div>
+                        <div class="dept-info">
+                            <span>📍</span>
+                            <span>@dept.Location</span>
+                        </div>
+                        <div class="dept-info">
+                            <span>📞</span>
+                            <a href="tel:@dept.Phone">@dept.Phone</a>
+                        </div>
+                        <div class="dept-info">
+                            <span>✉️</span>
+                            <a href="mailto:@dept.Email">@dept.Email</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Pagination -->
+        @if (TotalPages > 1)
+        {
+            <div style="display:flex; gap:5px; margin-top:10px;">
+                <button class="page-btn" @onclick="() => GoToPage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
+                @for (int i = 1; i <= TotalPages; i++)
+                {
+                    var pageNum = i;
+                    <button class="page-btn @(CurrentPage == pageNum ? "active" : "")"
+                            @onclick="() => GoToPage(pageNum)">@pageNum</button>
+                }
+                <button class="page-btn" @onclick="() => GoToPage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
+                <button class="page-btn" @onclick="() => GoToPage(TotalPages)" disabled="@(CurrentPage == TotalPages)">Last ›</button>
+            </div>
+        }
+    </div>
+</div>
