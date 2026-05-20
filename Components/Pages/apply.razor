@@ -86,3 +86,160 @@
         padding: 40px 20px;
     }
 </style>
+
+@code {
+    [Parameter] public int JobId { get; set; }
+
+    private string FullName = "";
+    private string Email = "";
+    private string Phone = "";
+    private string CNIC = "";
+    private string Education = "";
+    private string Experience = "";
+    private string CoverLetter = "";
+    private string Message = "";
+    private bool IsSuccess = false;
+    private bool IsLoading = false;
+
+    private string JobTitle => JobId switch
+    {
+        1 => "Assistant Director (Research, Data & Evaluation)",
+        2 => "Deputy Director (Admin & Finance)",
+        3 => "Assistant Director (Administration)",
+        4 => "Quality Assurance Programmer",
+        5 => "Database Administrator",
+        _ => "Job Position"
+    };
+
+    private async Task HandleApply()
+    {
+        Message = "";
+
+        if (string.IsNullOrEmpty(FullName))
+        { Message = "Please enter your full name."; return; }
+
+        if (string.IsNullOrEmpty(Email) || !Email.Contains("@"))
+        { Message = "Please enter a valid email address."; return; }
+
+        if (string.IsNullOrEmpty(Phone))
+        { Message = "Please enter your phone number."; return; }
+
+        if (string.IsNullOrEmpty(CNIC))
+        { Message = "Please enter your CNIC number."; return; }
+
+        if (string.IsNullOrEmpty(Education))
+        { Message = "Please select your education level."; return; }
+
+        IsLoading = true;
+        await Task.Delay(1500);
+        IsLoading = false;
+        IsSuccess = true;
+    }
+}
+
+<div class="apply-wrapper">
+    <div class="apply-card">
+
+        @if (!IsSuccess)
+        {
+            <div class="apply-title">Apply for Job</div>
+            <div class="apply-subtitle">@JobTitle</div>
+
+            @if (!string.IsNullOrEmpty(Message))
+            {
+                <div style="background:#f8d7da; color:#721c24; padding:12px 15px; border-radius:4px; margin-bottom:20px; font-size:14px; border:1px solid #f5c6cb;">
+                    @Message
+                </div>
+            }
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" placeholder="Enter full name" @bind="FullName" />
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" placeholder="Enter email" @bind="Email" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="text" placeholder="03XX-XXXXXXX" @bind="Phone" />
+                </div>
+                <div class="form-group">
+                    <label>CNIC Number *</label>
+                    <input type="text" placeholder="XXXXX-XXXXXXX-X" @bind="CNIC" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Education Level *</label>
+                    <select @bind="Education">
+                        <option value="">Select Education</option>
+                        <option>Matriculation</option>
+                        <option>Intermediate</option>
+                        <option>Bachelors</option>
+                        <option>Masters</option>
+                        <option>MPhil/PhD</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Years of Experience</label>
+                    <select @bind="Experience">
+                        <option value="">Select Experience</option>
+                        <option>Fresh Graduate</option>
+                        <option>1-2 Years</option>
+                        <option>3-5 Years</option>
+                        <option>5-10 Years</option>
+                        <option>10+ Years</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Cover Letter</label>
+                <textarea placeholder="Write a brief cover letter..." @bind="CoverLetter"
+                          style="height:100px; resize:vertical;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Upload CV (PDF)</label>
+                <input type="file" accept=".pdf" style="padding:6px;" />
+            </div>
+
+            <button class="submit-btn" @onclick="HandleApply" disabled="@IsLoading">
+                @(IsLoading ? "Submitting Application..." : "Submit Application")
+            </button>
+
+            <div style="text-align:center; margin-top:15px;">
+                <a href="/jobs" style="color:#666; font-size:13px; text-decoration:none;">← Back to Jobs</a>
+            </div>
+        }
+        else
+        {
+            <div class="success-box">
+                <div style="font-size:60px;">✅</div>
+                <h4 style="color:#2d7a2d; margin-top:15px;">Application Submitted Successfully!</h4>
+                <p style="color:#666; font-size:14px; margin-top:10px;">
+                    Your application for <strong>@JobTitle</strong> has been submitted successfully.
+                    You will receive a confirmation email shortly.
+                </p>
+                <div style="margin-top:25px; display:flex; gap:15px; justify-content:center;">
+                    <a href="/jobs">
+                        <button style="background:#2d7a2d; color:white; border:none; padding:10px 25px; border-radius:4px; cursor:pointer;">
+                            Browse More Jobs
+                        </button>
+                    </a>
+                    <a href="/">
+                        <button style="background:#666; color:white; border:none; padding:10px 25px; border-radius:4px; cursor:pointer;">
+                            Go to Home
+                        </button>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
