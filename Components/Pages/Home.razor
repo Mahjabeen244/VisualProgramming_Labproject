@@ -204,8 +204,8 @@ padding: 20px;
                 </div>
 
                 <div class="col-md-3">
-                    <select class="form-select" style="height:42px; border-radius:3px;">
-                        <option>Departments</option>
+                   <select class="form-select" @bind="SelectedDept" @bind:after="GoToJobs" style="height:42px; border-radius:3px;">
+                   <option value="">Departments</option>
                         <option>Account General, punjab</option>
                         <option>Agency for Barani area development</option>
                         <option>Administrator general and official trustee punjab</option>
@@ -256,8 +256,8 @@ padding: 20px;
                 </div>
 
                 <div class="col-md-3">
-                    <select class="form-select" style="height:42px; border-radius:3px;">
-                        <option>Location</option>
+                    <select class="form-select" @bind="SelectedLoc" @bind:after="GoToJobs" style="height:42px; border-radius:3px;">
+                   <option value="">Location</option>
                         <option>All Punjan</option>
                         <option>Attock</option>
                         <option>Bhawalpur</option>
