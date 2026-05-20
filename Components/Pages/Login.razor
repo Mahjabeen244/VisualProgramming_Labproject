@@ -50,50 +50,53 @@
         border-radius: 24px;
         width: 100%;
         max-width: 520px;
-        overflow: hidden;
+        overflow: hidden; /* Crucial: Prevents the green header from clipping past rounded corners */
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
         position: relative;
         z-index: 2;
     }
 
-    /* Integrated Clean Glass Header */
+    /* Solid Brand Green Top Bar Header */
     .auth-header {
-        padding: 30px 35px 15px 35px;
+        background: #2d7a2d !important; /* Forces the green bar appearance */
+        padding: 24px 35px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .auth-header h4 {
         margin: 0;
-        color: #1b5e20;
-        font-size: 24px;
-        font-weight: 800;
-        letter-spacing: -0.5px;
+        color: #ffffff !important;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
     }
 
     .close-btn {
-        background: rgba(0, 0, 0, 0.05);
-        color: #333;
-        border: none;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 50%;
         width: 32px;
         height: 32px;
         font-weight: bold;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 13px;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background 0.2s;
+        transition: all 0.2s;
     }
 
     .close-btn:hover {
-        background: rgba(0, 0, 0, 0.1);
+        background: white;
+        color: #2d7a2d;
     }
 
     .auth-body {
-        padding: 15px 35px 20px 35px;
+        padding: 35px 35px 20px 35px;
     }
 
     /* Modern Flex Form Architecture */
@@ -101,13 +104,13 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
-        gap: 6px;
+        gap: 8px;
     }
 
     .form-row label {
-        font-size: 14px;
-        font-weight: 700;
-        color: #1c331c;
+        font-size: 14.5px;
+        font-weight: 600;
+        color: #2c3e2c;
     }
 
     /* Glass Input Fields */
@@ -116,7 +119,7 @@
         padding: 12px 16px;
         background: rgba(255, 255, 255, 0.85);
         border: 1px solid rgba(0, 0, 0, 0.12);
-        border-radius: 12px;
+        border-radius: 10px;
         font-size: 14.5px;
         color: #222;
         outline: none;
@@ -140,29 +143,29 @@
     .captcha-box {
         background: #2d7a2d;
         color: white;
-        height: 46px;
-        border-radius: 12px;
-        font-size: 20px;
-        font-weight: bold;
+        height: 48px;
+        border-radius: 10px;
+        font-size: 22px;
+        font-weight: 700;
         letter-spacing: 6px;
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: monospace;
+        font-family: 'Courier New', monospace;
         user-select: none;
-        box-shadow: 0 4px 10px rgba(45, 122, 45, 0.15);
+        box-shadow: 0 4px 12px rgba(45, 122, 45, 0.15);
     }
 
     .refresh-btn {
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(0, 0, 0, 0.12);
-        color: white;
-        border-radius: 12px;
-        width: 46px;
-        height: 46px;
+        color: #2d7a2d;
+        border-radius: 10px;
+        width: 50px;
+        height: 48px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -171,7 +174,8 @@
 
     .refresh-btn:hover {
         background: #ffffff;
-        border-color: rgba(0, 0, 0, 0.2);
+        border-color: #2d7a2d;
+        transform: rotate(45deg);
     }
 
     /* Footer Navigation Area */
@@ -193,6 +197,7 @@
     .secondary-links {
         display: flex;
         gap: 10px;
+        width: 100%;
     }
 
     /* Button Variations matching system guidelines */
@@ -200,23 +205,22 @@
         background: #2d7a2d;
         color: white;
         border: none;
-        padding: 11px 22px;
-        border-radius: 12px;
-        font-size: 14px;
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-size: 15px;
         cursor: pointer;
         font-weight: 700;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 12px rgba(45, 122, 45, 0.15);
+        box-shadow: 0 5px 15px rgba(45, 122, 45, 0.2);
         transition: all 0.25s ease;
     }
 
     .btn-green:hover:not(:disabled) {
         background: #1f5c1f;
-        transform: translateY(-1px);
-        box-shadow: 0 6px 15px rgba(31, 92, 31, 0.2);
+        transform: translateY(-2px);
     }
 
     .btn-slate {
@@ -224,11 +228,13 @@
         color: white;
         border: none;
         padding: 11px 20px;
-        border-radius: 12px;
+        border-radius: 10px;
         font-size: 14px;
         cursor: pointer;
         font-weight: 700;
         text-decoration: none;
+        flex: 1;
+        text-align: center;
         transition: background 0.2s;
     }
 
