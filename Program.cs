@@ -25,6 +25,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 builder.Services.AddCascadingAuthenticationState();
 
+// ==========================================
+// ADDED SERVICE BINDING BELOW
+// ==========================================
+builder.Services.AddScoped<Group4_VISUALPROGRAMMING_PROJECT.Data.JobService>();
+// ==========================================
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
