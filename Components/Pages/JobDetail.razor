@@ -142,291 +142,432 @@
 }
 
 <style>
-    .job-title-header {
-        text-align: center;
-        padding: 35px 20px;
-        background: rgba(255, 255, 255, 0.35);
+    .glass-wrapper {
+        background: linear-gradient(135deg, #f3faf3 0%, #e6f4e6 100%);
+        padding: 40px 15px;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .blur-glow-1 {
+        position: absolute; top: -10%; left: 5%; width: 450px; height: 450px; 
+        background: rgba(45, 122, 45, 0.18); filter: blur(100px); border-radius: 50%; z-index: 1;
+    }
+    .blur-glow-2 {
+        position: absolute; bottom: -5%; right: 5%; width: 500px; height: 500px; 
+        background: rgba(0, 188, 212, 0.15); filter: blur(120px); border-radius: 50%; z-index: 1;
+    }
+
+    .main-container {
+        position: relative;
+        z-index: 2;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .glass-header-card {
+        background: rgba(255, 255, 255, 0.45);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.7);
         border-radius: 16px;
+        padding: 30px;
         margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(22, 77, 22, 0.04);
+        box-shadow: 0 10px 30px rgba(26, 92, 26, 0.04);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
 
-    .job-title-header h1 {
-        font-size: 26px;
-        font-weight: bold;
-        color: #164d16;
+    .glass-header-card h1 {
+        font-size: 25px;
+        font-weight: 800;
+        color: #123e12;
+        margin: 0 0 6px 0;
+    }
+
+    .glass-header-card p {
+        font-size: 14.5px;
+        color: #3b523b;
         margin: 0;
-    }
-
-    .job-title-header p {
-        font-size: 15px;
-        color: #4a5f4a;
-        margin: 8px 0 0 0;
         font-weight: 500;
     }
 
-    .detail-container {
+    .glass-main-card {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(22, 77, 22, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
         display: flex;
-        max-width: 1000px;
-        margin: 0 auto;
-        border-radius: 16px;
         overflow: hidden;
     }
 
-    .left-panel {
-        width: 38%;
-        background: rgba(26, 92, 26, 0.04);
-        padding: 30px 24px;
+    .panel-left {
+        width: 35%;
+        background: rgba(26, 92, 26, 0.03);
         border-right: 1px solid rgba(26, 92, 26, 0.08);
+        padding: 35px 25px;
     }
 
-    .right-panel {
-        width: 62%;
-        background: transparent;
-        padding: 30px;
+    .panel-right {
+        width: 65%;
+        padding: 35px 40px;
     }
 
-    .section-title {
-        color: #c0392b;
-        font-weight: bold;
+    .panel-headline {
+        color: #1a5c1a;
+        font-weight: 700;
         font-size: 14px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 1px solid rgba(26, 92, 26, 0.1);
-        padding-bottom: 6px;
-        margin-bottom: 14px;
-        margin-top: 25px;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgba(26, 92, 26, 0.1);
     }
 
-    .section-title:first-of-type {
-        margin-top: 0;
-    }
-
-    .detail-row {
+    .info-grid {
         display: flex;
-        margin-bottom: 14px;
-        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
     }
 
-    .detail-label {
-        font-weight: 600;
-        width: 140px;
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
         font-size: 13.5px;
-        color: #164d16;
+        line-height: 1.4;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #2d5a2d;
+        width: 45%;
         flex-shrink: 0;
     }
 
-    .detail-value {
-        font-size: 13.5px;
+    .info-value {
+        color: #222;
+        width: 55%;
+        text-align: right;
+    }
+
+    .info-value.highlight-date {
+        color: #c0392b;
+        font-weight: 700;
+    }
+
+    .section-headline {
+        color: #2d7a2d;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-top: 30px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .section-headline:first-of-type {
+        margin-top: 0;
+    }
+
+    .section-headline::after {
+        content: '';
+        flex-grow: 1;
+        height: 1px;
+        background: rgba(26, 92, 26, 0.1);
+        margin-left: 10px;
+    }
+
+    .text-body {
+        font-size: 14.5px;
         color: #333;
+        line-height: 1.7;
+        margin: 0 0 15px 0;
     }
 
-    .tag {
-        background: rgba(0, 188, 212, 0.1);
-        color: #00838f;
-        border: 1px solid rgba(0, 188, 212, 0.2);
-        padding: 5px 12px;
-        border-radius: 6px;
-        font-size: 12.5px;
-        font-weight: 500;
-        margin-right: 6px;
-        margin-bottom: 8px;
-        display: inline-block;
-    }
-
-    .back-btn {
-        background: rgba(255, 255, 255, 0.6);
-        border: 1px solid rgba(26, 92, 26, 0.15);
-        color: #164d16;
-        padding: 8px 18px;
+    .glass-tag {
+        background: rgba(45, 122, 45, 0.08);
+        color: #1a5c1a;
+        border: 1px solid rgba(45, 122, 45, 0.15);
+        padding: 6px 14px;
         border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-right: 8px;
+        margin-bottom: 10px;
+        display: inline-block;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+    }
+
+    .note-box {
+        background: rgba(0, 188, 212, 0.04);
+        border-left: 4px solid #00bcd4;
+        padding: 16px 20px;
+        border-radius: 4px 12px 12px 4px;
+        margin-top: 15px;
+    }
+
+    .btn-back {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(26, 92, 26, 0.2);
+        color: #1a5c1a;
+        padding: 10px 22px;
+        border-radius: 10px;
         text-decoration: none;
         font-size: 13.5px;
-        font-weight: 500;
-        display: inline-block;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-        transition: all 0.2s;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
     }
-    .back-btn:hover {
-        background: #164d16;
-        color: white;
-    }
-
-    .apply-btn {
-        background: linear-gradient(135deg, #2d7a2d 0%, #1a5c1a 100%);
-        color: white;
-        padding: 11px 26px;
-        border-radius: 8px;
-        font-size: 14.5px;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(26, 92, 26, 0.2);
-        transition: transform 0.2s;
-    }
-    .apply-btn:hover {
-        transform: translateY(-2px);
+    .btn-back:hover {
+        background: #1a5c1a;
+        color: #ffffff;
+        transform: translateX(-2px);
     }
 
-    .view-ad-btn {
-        background: linear-gradient(135deg, #f39c12 0%, #d35400 100%);
+    .btn-apply {
+        background: linear-gradient(135deg, #2d7a2d 0%, #164d16 100%);
         color: white;
-        padding: 11px 26px;
-        border-radius: 8px;
-        font-size: 14.5px;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
-        transition: transform 0.2s;
-    }
-    .view-ad-btn:hover {
-        transform: translateY(-2px);
-    }
-
-    .panel-title {
-        color: #1976d2;
-        font-weight: bold;
+        padding: 13px 32px;
+        border-radius: 10px;
         font-size: 15px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 1px solid rgba(26, 92, 26, 0.15);
-        padding-bottom: 8px;
-        margin-bottom: 16px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(22, 77, 22, 0.2);
+        transition: all 0.2s ease;
+    }
+    .btn-apply:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(22, 77, 22, 0.3);
+    }
+
+    .btn-ad {
+        background: rgba(243, 156, 18, 0.1);
+        color: #d35400;
+        border: 1px solid rgba(243, 156, 18, 0.3);
+        padding: 13px 32px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .btn-ad:hover {
+        background: #f39c12;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Escape token added here to clear the razor expression engine layout conflict */
+    @@media (max-width: 850px) {
+        .glass-main-card { flex-direction: column; }
+        .panel-left, .panel-right { width: 100%; border-right: none; }
+        .panel-left { border-bottom: 1px solid rgba(26, 92, 26, 0.08); }
     }
 </style>
 
-<div style="background: linear-gradient(135deg, #f4faf4 0%, #e8f5e8 100%); padding:50px 30px; min-height:100vh; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: -5%; left: 10%; width: 350px; height: 350px; background: rgba(45, 122, 45, 0.12); filter: blur(90px); border-radius: 50%;"></div>
-    <div style="position: absolute; bottom: 5%; right: 10%; width: 400px; height: 400px; background: rgba(0, 188, 212, 0.1); filter: blur(100px); border-radius: 50%;"></div>
+<div class="glass-wrapper">
+    <div class="blur-glow-1"></div>
+    <div class="blur-glow-2"></div>
 
-    <div style="position: relative; z-index: 2; max-width: 1000px; margin: 0 auto;">
-
-        <a href="/jobs" class="back-btn">← Back to Listings</a>
-
-        <div class="job-title-header">
-            <h1>@Title</h1>
-            <p>📍 @Department, PUNJAB</p>
+    <div class="main-container">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <a href="/jobs" class="btn-back">← Back to All Listings</a>
+            <span style="background: rgba(45, 122, 45, 0.1); color: #1a5c1a; padding: 6px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.5px;">
+                🟢 ONLINE VERIFIED POSITION
+            </span>
         </div>
 
-        <div style="background: rgba(255, 255, 255, 0.45); 
-                    backdrop-filter: blur(25px); 
-                    -webkit-backdrop-filter: blur(25px); 
-                    border: 1px solid rgba(255, 255, 255, 0.7); 
-                    border-radius: 16px; 
-                    box-shadow: 0 15px 35px rgba(22, 77, 22, 0.05), inset 0 1px 0 rgba(255,255,255,0.5);
-                    overflow: hidden;">
-                    
-            <div class="detail-container">
+        <div class="glass-header-card">
+            <div>
+                <h1>@Title</h1>
+                <p>🏢 @Department</p>
+            </div>
+            <div style="text-align: right;">
+                <span style="background: #00bcd4; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 6px;">
+                    Posted: @Posted
+                </span>
+                <p style="font-size: 13px; color: #555;">Location: <strong>@Division, Pakistan</strong></p>
+            </div>
+        </div>
 
-                <div class="left-panel">
-                    <div class="panel-title">Job Summary</div>
-                    <div class="detail-row">
-                        <span class="detail-label">Division</span>
-                        <span class="detail-value">@Division</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">District</span>
-                        <span class="detail-value">@District</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Industry</span>
-                        <span class="detail-value">@Industry</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Project</span>
-                        <span class="detail-value">@Project</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Total Positions</span>
-                        <span class="detail-value">@Positions</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Employment</span>
-                        <span class="detail-value">@Employment</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Role</span>
-                        <span class="detail-value">@Role</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Job Posted</span>
-                        <span class="detail-value">@Posted</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Level</span>
-                        <span class="detail-value">@Level</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Last Date</span>
-                        <span class="detail-value" style="font-weight: 600; color: #c0392b;">@LastDate</span>
-                    </div>
-
-                    <div class="panel-title" style="margin-top:30px;">Requirements</div>
-                    <div class="detail-row">
-                        <span class="detail-label">Experience</span>
-                        <span class="detail-value">@Experience</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Gender</span>
-                        <span class="detail-value">@Gender</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Age Limit</span>
-                        <span class="detail-value">@Age Years</span>
-                    </div>
+        <div class="glass-main-card">
+            
+            <div class="panel-left">
+                <div class="panel-headline">Job Context</div>
+                <div class="info-grid">
+                    <div class="info-row"><span class="info-label">Division</span><span class="info-value">@Division</span></div>
+                    <div class="info-row"><span class="info-label">District</span><span class="info-value">@District</span></div>
+                    <div class="info-row"><span class="info-label">Industry</span><span class="info-value">@Industry</span></div>
+                    <div class="info-row"><span class="info-label">Project Scope</span><span class="info-value">@Project</span></div>
+                    <div class="info-row"><span class="info-label">Total Openings</span><span class="info-value">@Positions Position(s)</span></div>
+                    <div class="info-row"><span class="info-label">Employment</span><span class="info-value">@Employment</span></div>
+                    <div class="info-row"><span class="info-label">Functional Role</span><span class="info-value">@Role</span></div>
+                    <div class="info-row"><span class="info-label">Scale Level</span><span class="info-value">@Level</span></div>
+                    <div class="info-row"><span class="info-label">Closing Date</span><span class="info-value highlight-date">@LastDate</span></div>
                 </div>
 
-                <div class="right-panel">
-                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid rgba(0,0,0,0.05);">
-                        <div>
-                            <div style="background: #00bcd4; color:white; padding:4px 10px; border-radius:4px; font-size:11px; font-weight: bold; display:inline-block; margin-bottom:5px;">
-                                ACTIVE POSITION
-                            </div>
-                            <div style="font-weight:bold; font-size:16px; color: #164d16;">Overview Specifications</div>
-                        </div>
-                    </div>
+                <div class="panel-headline" style="margin-top: 35px;">Candidate Criteria</div>
+                <div class="info-grid">
+                    <div class="info-row"><span class="info-label">Experience</span><span class="info-value">@Experience Required</span></div>
+                    <div class="info-row"><span class="info-label">Gender Check</span><span class="info-value">@Gender Eligibility</span></div>
+                    <div class="info-row"><span class="info-label">Age Window</span><span class="info-value">@Age Years old</span></div>
+                </div>
+            </div>
 
-                    <div class="section-title">Job Description</div>
-                    <p style="font-size:14px; color:#333; line-height:1.7; margin-bottom: 0;">@Description</p>
+            <div class="panel-right">
+                
+                <div class="section-headline">Job Specification Overview</div>
+                <p class="text-body">@Description</p>
 
-                    <div class="section-title">Degree Level</div>
-                    <span class="tag">@DegreeLevel</span>
+                <div class="section-headline">Required Degree Level</div>
+                <div class="glass-tag" style="background: rgba(0, 188, 212, 0.08); color: #007c8d; border-color: rgba(0, 188, 212, 0.2);">
+                    🎓 @DegreeLevel
+                </div>
 
-                    <div class="section-title">Degree Area</div>
+                <div class="section-headline">Target Functional Academic Fields</div>
+                <div style="margin-bottom: 10px;">
                     @foreach (var area in DegreeArea.Split(','))
                     {
                         if(!string.IsNullOrWhiteSpace(area))
                         {
-                            <span class="tag">@area.Trim()</span>
+                            <span class="glass-tag">✓ @area.Trim()</span>
                         }
                     }
+                </div>
 
-                    <div class="section-title">Important Note</div>
-                    <div style="background: rgba(25, 118, 210, 0.05); border-left: 4px solid #1976d2; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-bottom: 25px;">
-                        <p style="font-size:13.5px; color:#222; line-height:1.6; font-weight:bold; margin-bottom: 6px;">
-                            Domicile is required for this position.
-                        </p>
-                        <p style="font-size:13px; color:#444; line-height:1.5; margin-bottom: 8px;">
-                            For getting Domicile at home through the flagship initiative of the Government of Punjab, Call 1202 or download the Dastak Doorstep Delivery App now!
-                        </p>
-                        <p style="font-size:12.5px; color:#1976d2; font-weight: 500; margin-bottom: 0;">
-                            Google Play Store | Apple App Store | Web Portal
-                        </p>
-                    </div>
+                <div class="section-headline">Verification Guidelines</div>
+                <div class="note-box">
+                    <p style="font-size:14px; color:#111; line-height:1.6; font-weight:700; margin: 0 0 6px 0;">
+                        Official Punjab Domicile Check Required
+                    </p>
+                    <p style="font-size:13px; color:#444; line-height:1.5; margin: 0 0 12px 0;">
+                        To secure your verified legal Domicile directly at your doorstep through the digital portal initiative of the Government of Punjab, dial <strong>1202</strong> or download the official <strong>Dastak Delivery App</strong> immediately.
+                    </p>
+                    <p style="font-size:12.5px; color:#00bcd4; font-weight: 600; margin: 0;">
+                        🔗 Google Play Store | Apple App Store | E-Gov Web Portal
+                    </p>
+                </div>
 
-                    <div style="display:flex; align-items:center; gap:15px; margin-top:20px;">
-                        <button class="apply-btn" @onclick='() => NavigationManager.NavigateTo($"/apply/{JobId}")'>
-                            Apply for this Job
-                        </button>
-                        <button class="view-ad-btn">
-                            View Advertisement
-                        </button>
-                    </div>
+                <div style="margin-top: 35px; display: flex; align-items: center; gap: 15px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 25px;">
+                    <button class="btn-apply" @onclick='() => NavigationManager.NavigateTo($"/apply/{JobId}")'>
+                        Apply for this Job Position
+                    </button>
+                    <button class="btn-ad">
+                        Open Advertisement File
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="glass-wrapper">
+    <div class="blur-glow-1"></div>
+    <div class="blur-glow-2"></div>
+
+    <div class="main-container">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <a href="/jobs" class="btn-back">← Back to All Listings</a>
+            <span style="background: rgba(45, 122, 45, 0.1); color: #1a5c1a; padding: 6px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.5px;">
+                🟢 ONLINE VERIFIED POSITION
+            </span>
+        </div>
+
+        <div class="glass-header-card">
+            <div>
+                <h1>@Title</h1>
+                <p>🏢 @Department</p>
+            </div>
+            <div style="text-align: right;">
+                <span style="background: #00bcd4; color: white; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 6px;">
+                    Posted: @Posted
+                </span>
+                <p style="font-size: 13px; color: #555;">Location: <strong>@Division, Pakistan</strong></p>
+            </div>
+        </div>
+
+        <div class="glass-main-card">
+            
+            <div class="panel-left">
+                <div class="panel-headline">Job Context</div>
+                <div class="info-grid">
+                    <div class="info-row"><span class="info-label">Division</span><span class="info-value">@Division</span></div>
+                    <div class="info-row"><span class="info-label">District</span><span class="info-value">@District</span></div>
+                    <div class="info-row"><span class="info-label">Industry</span><span class="info-value">@Industry</span></div>
+                    <div class="info-row"><span class="info-label">Project Scope</span><span class="info-value">@Project</span></div>
+                    <div class="info-row"><span class="info-label">Total Openings</span><span class="info-value">@Positions Position(s)</span></div>
+                    <div class="info-row"><span class="info-label">Employment</span><span class="info-value">@Employment</span></div>
+                    <div class="info-row"><span class="info-label">Functional Role</span><span class="info-value">@Role</span></div>
+                    <div class="info-row"><span class="info-label">Scale Level</span><span class="info-value">@Level</span></div>
+                    <div class="info-row"><span class="info-label">Closing Date</span><span class="info-value highlight-date">@LastDate</span></div>
+                </div>
+
+                <div class="panel-headline" style="margin-top: 35px;">Candidate Criteria</div>
+                <div class="info-grid">
+                    <div class="info-row"><span class="info-label">Experience</span><span class="info-value">@Experience Required</span></div>
+                    <div class="info-row"><span class="info-label">Gender Check</span><span class="info-value">@Gender Eligibility</span></div>
+                    <div class="info-row"><span class="info-label">Age Window</span><span class="info-value">@Age Years old</span></div>
+                </div>
+            </div>
+
+            <div class="panel-right">
+                
+                <div class="section-headline">Job Specification Overview</div>
+                <p class="text-body">@Description</p>
+
+                <div class="section-headline">Required Degree Level</div>
+                <div class="glass-tag" style="background: rgba(0, 188, 212, 0.08); color: #007c8d; border-color: rgba(0, 188, 212, 0.2);">
+                    🎓 @DegreeLevel
+                </div>
+
+                <div class="section-headline">Target Functional Academic Fields</div>
+                <div style="margin-bottom: 10px;">
+                    @foreach (var area in DegreeArea.Split(','))
+                    {
+                        if(!string.IsNullOrWhiteSpace(area))
+                        {
+                            <span class="glass-tag">✓ @area.Trim()</span>
+                        }
+                    }
+                </div>
+
+                <div class="section-headline">Verification Guidelines</div>
+                <div class="note-box">
+                    <p style="font-size:14px; color:#111; line-height:1.6; font-weight:700; margin: 0 0 6px 0;">
+                        Official Punjab Domicile Check Required
+                    </p>
+                    <p style="font-size:13px; color:#444; line-height:1.5; margin: 0 0 12px 0;">
+                        To secure your verified legal Domicile directly at your doorstep through the digital portal initiative of the Government of Punjab, dial <strong>1202</strong> or download the official <strong>Dastak Delivery App</strong> immediately.
+                    </p>
+                    <p style="font-size:12.5px; color:#00bcd4; font-weight: 600; margin: 0;">
+                        🔗 Google Play Store | Apple App Store | E-Gov Web Portal
+                    </p>
+                </div>
+
+                <div style="margin-top: 35px; display: flex; align-items: center; gap: 15px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 25px;">
+                    <button class="btn-apply" @onclick='() => NavigationManager.NavigateTo($"/apply/{JobId}")'>
+                        Apply for this Job Position
+                    </button>
+                    <button class="btn-ad">
+                        Open Advertisement File
+                    </button>
                 </div>
 
             </div>
