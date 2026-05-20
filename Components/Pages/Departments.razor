@@ -3,64 +3,117 @@
 <PageTitle>Departmental Contacts - Punjab Jobs Online</PageTitle>
 
 <style>
+    /* Premium Radiant Mint Soft Blend Background Matching Main System Layout */
     .dept-wrapper {
-        padding: 30px 40px;
-        background: white;
+        background: linear-gradient(135deg, #eef9ee 0%, #d8edd8 100%);
+        padding: 40px 20px;
         min-height: 100vh;
+        font-family: system-ui, -apple-system, sans-serif;
     }
 
+    /* Core Architectural Glass Box Setup */
+    .grey-box {
+        background: rgba(255, 255, 255, 0.45) !important;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 16px 36px rgba(16, 54, 16, 0.05);
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    /* Glassmorphism Inner Contact Card Design Elements */
     .dept-card {
-        background: white;
-        border: none;
-        border-radius: 6px;
-        padding: 22px;
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.7) !important;
+        border-radius: 12px !important;
+        padding: 24px;
         height: 100%;
-        transition: all 0.25s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        border-left: 4px solid #1a6bbf;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        border-left: 5px solid rgba(27, 94, 32, 0.6) !important; /* Elegant Forest Green Side Border Accent */
+        display: flex;
+        flex-direction: column;
     }
 
     .dept-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        border-left: 4px solid #2d7a2d;
+        background: rgba(255, 255, 255, 0.85) !important;
+        border-color: rgba(255, 255, 255, 0.9) !important;
+        border-left: 5px solid #1b5e20 !important; /* Highlighting to rich solid deep green */
+        box-shadow: 0 12px 28px rgba(16, 73, 16, 0.08);
     }
 
     .dept-name {
-        color: #1a6bbf;
-        font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 15px;
+        color: #0b2e0b;
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 16px;
         line-height: 1.4;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed rgba(16, 73, 16, 0.15);
     }
 
     .dept-info {
-        font-size: 13px;
-        color: #666;
-        margin-bottom: 8px;
+        font-size: 13.5px;
+        color: #222;
+        font-weight: 500;
+        margin-bottom: 10px;
         display: flex;
         align-items: flex-start;
-        gap: 8px;
+        gap: 10px;
         line-height: 1.5;
     }
 
+    .dept-info span:first-child {
+        font-size: 15px;
+        opacity: 0.85;
+    }
+
     .dept-info a {
-        color: #555;
+        color: #114711;
         text-decoration: none;
         word-break: break-all;
+        font-weight: 600;
+        transition: color 0.2s;
     }
 
     .dept-info a:hover {
-        color: #1a6bbf;
+        color: #1b5e20;
         text-decoration: underline;
     }
 
-    .grey-box {
-        background: #f0f2f5;
+    /* Match system pagination glass styles */
+    .page-btn {
+        padding: 6px 14px;
+        border: 1px solid rgba(16, 73, 16, 0.2);
         border-radius: 6px;
-        padding: 25px;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.6);
+        color: #114711;
+        font-size: 13px;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+    
+    .page-btn:hover:not(:disabled) {
+        background: #ffffff;
+        border-color: #1b5e20;
+    }
+    
+    .page-btn.active {
+        background: #1b5e20;
+        color: white;
+        border-color: #1b5e20;
+    }
+    
+    .page-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
     }
 </style>
 
@@ -80,7 +133,6 @@
             new DeptItem { Name="Allied Hospital, Faisalabad", Location="Faisalabad", Phone="00419210186", Email="ms.ah.fsd@punjab.gov.pk" },
             new DeptItem { Name="Aviation Flight (RW), S&GAD", Location="Lahore", Phone="04299220312", Email="soaviationsgad@gmail.com" },
             new DeptItem { Name="Ayub Agricultural Research Institute, Faisalabad", Location="Faisalabad", Phone="04211111111", Email="director.general@aari.punjab.gov.pk" },
-            new DeptItem { Name="Aziz Bhatti Shaheed Teaching Hospital, Gujrat", Location="Gujrat", Phone="04211111111", Email="absh.gujrat@yahoo.com" },
             new DeptItem { Name="Aziz Bhatti Shaheed Teaching Hospital, Gujrat", Location="Gujrat", Phone="00539260101", Email="absh.gujrat@yahoo.com" },
             new DeptItem { Name="Bahawalpur Waste Management Company", Location="Bahawalpur", Phone="00429255202", Email="jobsonlinesupport@punjab.gov.pk" },
             new DeptItem { Name="Bhakkar Job Bureau", Location="Bhakkar", Phone="00453920006", Email="bhakkarjobbureau@gmail.com" },
@@ -121,9 +173,9 @@
 }
 
 <div class="dept-wrapper">
-    <h2 style="font-weight:bold; font-size:26px; margin-bottom:20px;">Departmental Contacts</h2>
+    <h2 style="max-width:1250px; margin:0 auto 24px auto; font-weight:800; font-size:28px; color: #0b2e0b;">Departmental Contacts</h2>
 
-    <div class="grey-box" style="background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);">
+    <div class="grey-box">
         <div class="row g-4 mb-4">
             @foreach (var dept in PagedDepts)
             {
@@ -147,19 +199,21 @@
             }
         </div>
 
-        <!-- Pagination -->
         @if (TotalPages > 1)
         {
-            <div style="display:flex; gap:5px; margin-top:10px;">
-                <button class="page-btn" @onclick="() => GoToPage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
-                @for (int i = 1; i <= TotalPages; i++)
-                {
-                    var pageNum = i;
-                    <button class="page-btn @(CurrentPage == pageNum ? "active" : "")"
-                            @onclick="() => GoToPage(pageNum)">@pageNum</button>
-                }
-                <button class="page-btn" @onclick="() => GoToPage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
-                <button class="page-btn" @onclick="() => GoToPage(TotalPages)" disabled="@(CurrentPage == TotalPages)">Last ›</button>
+            <div style="display:flex; justify-content: space-between; align-items: center; margin-top:25px; font-size:14px; color: #114711; font-weight: 700;">
+                <span>Showing page @CurrentPage of @TotalPages allocations</span>
+                
+                <div style="display:flex; gap:6px;">
+                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
+                    @for (int i = 1; i <= TotalPages; i++)
+                    {
+                        var pageNum = i;
+                        <button class="page-btn @(CurrentPage == pageNum ? "active" : "")"
+                                @onclick="() => GoToPage(pageNum)">@pageNum</button>
+                    }
+                    <button class="page-btn" @onclick="() => GoToPage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
+                </div>
             </div>
         }
     </div>
