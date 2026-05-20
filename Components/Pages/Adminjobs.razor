@@ -15,28 +15,32 @@
             <thead>
                 <tr>
                     <th>Position Title</th>
+                    <th>Department</th>
                     <th>Location</th>
-                    <th>Contract</th>
+                    <th>Vacancies</th>
+                    <th>Last Date to Apply</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @if (AdminJobList == null)
                 {
-                    <tr><td colspan="4" class="text-center">Loading Admin Database Context...</td></tr>
+                    <tr><td colspan="6" class="text-center">Loading Admin Database Context...</td></tr>
                 }
                 else if (!AdminJobList.Any())
                 {
-                    <tr><td colspan="4" class="text-center">No jobs found in the administrative registry.</td></tr>
+                    <tr><td colspan="6" class="text-center">No jobs found in the administrative registry.</td></tr>
                 }
                 else
                 {
                     @foreach (var job in AdminJobList)
                     {
                         <tr>
-                            <td>@job.Title</td>
+                            <td><strong>@job.Title</strong></td>
+                            <td>@job.Department</td>
                             <td>@job.Location</td> 
-                            <td><span class="badge bg-warning text-dark">@job.Description</span></td>
+                            <td><span class="badge bg-info text-dark">@job.Vacancies Open</span></td>
+                            <td><span class="badge bg-warning text-dark">@job.LastDate.ToString("dd-MMM-yyyy")</span></td>
                             <td>
                                 <button class="btn btn-sm btn-danger" @onclick="() => DeletePosition(job.Id)">Delete</button>
                             </td>
@@ -60,6 +64,9 @@
     {
         // Tier Separation: Calling the Business Logic Layer instead of direct DB Queries
         AdminJobList = await JobService.GetAllJobsAsync();
+
+        // Forces the Blazor Server circuit to re-render the HTML template onto the client browser
+        await InvokeAsync(StateHasChanged);
     }
 
     private void OpenAddModal()

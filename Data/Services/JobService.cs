@@ -18,11 +18,11 @@ namespace Group4_VISUALPROGRAMMING_PROJECT.Data
         }
 
         // 1. READ Operation: Fetch all jobs from MySQL
-        public async Task<List<Job>> GetAllJobsAsync()
-        {
-            return await _dbContext.Jobs.ToListAsync();
-        }
-
+       // 1. READ Operation: Fetch all jobs from MySQL
+public async Task<List<Job>> GetAllJobsAsync()
+{
+    return await _dbContext.Jobs.Include(j => j.Department).ToListAsync();
+}
         // 2. DELETE Operation: Remove a job from MySQL
         public async Task<bool> DeleteJobAsync(int jobId)
         {
