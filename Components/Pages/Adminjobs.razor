@@ -62,10 +62,7 @@
 
     private async Task LoadPositions()
     {
-        // Tier Separation: Calling the Business Logic Layer instead of direct DB Queries
         AdminJobList = await JobService.GetAllJobsAsync();
-
-        // Forces the Blazor Server circuit to re-render the HTML template onto the client browser
         await InvokeAsync(StateHasChanged);
     }
 
